@@ -48,6 +48,10 @@
 <li class="toctree-l2"><a class="reference internal" href="#introduction-to-linux">Introduction to Linux</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#what-is-linux">What is Linux?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#what-is-a-command-line-interface-gui">What is a Command Line Interface (GUI)?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#practical-part">Practical part</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#create-directory-and-practice-moving-around">Create directory and practice moving around</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -88,6 +92,7 @@
 <ul class="simple">
 <li><p><a class="reference internal" href="#what-is-linux">What is Linux?</a></p></li>
 <li><p><a class="reference internal" href="#what-is-a-command-line-interface-gui">What is a Command Line Interface (GUI)?</a></p></li>
+<li><p><a class="reference internal" href="#practical-part">Practical part</a></p></li>
 </ul>
 <section id="what-is-linux">
 <h3>What is Linux?<a class="headerlink" href="#what-is-linux" title="Permalink to this heading"></a></h3>
@@ -110,6 +115,119 @@
 <p>For example, in the Windows command prompt, the user can type “<strong>dir</strong>” to list the files and directories in the current directory, and in the Unix/Linux command line, the user can type “<strong>ls</strong>” to achieve the same result.</p>
 <p>In addition to simple commands, more complex operations can be performed by chaining commands together using special symbols.</p>
 <p>Overall, command line interfaces offer a fast and powerful way to interact with a computer or software system, and are often preferred to graphical user interface (<strong>GUI</strong>) by experienced users or developers due to their flexibility and efficiency.</p>
+</section>
+<section id="practical-part">
+<h3>Practical part<a class="headerlink" href="#practical-part" title="Permalink to this heading"></a></h3>
+<section id="create-directory-and-practice-moving-around">
+<h4>Create directory and practice moving around<a class="headerlink" href="#create-directory-and-practice-moving-around" title="Permalink to this heading"></a></h4>
+<p>To create file and folders in linux is quite simple. You can use a number of programs for creating an empty file (<strong>touch</strong>) or an empty directory (<strong>mkdir</strong>)</p>
+<p><code class="docutils literal notranslate"><span class="pre">`{bash}</span>
+<span class="pre">touch</span> <span class="pre">my_beautiful_file.txt</span>
+<span class="pre">mkdir</span> <span class="pre">my_beautiful_folder</span>
+<span class="pre">`</span></code></p>
+<p>To display the list of files and folder we can use the command <strong>ls</strong></p>
+<p><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>{bash}
+ls</p>
+<p>my_beautiful_file.txt  my_beautiful_folder
+<a href="#id5"><span class="problematic" id="id6">``</span></a><a href="#id7"><span class="problematic" id="id8">`</span></a></p>
+<p>To change the name of a file (or a directory) you can use the command <strong>mv</strong> while for copying the file you can use <strong>cp</strong>. Adding the option <strong>-r</strong> (recursive) to <strong>cp</strong> allows to copy a whole folder and its content.</p>
+<p><a href="#id9"><span class="problematic" id="id10">``</span></a><a href="#id11"><span class="problematic" id="id12">`</span></a>{bash}
+mv my_beautiful_file.txt my_ugly_file.txt
+mv my_beautiful_folder my_ugly_folder</p>
+<p>cp my_ugly_file.txt my_beautiful_file.txt
+cp my_ugly_folder -r my_beautiful_folder
+<a href="#id13"><span class="problematic" id="id14">``</span></a>`
+If you omit the <strong>-r</strong> option the system will complain</p>
+<p><a href="#id15"><span class="problematic" id="id16">``</span></a><a href="#id17"><span class="problematic" id="id18">`</span></a>{bash}
+cp my_ugly_folder my_other_folder</p>
+<p>cp: omitting directory ‘my_ugly_folder’
+<a href="#id19"><span class="problematic" id="id20">``</span></a><a href="#id21"><span class="problematic" id="id22">`</span></a></p>
+<p>You can use <strong>mv</strong> also for moving a file (or a directory) inside a folder. Also <strong>cp</strong> will allow you to make a copy inside a folder.</p>
+<p><a href="#id23"><span class="problematic" id="id24">``</span></a><a href="#id25"><span class="problematic" id="id26">`</span></a>{bash}
+mv my_beautiful_file.txt my_beautiful_folder
+cp my_ugly_file.txt my_ugly_folder</p>
+<p>ls</p>
+<p>my_beautiful_folder  my_ugly_file.txt  my_ugly_folder
+<a href="#id27"><span class="problematic" id="id28">``</span></a><a href="#id29"><span class="problematic" id="id30">`</span></a></p>
+<p>For entering in a folder we can use the tool <strong>cd</strong></p>
+<p><a href="#id31"><span class="problematic" id="id32">``</span></a><a href="#id33"><span class="problematic" id="id34">`</span></a>{bash}
+cd my_ugly_folder</p>
+<p>ls</p>
+<p>my_ugly_file.txt
+<a href="#id35"><span class="problematic" id="id36">``</span></a><a href="#id37"><span class="problematic" id="id38">`</span></a></p>
+<p>For going out we can move one level out
+<a href="#id39"><span class="problematic" id="id40">``</span></a><a href="#id41"><span class="problematic" id="id42">`</span></a>{bash}
+cd ../</p>
+<p>ls</p>
+<p>my_beautiful_folder  my_ugly_file.txt  my_ugly_folder
+<a href="#id43"><span class="problematic" id="id44">``</span></a><a href="#id45"><span class="problematic" id="id46">`</span></a></p>
+<p>Sometimes we get lost and would like to know where we are. We can use the command <strong>pwd</strong></p>
+<p>&lt;img src=”pics/lost.jpg” width=”400”/&gt;</p>
+<p>We can write to a file using the character <strong>&gt;</strong>, that means output redirection.</p>
+<p><code class="docutils literal notranslate"><span class="pre">`{bash}</span>
+<span class="pre">echo</span> <span class="pre">&quot;ATGTACTGACTGCATGCATGCCATGCA&quot;</span> <span class="pre">&gt;</span> <span class="pre">my_dna.txt</span>
+<span class="pre">`</span></code></p>
+<p>And display the content of the file using the program <strong>cat</strong></p>
+<p><a href="#id47"><span class="problematic" id="id48">``</span></a><a href="#id49"><span class="problematic" id="id50">`</span></a>{bash}
+cat my_dna.txt</p>
+<p>ATGTACTGACTGCATGCATGCCATGCA
+<a href="#id51"><span class="problematic" id="id52">``</span></a><a href="#id53"><span class="problematic" id="id54">`</span></a></p>
+<p>To convert this sequence to a RNA one we can just replace the <strong>T</strong> base with <strong>U</strong> by using the program <strong>sed</strong>. The sintax of this program is the following <code class="docutils literal notranslate"><span class="pre">`s/&lt;TO</span> <span class="pre">BE</span> <span class="pre">REPLACED&gt;/&lt;TO</span> <span class="pre">REPLACE&gt;/`</span></code>.
+&lt;br&gt;You can add a <strong>g</strong> at the end if you want to replace every character found <code class="docutils literal notranslate"><span class="pre">`s/&lt;TO</span> <span class="pre">BE</span> <span class="pre">REPLACED&gt;/&lt;TO</span> <span class="pre">REPLACE&gt;/g`</span></code>.</p>
+<p><a href="#id55"><span class="problematic" id="id56">``</span></a><a href="#id57"><span class="problematic" id="id58">`</span></a>{bash}</p>
+<p>sed s/T/U/g my_dna.txt &gt; my_rna.txt</p>
+<p>cat my_rna.txt</p>
+<p>AUGUACUGACUGCAUGCAUGCCAUGCA
+<a href="#id59"><span class="problematic" id="id60">``</span></a><a href="#id61"><span class="problematic" id="id62">`</span></a></p>
+<p>Every command has a manual, you can read it by using the program <strong>man</strong> with the name of the tool.</p>
+<p><a href="#id63"><span class="problematic" id="id64">``</span></a><a href="#id65"><span class="problematic" id="id66">`</span></a>{bash}
+man ls</p>
+<p>LS(1)                                                                   User Commands                                                                  LS(1)</p>
+<dl>
+<dt>NAME</dt><dd><p>ls - list directory contents</p>
+</dd>
+<dt>SYNOPSIS</dt><dd><p>ls [OPTION]… [FILE]…</p>
+</dd>
+<dt>DESCRIPTION</dt><dd><blockquote>
+<div><p>List information about the FILEs (the current directory by default).  Sort entries alphabetically if none of -cftuvSUX nor –sort is specified.</p>
+<p>Mandatory arguments to long options are mandatory for short options too.</p>
+<dl class="option-list">
+<dt><kbd><span class="option">-a</span>, <span class="option">--all</span></kbd></dt>
+<dd><p>do not ignore entries starting with .</p>
+</dd>
+<dt><kbd><span class="option">-A</span>, <span class="option">--almost-all</span></kbd></dt>
+<dd><p>do not list implied . and ..</p>
+</dd>
+</dl>
+<p class="attribution">—author
+with -l, print the author of each file</p>
+</div></blockquote>
+<blockquote>
+<div><dl class="option-list">
+<dt><kbd><span class="option">-b</span>, <span class="option">--escape</span></kbd></dt>
+<dd><p>print C-style escapes for nongraphic characters</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>Manual page ls(1) line 1 (press h for help or q to quit)</p>
+</dd>
+</dl>
+<p><a href="#id67"><span class="problematic" id="id68">``</span></a><a href="#id69"><span class="problematic" id="id70">`</span></a></p>
+<p>&lt;h3&gt;Recap&lt;/h3&gt;</p>
+<ul class="simple">
+<li><p><strong>touch</strong> writes empty files <strong>mkdir</strong> empty directories</p></li>
+<li><p><strong>mv</strong> move files (or directory) or change their name</p></li>
+<li><p><strong>ls</strong> list files and directories</p></li>
+<li><p><strong>cp</strong> copy files and direcotries</p></li>
+<li><p><strong>cd</strong> change the directory</p></li>
+<li><p><strong>echo</strong> print values to standard output</p></li>
+<li><p><strong>cat</strong> print the content of a file to standard output</p></li>
+<li><p><strong>sed</strong> replace a string with another</p></li>
+<li><p><strong>man</strong> print the manual for a function</p></li>
+</ul>
+<p>&lt;h3&gt;Next Session&lt;/h3&gt;</p>
+<p>[Download files from repositories](<a class="reference external" href="https://biocorecrg.github.io/advanced_linux_2019/download">https://biocorecrg.github.io/advanced_linux_2019/download</a>)</p>
+</section>
 </section>
 </section>
 </section>
