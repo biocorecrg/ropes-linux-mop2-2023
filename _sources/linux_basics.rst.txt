@@ -16,7 +16,7 @@ What is Linux?
 ---------------------
 
 .. image:: images/Linux-Logo.png
-  :width: 200
+  :width: 400
 
 Linux is an open-source operating system that was developed in the 1990s by `Linus Torvalds <https://en.wikipedia.org/wiki/Linus_Torvalds>`__. Unlike other popular operating systems like Windows and MacOS, Linux is free to download, use, and distribute.
 
@@ -39,7 +39,7 @@ What is a Command Line Interface (GUI)?
 ---------------------
 
 .. image:: images/cli.png
-  :width: 400
+  :width: 600
   
 A command line interface (**CLI**) is a text-based interface used to interact with a computer's operating system or software by entering commands through a command prompt.
 
@@ -62,129 +62,144 @@ Create directory and practice moving around
 
 To create file and folders in linux is quite simple. You can use a number of programs for creating an empty file (**touch**) or an empty directory (**mkdir**)
 
-```{bash}
-touch my_beautiful_file.txt
-mkdir my_beautiful_folder
-```
+.. code-block:: bash
+
+  touch my_beautiful_file.txt
+
+  mkdir my_beautiful_folder
 
 To display the list of files and folder we can use the command **ls**
 
-```{bash}
-ls
+.. code-block:: bash
 
-my_beautiful_file.txt  my_beautiful_folder
-```
+  ls
+  my_beautiful_file.txt  my_beautiful_folder
+
 
 To change the name of a file (or a directory) you can use the command **mv** while for copying the file you can use **cp**. Adding the option **-r** (recursive) to **cp** allows to copy a whole folder and its content. 
 
-```{bash}
-mv my_beautiful_file.txt my_ugly_file.txt
-mv my_beautiful_folder my_ugly_folder
+.. code-block:: bash
 
-cp my_ugly_file.txt my_beautiful_file.txt
-cp my_ugly_folder -r my_beautiful_folder
-```
+  mv my_beautiful_file.txt my_ugly_file.txt
+  mv my_beautiful_folder my_ugly_folder
+
+  cp my_ugly_file.txt my_beautiful_file.txt
+  cp my_ugly_folder -r my_beautiful_folder
+
 If you omit the **-r** option the system will complain
 
-```{bash}
-cp my_ugly_folder my_other_folder
+.. code-block:: bash
 
-cp: omitting directory ‘my_ugly_folder’
-```
+  cp my_ugly_folder my_other_folder
+
 
 You can use **mv** also for moving a file (or a directory) inside a folder. Also **cp** will allow you to make a copy inside a folder.
 
-```{bash}
-mv my_beautiful_file.txt my_beautiful_folder
-cp my_ugly_file.txt my_ugly_folder
+.. code-block:: bash
 
-ls
+  mv my_beautiful_file.txt my_beautiful_folder
+  cp my_ugly_file.txt my_ugly_folder
 
-my_beautiful_folder  my_ugly_file.txt  my_ugly_folder
-```
+  ls
+
+  my_beautiful_folder  my_ugly_file.txt  my_ugly_folder
+
 
 For entering in a folder we can use the tool **cd**
 
-```{bash}
-cd my_ugly_folder
+.. code-block:: bash
 
-ls
+  cd my_ugly_folder
 
-my_ugly_file.txt
-```
+  ls
+
+  my_ugly_file.txt
+
+
 
 For going out we can move one level out 
-```{bash}
-cd ../
 
-ls
+.. code-block:: bash
 
-my_beautiful_folder  my_ugly_file.txt  my_ugly_folder
-```
+  cd ../
 
-Sometimes we get lost and would like to know where we are. We can use the command **pwd**
+  ls
 
-<img src="pics/lost.jpg" width="400"/>
+  my_beautiful_folder  my_ugly_file.txt  my_ugly_folder
+
+
+Sometimes we get lost and would like to know where we are. 
+
+
+.. image:: images/lost.png
+  :width: 600
+  
+We can use the command **pwd**.
 
 We can write to a file using the character **>**, that means output redirection.
 
-```{bash}
-echo "ATGTACTGACTGCATGCATGCCATGCA" > my_dna.txt
-```
+.. code-block:: bash
+  echo "ATGTACTGACTGCATGCATGCCATGCA" > my_dna.txt
+
 
 And display the content of the file using the program **cat**
 
-```{bash}
-cat my_dna.txt
+.. code-block:: bash
 
-ATGTACTGACTGCATGCATGCCATGCA
-```
+  cat my_dna.txt
 
-To convert this sequence to a RNA one we can just replace the **T** base with **U** by using the program **sed**. The sintax of this program is the following ```s/<TO BE REPLACED>/<TO REPLACE>/```.
-<br>You can add a **g** at the end if you want to replace every character found ```s/<TO BE REPLACED>/<TO REPLACE>/g```.
+  ATGTACTGACTGCATGCATGCCATGCA
 
-```{bash}
 
-sed s/T/U/g my_dna.txt > my_rna.txt
+To convert this sequence to a RNA one we can just replace the **T** base with **U** by using the program **sed**. The sintax of this program is the following **s/<TO BE REPLACED>/<TO REPLACE>/**.
 
-cat my_rna.txt
 
-AUGUACUGACUGCAUGCAUGCCAUGCA
-```
+You can add a **g** at the end if you want to replace every character found **s/<TO BE REPLACED>/<TO REPLACE>/g**.
+
+.. code-block:: bash
+
+  sed s/T/U/g my_dna.txt > my_rna.txt
+
+  cat my_rna.txt
+
+  AUGUACUGACUGCAUGCAUGCCAUGCA
+
 
 Every command has a manual, you can read it by using the program **man** with the name of the tool.
 
-```{bash}
-man ls
+.. code-block:: bash
 
-LS(1)                                                                   User Commands                                                                  LS(1)
+	man ls
+	
+	LS(1)                                                                   User Commands                                                                   LS(1)
+	
+	NAME
+	      ls - list directory contents
+	
+	SYNOPSIS
+	       ls [OPTION]... [FILE]...
+	
+	DESCRIPTION
+	       List information about the FILEs (the current directory by default).  Sort entries alphabetically if none of -cftuvSUX nor --sort is specified.
+	
+	       Mandatory arguments to long options are mandatory for short options too.
+	
+	       -a, --all
+	              do not ignore entries starting with .
+	
+	      -A, --almost-all
+	              do not list implied . and ..
+	
+	      --author
+	            with -l, print the author of each file
+	
+	     -b, --escape
+	            print C-style escapes for nongraphic characters
+	Manual page ls(1) line 1 (press h for help or q to quit)
 
-NAME
-       ls - list directory contents
 
-SYNOPSIS
-       ls [OPTION]... [FILE]...
-
-DESCRIPTION
-       List information about the FILEs (the current directory by default).  Sort entries alphabetically if none of -cftuvSUX nor --sort is specified.
-
-       Mandatory arguments to long options are mandatory for short options too.
-
-       -a, --all
-              do not ignore entries starting with .
-
-       -A, --almost-all
-              do not list implied . and ..
-
-       --author
-              with -l, print the author of each file
-
-       -b, --escape
-              print C-style escapes for nongraphic characters
- Manual page ls(1) line 1 (press h for help or q to quit)
-```
-
-<h3>Recap</h3>
+Recap
+*************
 
 * **touch** writes empty files **mkdir** empty directories
 * **mv** move files (or directory) or change their name
@@ -196,6 +211,3 @@ DESCRIPTION
 * **sed** replace a string with another
 * **man** print the manual for a function
 
-<h3>Next Session</h3>
-
-[Download files from repositories](https://biocorecrg.github.io/advanced_linux_2019/download)
