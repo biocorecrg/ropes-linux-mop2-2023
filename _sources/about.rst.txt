@@ -1,7 +1,7 @@
 .. _about-page:
 
 *******************
-Linux Basics
+About
 *******************
 
 Introduction to Linux
