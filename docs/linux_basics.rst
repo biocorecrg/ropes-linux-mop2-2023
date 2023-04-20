@@ -139,6 +139,7 @@ We can use the command **pwd**.
 We can write to a file using the character **>**, that means output redirection.
 
 .. code-block:: bash
+
   echo "ATGTACTGACTGCATGCATGCCATGCA" > my_dna.txt
 
 
