@@ -1,11 +1,11 @@
 .. _home-page:
 
 *******************
-Scientific Containers: Docker and Singularity - October 2022
+ROPES summer school - CRG - May 2023
 *******************
 
 
-`GitHub repository <https://github.com/biocorecrg/CRG_Containers_October_2022>`_
+`GitHub repository <https://github.com/biocorecrg/ropes-linux-mop2-2023/>`_
 
 Contents:
 
