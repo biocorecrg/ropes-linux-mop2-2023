@@ -17,11 +17,12 @@
 
 # -- Project information -----------------------------------------------------
 
-project = u'CRG Course - Containers: Docker and Singularity. October 2022'
-copyright = u'2022, CRG'
+project = u'ROPES summer school - CRG - May 2023'
+copyright = u'2023, CRG'
 author = u'Luca Cozzuto'
-author = u'Julia Ponomarenko'
+author = u'Anna Delgado'
 author = u'Toni Hermoso'
+author = u'Julia Ponomarenko'
 
 
 # -- General configuration ---------------------------------------------------
@@ -67,6 +68,6 @@ html_theme = 'sphinx_rtd_theme'
 
 # The URL which points to the root of the HTML documentation.
 # It is used to indicate the location of document like canonical_url
-html_baseurl = 'https://biocorecrg.github.io/CoursesCRG_Containers_Nextflow_May_2022/'
+html_baseurl = 'https://biocorecrg.github.io/ropes-linux-mop2-2023/'
 
 # html_logo = html_favicon = '_images/sphinx-notes.png'
