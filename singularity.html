@@ -17,8 +17,7 @@
         <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Docker" href="docker.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -40,49 +39,48 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="containers.html">Containers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="docker.html">Docker</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Singularity</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#introduction-to-singularity">Introduction to Singularity</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#singularity-architecture">Singularity architecture</a></li>
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Singularity</a><ul>
+<li><a class="reference internal" href="#introduction-to-singularity">Introduction to Singularity</a><ul>
+<li><a class="reference internal" href="#singularity-architecture">Singularity architecture</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#container-registries">Container registries</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#docker-hub">Docker Hub</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#biocontainers">Biocontainers</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#via-quay-io">Via quay.io</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#via-galaxy-project-prebuilt-images">Via Galaxy project prebuilt images</a></li>
+<li><a class="reference internal" href="#container-registries">Container registries</a><ul>
+<li><a class="reference internal" href="#docker-hub">Docker Hub</a></li>
+<li><a class="reference internal" href="#biocontainers">Biocontainers</a><ul>
+<li><a class="reference internal" href="#via-quay-io">Via quay.io</a></li>
+<li><a class="reference internal" href="#via-galaxy-project-prebuilt-images">Via Galaxy project prebuilt images</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#running-and-executing-containers">Running and executing containers</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#singularity-shell">Singularity shell</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#singularity-exec">Singularity exec</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#singularity-run">Singularity run</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#environment-control">Environment control</a></li>
+<li><a class="reference internal" href="#running-and-executing-containers">Running and executing containers</a><ul>
+<li><a class="reference internal" href="#singularity-shell">Singularity shell</a></li>
+<li><a class="reference internal" href="#singularity-exec">Singularity exec</a></li>
+<li><a class="reference internal" href="#singularity-run">Singularity run</a></li>
+<li><a class="reference internal" href="#environment-control">Environment control</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#singularity-advanced-aspects">Singularity advanced aspects</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#bind-paths-aka-volumes">Bind paths (aka volumes)</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#exercise">Exercise</a></li>
+<li><a class="reference internal" href="#singularity-advanced-aspects">Singularity advanced aspects</a><ul>
+<li><a class="reference internal" href="#bind-paths-aka-volumes">Bind paths (aka volumes)</a><ul>
+<li><a class="reference internal" href="#exercise">Exercise</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#singularity-tips">Singularity tips</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#fakeroot">Fakeroot</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#singularity-cache-directory">Singularity cache directory</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#global-singularity-configuration">Global singularity configuration</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#note-version-at-the-crg">NOTE: Version at the CRG</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#singularity-tips">Singularity tips</a><ul>
+<li><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
+<li><a class="reference internal" href="#fakeroot">Fakeroot</a></li>
+<li><a class="reference internal" href="#singularity-cache-directory">Singularity cache directory</a></li>
+<li><a class="reference internal" href="#global-singularity-configuration">Global singularity configuration</a></li>
+<li><a class="reference internal" href="#note-version-at-the-crg">NOTE: Version at the CRG</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-
+</li>
+</ul>
+</div>
         </div>
       </div>
     </nav>
@@ -347,9 +345,7 @@ singularity exec -B ./datatest:/scratch fastqc.sif bash -c &#39;fastqc /scratch/
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="docker.html" class="btn btn-neutral float-left" title="Docker" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-    </div>
+          <footer>
 
   <hr/>
 

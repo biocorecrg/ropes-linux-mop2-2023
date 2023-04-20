@@ -13,6 +13,7 @@ Contents:
    :maxdepth: 1
 
    about
-   containers
-   docker
-   singularity
+   Linux basics   
+   Containers
+   Nextflow
+   MoP2 practical
