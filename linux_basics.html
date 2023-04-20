@@ -54,7 +54,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#download-files-from-repositories">Download files from repositories</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id5"><strong>Recap</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1"><strong>Recap</strong></a></li>
 </ul>
 </li>
 </ul>
@@ -97,9 +97,9 @@
 <ul class="simple">
 <li><p><a class="reference internal" href="#what-is-linux">What is Linux?</a></p></li>
 <li><p><a class="reference internal" href="#what-is-a-command-line-interface-gui">What is a Command Line Interface (GUI)?</a></p></li>
-<li><p><a href="#id8"><span class="problematic" id="id9">`Practical part I`_</span></a></p></li>
-<li><p><a href="#id6"><span class="problematic" id="id7">`Download files from repositories`__</span></a></p></li>
-<li><p><a href="#id10"><span class="problematic" id="id11">`Practical part II`_</span></a></p></li>
+<li><p><a href="#id4"><span class="problematic" id="id5">`Practical part I`_</span></a></p></li>
+<li><p><a href="#id2"><span class="problematic" id="id3">`Download files from repositories`__</span></a></p></li>
+<li><p><a href="#id6"><span class="problematic" id="id7">`Practical part II`_</span></a></p></li>
 </ul>
 <section id="what-is-linux">
 <h3>What is Linux?<a class="headerlink" href="#what-is-linux" title="Permalink to this heading"></a></h3>
@@ -275,30 +275,36 @@ Length:<span class="w"> </span><span class="m">4923</span><span class="w"> </spa
 </pre></div>
 </div>
 <p>we can then use the program <strong>more</strong> to display part of the content of the file:</p>
-<dl>
-<dt><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>{bash}</dt><dd><p>more README</p>
-<p>#### README ####</p>
-<p>IMPORTANT: Please note you can download correlation data tables,
-supported by Ensembl, via the highly customisable BioMart and
-EnsMart data mining tools. See <a class="reference external" href="http://www.ensembl.org/biomart/martview">http://www.ensembl.org/biomart/martview</a> or
-<a class="reference external" href="http://www.ebi.ac.uk/biomart/">http://www.ebi.ac.uk/biomart/</a> for more information.</p>
-<p>The genome assembly represented here corresponds to
-GCA_000023665.1</p>
-<dl class="simple">
-<dt>The files are consistently named following this pattern:</dt><dd><p>&lt;species&gt;.&lt;assembly&gt;.&lt;sequence type&gt;.&lt;id type&gt;.&lt;id&gt;.fa.gz</p>
-</dd>
-</dl>
-<p>&lt;species&gt;:   The systematic name of the species.
-&lt;assembly&gt;:  The assembly build name.
-&lt;sequence type&gt;:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>‘dna’ - unmasked genomic DNA sequences.</p></li>
-</ul>
-</div></blockquote>
-<p>–More–(14%)</p>
-</dd>
-</dl>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>more<span class="w"> </span>README
+
+
+<span class="c1">#### README ####</span>
+
+IMPORTANT:<span class="w"> </span>Please<span class="w"> </span>note<span class="w"> </span>you<span class="w"> </span>can<span class="w"> </span>download<span class="w"> </span>correlation<span class="w"> </span>data<span class="w"> </span>tables,
+supported<span class="w"> </span>by<span class="w"> </span>Ensembl,<span class="w"> </span>via<span class="w"> </span>the<span class="w"> </span>highly<span class="w"> </span>customisable<span class="w"> </span>BioMart<span class="w"> </span>and
+EnsMart<span class="w"> </span>data<span class="w"> </span>mining<span class="w"> </span>tools.<span class="w"> </span>See<span class="w"> </span>http://www.ensembl.org/biomart/martview<span class="w"> </span>or
+http://www.ebi.ac.uk/biomart/<span class="w"> </span><span class="k">for</span><span class="w"> </span>more<span class="w"> </span>information.
+
+The<span class="w"> </span>genome<span class="w"> </span>assembly<span class="w"> </span>represented<span class="w"> </span>here<span class="w"> </span>corresponds<span class="w"> </span>to
+GCA_000023665.1
+
+<span class="c1">#######################</span>
+Fasta<span class="w"> </span>DNA<span class="w"> </span>dumps
+<span class="c1">#######################</span>
+
+-----------
+FILE<span class="w"> </span>NAMES
+------------
+The<span class="w"> </span>files<span class="w"> </span>are<span class="w"> </span>consistently<span class="w"> </span>named<span class="w"> </span>following<span class="w"> </span>this<span class="w"> </span>pattern:
+<span class="w">   </span>&lt;species&gt;.&lt;assembly&gt;.&lt;sequence<span class="w"> </span>type&gt;.&lt;id<span class="w"> </span>type&gt;.&lt;id&gt;.fa.gz
+
+&lt;species&gt;:<span class="w">   </span>The<span class="w"> </span>systematic<span class="w"> </span>name<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>species.
+&lt;assembly&gt;:<span class="w">  </span>The<span class="w"> </span>assembly<span class="w"> </span>build<span class="w"> </span>name.
+&lt;sequence<span class="w"> </span>type&gt;:
+<span class="w"> </span>*<span class="w"> </span><span class="s1">&#39;dna&#39;</span><span class="w"> </span>-<span class="w"> </span>unmasked<span class="w"> </span>genomic<span class="w"> </span>DNA<span class="w"> </span>sequences.
+--More--<span class="o">(</span><span class="m">14</span>%<span class="o">)</span>
+</pre></div>
+</div>
 <p>Pressing the bar allows us to scroll down the file, while for exiting you just click <strong>CTRL+C</strong>.&lt;br&gt;
 After reading the README we can download the file named <strong>toplevel</strong> that contains chromosomes, regions not assembled into chromosomes and N padded haplotype/patch regions:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>ftp://ftp.ensemblgenomes.org/pub/bacteria/release-42/fasta/bacteria_22_collection/escherichia_coli_bl21_gold_de3_plyss_ag_/dna/Escherichia_coli_bl21_gold_de3_plyss_ag_.ASM2366v1.dna.toplevel.fa.gz
@@ -388,8 +394,8 @@ GFTLLNGGPKYRRAFLDWGCFHNEPGFFTAWSNLKRLLKQRNAALRQVTRYEQLRPWDKE
 <span class="m">4228</span>
 </pre></div>
 </div>
-<section id="id5">
-<h4><strong>Recap</strong><a class="headerlink" href="#id5" title="Permalink to this heading"></a></h4>
+<section id="id1">
+<h4><strong>Recap</strong><a class="headerlink" href="#id1" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p><strong>wget</strong> downloads file from a URL</p></li>
 <li><p><strong>more</strong> prints a part of the content of a file in interactive way</p></li>

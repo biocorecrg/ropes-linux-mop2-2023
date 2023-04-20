@@ -263,7 +263,8 @@ Then we can go back to our command line and use the program **wget** to download
 
 we can then use the program **more** to display part of the content of the file:
 
-```{bash}
+.. code-block:: bash
+
 	more README
 
 
