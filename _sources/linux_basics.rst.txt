@@ -10,7 +10,7 @@ Introduction to Linux
 * `What is Linux?`_
 * `What is a Command Line Interface (GUI)?`_
 * `Practical part I`_
-* `Download files from repositories`__
+* `Download files from repositories`_
 * `Practical part II`_
 
 
