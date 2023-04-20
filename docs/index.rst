@@ -16,4 +16,4 @@ Contents:
    linux_basics   
    containers
    nextflow
-   moP2_practical
+   mop2_practical
