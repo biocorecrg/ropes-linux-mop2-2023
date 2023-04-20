@@ -13,7 +13,7 @@ Contents:
    :maxdepth: 1
 
    about
-   Linux basics   
-   Containers
-   Nextflow
-   MoP2 practical
+   linux_basics   
+   containers
+   nextflow
+   moP2_practical
