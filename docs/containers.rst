@@ -1,86 +1,101 @@
-.. _containers-page:
+.. _home-page-about:
 
-*******************
-Containers
-*******************
+**************
+About the course
+**************
 
-Introduction to Linux containers.
-=================================
-
-What are containers?
----------------------
-
-.. image:: https://www.synopsys.com/blogs/software-security/wp-content/uploads/2018/04/containers-rsa.jpg
-  :width: 700
-
-A Container can be seen as a **minimal virtual environment** that can be used in any Linux-compatible machine (and beyond).
-
-Using containers is time- and resource-saving as they allow:
-
-* Controlling for software installation and dependencies.
-* Reproducibility of the analysis.
-
-Containers allow us to use **exactly the same versions of the tools**.
-
-Virtual machines or containers ?
-----------------------------------
-
-=====================================================  =====================================================
-Virtualisation                                         Containerisation (aka lightweight virtualisation)
-=====================================================  =====================================================
-Abstraction of physical hardware                       Abstraction of application layer
-Depends on hypervisor (software)                       Depends on host kernel (OS)
-Do not confuse with hardware emulator                  Application and dependencies bundled all together
-Enable virtual machines                                Every virtual machine with an OS (Operating System)
-=====================================================  =====================================================
-
-Virtual machines vs containers
-----------------------------------------
-
-.. image:: https://raw.githubusercontent.com/collabnix/dockerlabs/master/beginners/docker/images/vm-docker5.png
-  :width: 800
-
-`Source <https://dockerlabs.collabnix.com/beginners/difference-docker-vm.html>`__
+.. autosummary::
+   :toctree: generated
 
 
-**Pros and cons**
+This slow-paced hands-on course is designed for absolute beginners who want to start using scientific containers to achieve reproducibility of data analysis.
 
-===== ===================================================== =====================================================
-ADV   Virtualisation                                        Containerisation
-===== ===================================================== =====================================================
-PROS. * Very similar to a full OS.     			     * No need of full OS installation (less space).
-      * High OS diversity       			     * Better portability
-      							     * Faster than virtual machines.
-							     * Easier automation.
-							     * Easier distribution of recipes.
-							     * Better portability.
+* `Course page <https://github.com/biocorecrg/CRG_Containers_June_2022>`_
 
 
-CONS. * Need more space and resources.                       * Some cases might not be exactly the same as a full OS.
-      * Slower than containers.                              * Still less OS diversity, even with current solutions
-      * Not that good automation.
-===== ===================================================== =====================================================
+.. |luca| image:: images/lcozzuto.jpg
+  :alt: Alternative text
+
+.. |adelgado| image:: images/adelgado.jpg
+  :alt: Alternative text
+
+.. |toni| image:: images/thermoso.jpg
+  :alt: Alternative text
+
+.. |julia| image:: images/jponomarenko.jpg
+  :alt: Alternative text
 
 
-History of containers
-----------------------
 
-**chroot**
+.. list-table:: Main instructors:
+   :widths: 50 50 50 50
+   :header-rows: 1
 
-* chroot jail (BSD jail): first concept in 1979
-* Notable use in SSH and FTP servers
-* Honeypot, recovery of systems, etc.
+   * - Luca Cozzuto
+     - Anna Delgado
+     - Toni Hermoso
+     - Julia Ponomarenko
+   * - |luca|
+     - |adelgado|
+     - |toni|
+     - |julia|
 
-.. image:: https://sysopsio.files.wordpress.com/2016/09/linux-chroot-jail.png
-  :width: 550
+.. _home-page-outline:
 
-**Additions in Linux kernel**
+Outline
+============
 
-* First version: 2008
-* cgroups (control groups), before "process containers"
-	* isolate resource usage (CPU, memory, disk I/O, network, etc.) of a collection of processes
-* Linux namespaces
-	* one set of kernel resources restrict to one set of processes
+.. 
+        Trainees will work in a dedicated `AWS environment <https://en.wikipedia.org/wiki/AWS/>`_.
 
-.. image:: images/linux-vs-docker-comparison-architecture-docker-lxc.png
-  :width: 600
+
+.. _home-page-learning:
+
+Learning objectives
+============
+
+* Locate and fetch Docker/Singularity images from dedicated repositories.
+* Execute/Run a Docker/Singularity container from the command line.
+* Build simple Docker container images
+
+.. _home-page-prereq:
+
+Prerequisite / technical requirements
+============
+
+
+Being comfortable working with the CLI (command-line interface) in a Linux-based environment.
+Knowledge of containers is not mandatory. The course materials is online in the dedicated GitHub page for self-learning.
+
+Practitioners will need to connect during the course to a remote server via the "ssh" protocotol. You can learn about it `here <https://www.hostinger.com/tutorials/ssh-tutorial-how-does-ssh-work>`_
+
+Those who follow the course should be able to use a command-line/screen-oriented text editor (such as nano or vi/vim, which are already available in the server) or to be able to use an editor able to connect remotely. For sake of information, below the basics of `nano <https://wiki.gentoo.org/wiki/Nano/Basics_Guide>`_
+
+Having a `GitHub account <https://github.com/join>`_ is recommended.
+
+.. _home-page-dates:
+
+Dates, time, location
+============
+
+* Dates: Wednesday June 29, 2022
+
+* 9:30 - 17:00 **CET**
+
+
+* Location: Training room, CRG
+
+.. _home-page-program:
+
+
+Suggested program
+============
+
+* 09:30-11:00 Introduction to containers and Docker
+* 11:00-11:15 Coffee Break
+* 11:15-13:00 Docker
+* 13:00-14:00 Lunch break
+* 14:00-15:30 More advanced Docker
+* 15:30-15:45 Coffee break
+* 15:45-17:00 Singularity
+
