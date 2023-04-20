@@ -1,4 +1,4 @@
-. _linux_basics-page:
+.. _linux_basics-page:
 
 *******************
 Linux Basics
