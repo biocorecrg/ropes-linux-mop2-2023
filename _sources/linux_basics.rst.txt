@@ -37,3 +37,17 @@ Another advantage of Linux for bioinformatics is its strong focus on security an
 What is a Command Line Interface (GUI)?
 ---------------------
 
+.. image:: images/cli.png
+  :width: 400
+  
+A command line interface (**CLI**) is a text-based interface used to interact with a computer's operating system or software by entering commands through a command prompt.
+
+The command prompt usually consists of a text area where the user can enter a command, and the output of the command is displayed in the same area.
+
+**Commands** can be entered using specific keywords or phrases, which are interpreted by the operating system or software.
+
+For example, in the Windows command prompt, the user can type "**dir**" to list the files and directories in the current directory, and in the Unix/Linux command line, the user can type "**ls**" to achieve the same result.
+
+In addition to simple commands, more complex operations can be performed by chaining commands together using special symbols.
+
+Overall, command line interfaces offer a fast and powerful way to interact with a computer or software system, and are often preferred to graphical user interface (**GUI**) by experienced users or developers due to their flexibility and efficiency.
