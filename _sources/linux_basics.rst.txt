@@ -224,19 +224,23 @@ For example the genome browser `Ensembl <https://www.ensembl.org/index.html>`__ 
 
 The resource `Ensembl Bacteria <https://bacteria.ensembl.org/index.html>`__ contains a large number of bacterial genomes and their annotation. As an example we can browse the page corresponding to `*Escherichia coli 'BL21-Gold(DE3)pLysS AG'* <https://bacteria.ensembl.org/Escherichia_coli_bl21_gold_de3_plyss_ag_/Info/Index/>`__
 
-<img src="images/ensembl_escherichia.png" width="800"/>
+.. image:: images/ensembl_escherichia.png
+  :width: 800
 
 We can click on "Download genes, cDNAs, ncRNA, proteins **FASTA**"
 
-<img src="images/list_ensembl_escherichia.png" width="800"/>
+.. image:: images/list_ensembl_escherichia.png
+  :width: 800
 
 And then on **DNA**
 
-<img src="images/file_list_escherichia.png" width="800"/>
+.. image:: images/file_list_escherichia.png
+  :width: 800
 
 Then as an example we can use the copy the link address of the **README** file using the mouse right button.
 
-<img src="images/right_click.png" width="800"/>
+.. image:: images/right_click.png
+  :width: 800
 
 Then we can go back to our command line and use the program **wget** to download that file and using **CTRL+C** to paste the address:
 
@@ -416,8 +420,5 @@ To know how many sequences are in the files we can use the program **grep** with
 * **grep** extract the rows containing a particular character / pattern.
 
 
-<h3>Next Session</h3>
-
-[Manipulate files, piping, parsing, reformatting](https://biocorecrg.github.io/advanced_linux_2019/parsing)
 
 
