@@ -92,9 +92,9 @@
 <ul class="simple">
 <li><p><a class="reference internal" href="#what-is-linux">What is Linux?</a></p></li>
 <li><p><a class="reference internal" href="#what-is-a-command-line-interface-gui">What is a Command Line Interface (GUI)?</a></p></li>
-<li><p><a href="#id88"><span class="problematic" id="id89">`Practical part I`_</span></a></p></li>
-<li><p><a href="#id90"><span class="problematic" id="id91">`Download files from repositories`_</span></a></p></li>
-<li><p><a href="#id92"><span class="problematic" id="id93">`Practical part II`_</span></a></p></li>
+<li><p>Practical part I: Create directory and practice moving around`_</p></li>
+<li><p><a class="reference internal" href="#practical-part-ii-download-files-from-repositories">Practical part II: Download files from repositories</a></p></li>
+<li><p><a class="reference internal" href="#practical-part-iii-manipulate-files-piping-parsing-reformatting">Practical part III: Manipulate files, piping, parsing, reformatting</a></p></li>
 </ul>
 <section id="what-is-linux">
 <h2>What is Linux?<a class="headerlink" href="#what-is-linux" title="Permalink to this heading"></a></h2>
@@ -401,7 +401,7 @@ GFTLLNGGPKYRRAFLDWGCFHNEPGFFTAWSNLKRLLKQRNAALRQVTRYEQLRPWDKE
 In few words if you have table and are interested only in a number of columns, extracting those columns can be an example of <strong>parsing</strong>. &lt;br&gt;
 In our case, for example, we can extract the name of our sequences by using again the program <strong>grep</strong> and redirecting the output to a new file.</p>
 <p><a href="#id2"><span class="problematic" id="id3">``</span></a><a href="#id4"><span class="problematic" id="id5">`</span></a>{bash}
-grep “&gt;” <a href="#id94"><span class="problematic" id="id95">Escherichia_coli_bl21_gold_de3_plyss_ag_</span></a>.ASM2366v1.pep.all.fa &gt; seq_names.txt</p>
+grep “&gt;” <a href="#id88"><span class="problematic" id="id89">Escherichia_coli_bl21_gold_de3_plyss_ag_</span></a>.ASM2366v1.pep.all.fa &gt; seq_names.txt</p>
 <p>more seq_names.txt</p>
 <p>&gt;ACT27082 pep supercontig:ASM2366v1:CP001665:347:1750:1 gene:ECBD_0001 transcript:ACT27082 gene_biotype:protein_coding transcript_biotype:protein_coding descrip
 tion:chromosomal replication initiator protein DnaA
@@ -415,13 +415,13 @@ ption:DNA gyrase, B subunit
 <p>We can also <strong>pipe</strong> the results of a program (via Standard output) to a new program (via Standard input) by using the character
 <code class="docutils literal notranslate"><span class="pre">`|`</span></code>, the program <strong>head</strong> allows to extract the first N rows (indicated by the parameter <strong>-n</strong>). Tail, instead allows to get the latest N rows.</p>
 <p><a href="#id10"><span class="problematic" id="id11">``</span></a><a href="#id12"><span class="problematic" id="id13">`</span></a>{bash}
-grep “&gt;” -c <a href="#id96"><span class="problematic" id="id97">Escherichia_coli_bl21_gold_de3_plyss_ag_</span></a>.ASM2366v1.pep.all.fa
+grep “&gt;” -c <a href="#id90"><span class="problematic" id="id91">Escherichia_coli_bl21_gold_de3_plyss_ag_</span></a>.ASM2366v1.pep.all.fa
 4228</p>
-<p>grep “&gt;” <a href="#id98"><span class="problematic" id="id99">Escherichia_coli_bl21_gold_de3_plyss_ag_</span></a>.ASM2366v1.pep.all.fa | head -n 3
+<p>grep “&gt;” <a href="#id92"><span class="problematic" id="id93">Escherichia_coli_bl21_gold_de3_plyss_ag_</span></a>.ASM2366v1.pep.all.fa | head -n 3
 &gt;ACT27082 pep supercontig:ASM2366v1:CP001665:347:1750:1 gene:ECBD_0001 transcript:ACT27082 gene_biotype:protein_coding transcript_biotype:protein_coding description:chromosomal replication initiator protein DnaA
 &gt;ACT27083 pep supercontig:ASM2366v1:CP001665:1755:2855:1 gene:ECBD_0002 transcript:ACT27083 gene_biotype:protein_coding transcript_biotype:protein_coding description:DNA polymerase III, beta subunit
 &gt;ACT27084 pep supercontig:ASM2366v1:CP001665:2855:3928:1 gene:ECBD_0003 transcript:ACT27084 gene_biotype:protein_coding transcript_biotype:protein_coding description:DNA replication and repair protein RecF</p>
-<p>grep “&gt;” <a href="#id100"><span class="problematic" id="id101">Escherichia_coli_bl21_gold_de3_plyss_ag_</span></a>.ASM2366v1.pep.all.fa | tail -n 3
+<p>grep “&gt;” <a href="#id94"><span class="problematic" id="id95">Escherichia_coli_bl21_gold_de3_plyss_ag_</span></a>.ASM2366v1.pep.all.fa | tail -n 3
 &gt;ACT31307 pep supercontig:ASM2366v1:CP001665:4569941:4570198:-1 gene:ECBD_4328 transcript:ACT31307 gene_biotype:protein_coding transcript_biotype:protein_coding description:protein of unknown function DUF37
 &gt;ACT31308 pep supercontig:ASM2366v1:CP001665:4570162:4570488:-1 gene:ECBD_4329 transcript:ACT31308 gene_biotype:protein_coding transcript_biotype:protein_coding description:ribonuclease P protein component
 &gt;ACT31309 pep supercontig:ASM2366v1:CP001665:4570538:4570678:-1 gene:ECBD_4330 transcript:ACT31309 gene_biotype:protein_coding transcript_biotype:protein_coding description:ribosomal protein L34
@@ -430,9 +430,9 @@ grep “&gt;” -c <a href="#id96"><span class="problematic" id="id97">Escherich
 The option <strong>-v</strong> of <strong>grep</strong> will remove the row with the indicated character. &lt;br&gt;
 The option <strong>-m</strong> of <strong>wc</strong> tool allows to count only the characters, while <strong>-l</strong> gives you the number of lines.</p>
 <p><a href="#id18"><span class="problematic" id="id19">``</span></a><a href="#id20"><span class="problematic" id="id21">`</span></a>{bash}
-grep -v “&gt;” <a href="#id102"><span class="problematic" id="id103">Escherichia_coli_bl21_gold_de3_plyss_ag_</span></a>.ASM2366v1.dna.toplevel.fa| wc -m
+grep -v “&gt;” <a href="#id96"><span class="problematic" id="id97">Escherichia_coli_bl21_gold_de3_plyss_ag_</span></a>.ASM2366v1.dna.toplevel.fa| wc -m
 4647121</p>
-<p>grep -v “&gt;” <a href="#id104"><span class="problematic" id="id105">Escherichia_coli_bl21_gold_de3_plyss_ag_</span></a>.ASM2366v1.dna.toplevel.fa| wc -l
+<p>grep -v “&gt;” <a href="#id98"><span class="problematic" id="id99">Escherichia_coli_bl21_gold_de3_plyss_ag_</span></a>.ASM2366v1.dna.toplevel.fa| wc -l
 76183
 <a href="#id22"><span class="problematic" id="id23">``</span></a><a href="#id24"><span class="problematic" id="id25">`</span></a></p>
 <p>Now let’s try to extract only the identifiers from the protein file. As we can see they are located just before a
@@ -488,37 +488,37 @@ Awk reads the files line by line.
 &lt;br&gt;
 As a naive example we can just print the content of the file using <strong>awk</strong> (<strong>$0</strong> is the whole line):</p>
 <p><a href="#id34"><span class="problematic" id="id35">``</span></a><a href="#id36"><span class="problematic" id="id37">`</span></a>{bash}
-awk ‘{print $0}’  <a href="#id106"><span class="problematic" id="id107">Escherichia_coli_bl21_gold_de3_plyss_ag_</span></a>.ASM2366v1.pep.all.fa <a href="#id38"><span class="problematic" id="id39">|</span></a>head -n 3</p>
+awk ‘{print $0}’  <a href="#id100"><span class="problematic" id="id101">Escherichia_coli_bl21_gold_de3_plyss_ag_</span></a>.ASM2366v1.pep.all.fa <a href="#id38"><span class="problematic" id="id39">|</span></a>head -n 3</p>
 <p>&gt;ACT27082 pep supercontig:ASM2366v1:CP001665:347:1750:1 gene:ECBD_0001 transcript:ACT27082 gene_biotype:protein_coding transcript_biotype:protein_coding description:chromosomal replication initiator protein DnaA
 MSLSLWQQCLARLQDELPATEFSMWIRPLQAELSDNTLALYAPNRFVLDWVRDKYLNNIN
 GLLTSFCGADAPQLRFEVGTKPVTQTPQAAVTSNVAAPAQVAQTQPQRAAPSTRSGWDNV
 <a href="#id40"><span class="problematic" id="id41">``</span></a><a href="#id42"><span class="problematic" id="id43">`</span></a></p>
 <p>Or we can remove the carriage return by setting the built-in variable <strong>ORS</strong> to empty (Output Record Separator Variable)</p>
 <p><a href="#id44"><span class="problematic" id="id45">``</span></a><a href="#id46"><span class="problematic" id="id47">`</span></a>{bash}
-head -n 10 <a href="#id108"><span class="problematic" id="id109">Escherichia_coli_bl21_gold_de3_plyss_ag_</span></a>.ASM2366v1.pep.all.fa | awk ‘{ORS=””; print $0}’</p>
+head -n 10 <a href="#id102"><span class="problematic" id="id103">Escherichia_coli_bl21_gold_de3_plyss_ag_</span></a>.ASM2366v1.pep.all.fa | awk ‘{ORS=””; print $0}’</p>
 <p>&gt;ACT27082 pep supercontig:ASM2366v1:CP001665:347:1750:1 gene:ECBD_0001 transcript:ACT27082 gene_biotype:protein_coding transcript_biotype:protein_coding description:chromosomal replication initiator protein DnaAMSLSLWQQCLARLQDELPATEFSMWIRPLQAELSDNTLALYAPNRFVLDWVRDKYLNNINGLLTSFCGADAPQLRFEVGTKPVTQTPQAAVTSNVAAPAQVAQTQPQRAAPSTRSGWDNVPAPAEPTYRSNVNVKHTFDNFVEGKSNQLARAAARQVADNPGGAYNPLFLYGGTGLGKTHLLHAVGNGIMARKPNAKVVYMHSERFVQDMVKALQNNAIEEFKRYYRSVDALLIDDIQFFANKERSQEEFFHTFNALLEGNQQIILTSDRYPKEINGVEDRLKSRFGWGLTVAIEPPELETRVAILMKKADENDIRLPGEVAFFIAKRLRSNVRELEGALNRVIANANFTGRAITIDFVREALRDLLALQEKLVTIDNIQKTVAEYYKIKVADLLSKRRSRSVARPRQMAMALAKELTNHSLPEIGDAFGGRDHTTVLHACRKIEQLREESHDIKEDFSNLIRTLSS&gt;ACT27083 pep supercontig:ASM2366v1:CP001665:1755:2855:1 gene:ECBD_0002 transcript:ACT27083 gene_biotype:protein_coding transcript_biotype:protein_coding description:DNA polymerase III, beta subunit
 <a href="#id48"><span class="problematic" id="id49">``</span></a><a href="#id50"><span class="problematic" id="id51">`</span></a></p>
 <p>At this point using we need a <strong>if</strong> statement to reach the point. In few words this statement says: EXECUTE a piece of code IF a given condition is met OTHERWISE (<strong>else</strong>) do something else.</p>
 <p>As an example we can use the <strong>if</strong> to select the header like a <strong>grep</strong> function using the matching expression tilde <strong>~</strong> with the character <strong>*&gt;*</strong></p>
 <p><a href="#id52"><span class="problematic" id="id53">``</span></a><a href="#id54"><span class="problematic" id="id55">`</span></a>{bash}
-awk ‘{if ($0~”&gt;”) {print $0}}’ <a href="#id110"><span class="problematic" id="id111">Escherichia_coli_bl21_gold_de3_plyss_ag_</span></a>.ASM2366v1.pep.all.fa <a href="#id56"><span class="problematic" id="id57">|</span></a>head -n 3</p>
+awk ‘{if ($0~”&gt;”) {print $0}}’ <a href="#id104"><span class="problematic" id="id105">Escherichia_coli_bl21_gold_de3_plyss_ag_</span></a>.ASM2366v1.pep.all.fa <a href="#id56"><span class="problematic" id="id57">|</span></a>head -n 3</p>
 <p>&gt;ACT27082 pep supercontig:ASM2366v1:CP001665:347:1750:1 gene:ECBD_0001 transcript:ACT27082 gene_biotype:protein_coding transcript_biotype:protein_coding description:chromosomal replication initiator protein DnaA
 &gt;ACT27083 pep supercontig:ASM2366v1:CP001665:1755:2855:1 gene:ECBD_0002 transcript:ACT27083 gene_biotype:protein_coding transcript_biotype:protein_coding description:DNA polymerase III, beta subunit
 &gt;ACT27084 pep supercontig:ASM2366v1:CP001665:2855:3928:1 gene:ECBD_0003 transcript:ACT27084 gene_biotype:protein_coding transcript_biotype:protein_coding description:DNA replication and repair protein RecF
 <a href="#id58"><span class="problematic" id="id59">``</span></a><a href="#id60"><span class="problematic" id="id61">`</span></a></p>
 <p>Note that this syntax can be simplified when looking for patterns:</p>
 <p><a href="#id62"><span class="problematic" id="id63">``</span></a><a href="#id64"><span class="problematic" id="id65">`</span></a>{bash}
-awk ‘$0 ~ “&gt;” {print $0}’ <a href="#id112"><span class="problematic" id="id113">Escherichia_coli_bl21_gold_de3_plyss_ag_</span></a>.ASM2366v1.pep.all.fa | head -n 3</p>
+awk ‘$0 ~ “&gt;” {print $0}’ <a href="#id106"><span class="problematic" id="id107">Escherichia_coli_bl21_gold_de3_plyss_ag_</span></a>.ASM2366v1.pep.all.fa | head -n 3</p>
 <p>&gt;ACT27082 pep supercontig:ASM2366v1:CP001665:347:1750:1 gene:ECBD_0001 transcript:ACT27082 gene_biotype:protein_coding transcript_biotype:protein_coding description:chromosomal replication initiator protein DnaA
 &gt;ACT27083 pep supercontig:ASM2366v1:CP001665:1755:2855:1 gene:ECBD_0002 transcript:ACT27083 gene_biotype:protein_coding transcript_biotype:protein_coding description:DNA polymerase III, beta subunit
 &gt;ACT27084 pep supercontig:ASM2366v1:CP001665:2855:3928:1 gene:ECBD_0003 transcript:ACT27084 gene_biotype:protein_coding transcript_biotype:protein_coding description:DNA replication and repair protein RecF
 <a href="#id66"><span class="problematic" id="id67">``</span></a><a href="#id68"><span class="problematic" id="id69">`</span></a></p>
 <p>So, combining the previous example, we can remove the carriage return and in case we found the <strong>&gt;</strong> character we print that row preceded by a carriage return and followed by a tab (<strong>t</strong>)</p>
 <p><a href="#id70"><span class="problematic" id="id71">``</span></a><a href="#id72"><span class="problematic" id="id73">`</span></a>{bash}
-awk ‘{ORS=””; if ($0~”&gt;”) {print “n”$0”t”} else {print $0}}’ <a href="#id114"><span class="problematic" id="id115">Escherichia_coli_bl21_gold_de3_plyss_ag_</span></a>.ASM2366v1.pep.all.fa <a href="#id74"><span class="problematic" id="id75">|</span></a>head -n 3</p>
+awk ‘{ORS=””; if ($0~”&gt;”) {print “n”$0”t”} else {print $0}}’ <a href="#id108"><span class="problematic" id="id109">Escherichia_coli_bl21_gold_de3_plyss_ag_</span></a>.ASM2366v1.pep.all.fa <a href="#id74"><span class="problematic" id="id75">|</span></a>head -n 3</p>
 <p>&gt;ACT27082 pep supercontig:ASM2366v1:CP001665:347:1750:1 gene:ECBD_0001 transcript:ACT27082 gene_biotype:protein_coding transcript_biotype:protein_coding description:chromosomal replication initiator protein DnaA     MSLSLWQQCLARLQDELPATEFSMWIRPLQAELSDNTLALYAPNRFVLDWVRDKYLNNINGLLTSFCGADAPQLRFEVGTKPVTQTPQAAVTSNVAAPAQVAQTQPQRAAPSTRSGWDNVPAPAEPTYRSNVNVKHTFDNFVEGKSNQLARAAARQVADNPGGAYNPLFLYGGTGLGKTHLLHAVGNGIMARKPNAKVVYMHSERFVQDMVKALQNNAIEEFKRYYRSVDALLIDDIQFFANKERSQEEFFHTFNALLEGNQQIILTSDRYPKEINGVEDRLKSRFGWGLTVAIEPPELETRVAILMKKADENDIRLPGEVAFFIAKRLRSNVRELEGALNRVIANANFTGRAITIDFVREALRDLLALQEKLVTIDNIQKTVAEYYKIKVADLLSKRRSRSVARPRQMAMALAKELTNHSLPEIGDAFGGRDHTTVLHACRKIEQLREESHDIKEDFSNLIRTLSS
 &gt;ACT27083 pep supercontig:ASM2366v1:CP001665:1755:2855:1 gene:ECBD_0002 transcript:ACT27083 gene_biotype:protein_coding transcript_biotype:protein_coding description:DNA polymerase III, beta subunit  MKFTVEREHLLKPLQQVSGPLGGRPTLPILGNLLLQVADGTLSLTGTDLEMEMVARVALVQPHEPGATTVPARKFFDICRGLPEGAEIAVQLEGERMLVRSGRSRFSLSTLPAADFPNLDDWQSEVEFTLPQATMKRLIEATQFSMAHQDVRYYLNGMLFETEGEELRTVATDGHRLAVCSMPIGQSLPSHSVIVPRKGVIELMRMLDGGDNPLRVQIGSNNIRAHVGDFIFTSKLVDGRFPDYRRVLPKNPDKHLEAGCDLLKQAFARAAILSNEKFRGVRLYVSENQLKITANNPEQEEAEEILDVTYSGAEMEIGFNVSYVLDVLNALKCENVRMMLTDSVSSVQIEDAASQSAAYVVMPMRL</p>
-<p>awk ‘{ORS=””; if ($0~”&gt;”) {print “n”$0”t”} else {print $0}}’ <a href="#id116"><span class="problematic" id="id117">Escherichia_coli_bl21_gold_de3_plyss_ag_</span></a>.ASM2366v1.pep.all.fa &gt; proteins.tab</p>
+<p>awk ‘{ORS=””; if ($0~”&gt;”) {print “n”$0”t”} else {print $0}}’ <a href="#id110"><span class="problematic" id="id111">Escherichia_coli_bl21_gold_de3_plyss_ag_</span></a>.ASM2366v1.pep.all.fa &gt; proteins.tab</p>
 <p>wc -l proteins.tab
 4228 proteins.tab</p>
 <p>wc -l seq_names.txt
