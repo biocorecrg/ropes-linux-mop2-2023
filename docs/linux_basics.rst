@@ -530,8 +530,9 @@ The conversion can be achieved using one of the most powerful linux tool, that i
 
 * Awk's basic syntax:
 
-<font size="4" color="#ff0000">awk '</font><font size="4" color="#000000">OPTIONAL PATTERN</font> <font size="4" color="#ff0000">{</font> <font size="4" color="#000000">SOME INSTRUCTIONS</font> <font size="4" color="#ff0000">}'</font> <font size="4" color="#000000">FILENAME</font>
+. highlight:: awk
 
+   awk 'OPTIONAL PATTERN {SOME INSTRUCTIONS}' FILENAME
 
 Awk reads the files line by line.
 
