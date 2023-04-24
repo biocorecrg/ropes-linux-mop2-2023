@@ -6,7 +6,7 @@ Introduction to Linux
 
 * `What is Linux?`_
 * `What is a Command Line Interface (GUI)?`_
-* Practical part I: Create directory and practice moving around`_
+* `Practical part I: Create directory and practice moving around`_
 * `Practical part II: Download files from repositories`_
 * `Practical part III: Manipulate files, piping, parsing, reformatting`_
 
