@@ -47,16 +47,24 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction to Linux</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#what-is-linux">What is Linux?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#what-is-a-command-line-interface-gui">What is a Command Line Interface (GUI)?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#practical-part-i-create-directory-and-practice-moving-around">Practical part I: Create directory and practice moving around</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#create-directory-and-practice-moving-around">Create directory and practice moving around</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#recap"><strong>Recap</strong></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#practical-part-ii-download-files-from-repositories">Practical part II: Download files from repositories</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#download-files-from-repositories">Download files from repositories</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1"><strong>Recap</strong></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#practical-part-iii-manipulate-files-piping-parsing-reformatting">Practical part III: Manipulate files, piping, parsing, reformatting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#manipulate-files-piping-parsing-reformatting">Manipulate files, piping, parsing, reformatting</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id2"><strong>Recap</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#sequence-file-formats-fasta-and-fastq">Sequence file formats: Fasta and fastq</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3"><strong>Recap</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#bed-format-and-regular-expressions">Bed format and regular expressions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#genome-browser">Genome browser</a></li>
 </ul>
 </li>
 </ul>
@@ -95,9 +103,11 @@
 <ul class="simple">
 <li><p><a class="reference internal" href="#what-is-linux">What is Linux?</a></p></li>
 <li><p><a class="reference internal" href="#what-is-a-command-line-interface-gui">What is a Command Line Interface (GUI)?</a></p></li>
-<li><p><a class="reference internal" href="#practical-part-i-create-directory-and-practice-moving-around">Practical part I: Create directory and practice moving around</a></p></li>
-<li><p><a class="reference internal" href="#practical-part-ii-download-files-from-repositories">Practical part II: Download files from repositories</a></p></li>
-<li><p><a class="reference internal" href="#practical-part-iii-manipulate-files-piping-parsing-reformatting">Practical part III: Manipulate files, piping, parsing, reformatting</a></p></li>
+<li><p><a class="reference internal" href="#create-directory-and-practice-moving-around">Create directory and practice moving around</a></p></li>
+<li><p><a class="reference internal" href="#download-files-from-repositories">Download files from repositories</a></p></li>
+<li><p><a class="reference internal" href="#manipulate-files-piping-parsing-reformatting">Manipulate files, piping, parsing, reformatting</a></p></li>
+<li><p><a href="#id76"><span class="problematic" id="id77">`Sequence file formats: Fasta and fastq`__</span></a></p></li>
+<li><p><a href="#id76"><span class="problematic" id="id78">`Bed format and regular expressions`__</span></a></p></li>
 </ul>
 <section id="what-is-linux">
 <h2>What is Linux?<a class="headerlink" href="#what-is-linux" title="Permalink to this heading"></a></h2>
@@ -121,8 +131,8 @@
 <p>In addition to simple commands, more complex operations can be performed by chaining commands together using special symbols.</p>
 <p>Overall, command line interfaces offer a fast and powerful way to interact with a computer or software system, and are often preferred to graphical user interface (<strong>GUI</strong>) by experienced users or developers due to their flexibility and efficiency.</p>
 </section>
-<section id="practical-part-i-create-directory-and-practice-moving-around">
-<h2>Practical part I: Create directory and practice moving around<a class="headerlink" href="#practical-part-i-create-directory-and-practice-moving-around" title="Permalink to this heading"></a></h2>
+<section id="create-directory-and-practice-moving-around">
+<h2>Create directory and practice moving around<a class="headerlink" href="#create-directory-and-practice-moving-around" title="Permalink to this heading"></a></h2>
 <p>To create file and folders in linux is quite simple. You can use a number of programs for creating an empty file (<strong>touch</strong>) or an empty directory (<strong>mkdir</strong>)</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>touch<span class="w"> </span>my_beautiful_file.txt
 
@@ -238,8 +248,8 @@ Manual<span class="w"> </span>page<span class="w"> </span>ls<span class="o">(</s
 </ul>
 </section>
 </section>
-<section id="practical-part-ii-download-files-from-repositories">
-<h2>Practical part II: Download files from repositories<a class="headerlink" href="#practical-part-ii-download-files-from-repositories" title="Permalink to this heading"></a></h2>
+<section id="download-files-from-repositories">
+<h2>Download files from repositories<a class="headerlink" href="#download-files-from-repositories" title="Permalink to this heading"></a></h2>
 <p>Several institutions host different kind of genomics data.</p>
 <p>For example the genome browser <a class="reference external" href="https://www.ensembl.org/index.html">Ensembl</a> is also a public repository of genomes and annotation that can be freely downloaded and used for any kind of analysis</p>
 <p>The resource <a class="reference external" href="https://bacteria.ensembl.org/index.html">Ensembl Bacteria</a> contains a large number of bacterial genomes and their annotation. As an example we can browse the page corresponding to <a class="reference external" href="https://bacteria.ensembl.org/Escherichia_coli_bl21_gold_de3_plyss_ag_/Info/Index/">*Escherichia coli ‘BL21-Gold(DE3)pLysS AG’*</a></p>
@@ -398,8 +408,8 @@ GFTLLNGGPKYRRAFLDWGCFHNEPGFFTAWSNLKRLLKQRNAALRQVTRYEQLRPWDKE
 </ul>
 </section>
 </section>
-<section id="practical-part-iii-manipulate-files-piping-parsing-reformatting">
-<h2>Practical part III: Manipulate files, piping, parsing, reformatting<a class="headerlink" href="#practical-part-iii-manipulate-files-piping-parsing-reformatting" title="Permalink to this heading"></a></h2>
+<section id="manipulate-files-piping-parsing-reformatting">
+<h2>Manipulate files, piping, parsing, reformatting<a class="headerlink" href="#manipulate-files-piping-parsing-reformatting" title="Permalink to this heading"></a></h2>
 <p>Parsing a file means extracting meaningful parts from a data source.
 In few words if you have table and are interested only in a number of columns, extracting those columns can be an example of <strong>parsing</strong>.
 In our case, for example, we can extract the name of our sequences by using again the program <strong>grep</strong> and redirecting the output to a new file.</p>
@@ -559,6 +569,261 @@ wc<span class="w"> </span>-l<span class="w"> </span>seq_names.txt
 <li><p><strong>awk</strong> allows several kind of parsing operations</p></li>
 <li><p><strong>head</strong> extract the indicated number of rows from the beginning of a file</p></li>
 </ul>
+</section>
+</section>
+<section id="sequence-file-formats-fasta-and-fastq">
+<h2>Sequence file formats: Fasta and fastq<a class="headerlink" href="#sequence-file-formats-fasta-and-fastq" title="Permalink to this heading"></a></h2>
+<p>We already showed the fasta format. There is a header characterized by the presence of <strong>&gt;</strong> and a number of rows containing the sequence.
+The format is used for both nucleic acids and proteins.</p>
+<a class="reference internal image-reference" href="_images/Linux-Logo.png"><img alt="_images/Linux-Logo.png" src="_images/Linux-Logo.png" style="width: 600px;" /></a>
+<p>Another way to store sequencing data, and particularly the short reads coming from the sequencers is the <strong>Fastq</strong> format.
+This format allows to store also the information about the quality of that particular base, i.e. the probability that that base reading was true or not.</p>
+<a class="reference internal image-reference" href="_images/fastq_format.png"><img alt="_images/fastq_format.png" src="_images/fastq_format.png" style="width: 600px;" /></a>
+<p>The format contains four rows for sequence with:
+* a header containing <strong>&#64;</strong> as the first character
+* the sequence content
+* a <strong>spacer</strong>
+* the quality encoded using ASCII characters.</p>
+<a class="reference internal image-reference" href="_images/phred_quality.png"><img alt="_images/phred_quality.png" src="_images/phred_quality.png" style="width: 600px;" /></a>
+<p>Currently most of the journals require the submissions of NGS data in a public repository upon publishing.</p>
+<p>The major repositories are:
+* <a class="reference external" href="https://www.ncbi.nlm.nih.gov/sra">SRA</a> (Sequence Read Archive) from US
+* <a href="#id76"><span class="problematic" id="id79">`ENA &lt;https://www.ebi.ac.uk/ena`__</span></a> (European Nucleotide Archive)
+* <a href="#id76"><span class="problematic" id="id80">`DDBJ-DRA &lt;https://www.ddbj.nig.ac.jp/dra/index-e.html`__</span></a> from Japan.</p>
+<p>They are interconnected and mirror the data among them and are connected to other databases that contain also the results of a given analysis such as <a class="reference external" href="https://www.ncbi.nlm.nih.gov/geo/">GEO</a> and <a class="reference external" href="https://www.ebi.ac.uk/arrayexpress/">Array-express</a> that contain expression data.</p>
+<p>As an example we can have a look at this paper about the <a class="reference external" href="https://www.ncbi.nlm.nih.gov/pubmed/30522523">characterization of the oral microbiome of young Spaniards</a> (in which we were collaborators :) )</p>
+<a class="reference internal image-reference" href="_images/sacalalengua.png"><img alt="_images/sacalalengua.png" src="_images/sacalalengua.png" style="width: 800px;" /></a>
+<p>As you can see there is a section with <strong>“Availability of data and materials”</strong> with a link to the SRA accession number: <a class="reference external" href="https://www.ncbi.nlm.nih.gov/bioproject/PRJNA427101">PRJNA427101</a>.</p>
+<a class="reference internal image-reference" href="_images/accession.png"><img alt="_images/accession.png" src="_images/accession.png" style="width: 800px;" /></a>
+<p>We can visit the webpage containing the information about every experiment submitted for that paper / project. This page is called <strong>BioProject</strong></p>
+<a class="reference internal image-reference" href="_images/bioproject.png"><img alt="_images/bioproject.png" src="_images/bioproject.png" style="width: 800px;" /></a>
+<p>The page links to the whole list of sequencing runs (1319)</p>
+<a class="reference internal image-reference" href="_images/list_of_runs.png"><img alt="_images/list_of_runs.png" src="_images/list_of_runs.png" style="width: 800px;" /></a>
+<p>We can send now the whole list to <strong>Send results to Run selector</strong>.</p>
+<a class="reference internal image-reference" href="_images/run_selector.png"><img alt="_images/run_selector.png" src="_images/run_selector.png" style="width: 800px;" /></a>
+<p>Now we can select the samples of interest and download the meta-data or the accession list.
+The accession list is needed for the download using <strong>fastq-dump</strong> a program that is mandatory for this kind of database.</p>
+<p>Let’s try to download the first sample with the access <strong>SRR6466185</strong>.
+We need to indicate to the program that the data are from a paired end experiment, so they need to be written in separate files (option <strong>–split-files</strong>), and we want the to be compressed to avoid to waste disk space (option <strong>–gzip</strong>).</p>
+<p>We should have 32,345 reads. Let’s try to count them using a combination of <strong>zcat</strong> that uncompress the file and writes the content to the terminal and <strong>wc</strong>.</p>
+<p>So considering that each sequence is defined by 4 rows we should have <code class="docutils literal notranslate"><span class="pre">`32,345*4=129,380`</span></code>. We can also use <strong>awk</strong> for embedding also the division:</p>
+<section id="id3">
+<h3><strong>Recap</strong><a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>fastq-dump</strong> is a program to retrieve data from SRA database (installation is needed)</p></li>
+<li><p><strong>zcat</strong> equivalent of <strong>cat</strong> for gzipped files</p></li>
+</ul>
+</section>
+</section>
+<section id="bed-format-and-regular-expressions">
+<h2>Bed format and regular expressions<a class="headerlink" href="#bed-format-and-regular-expressions" title="Permalink to this heading"></a></h2>
+<p>The BED format is a “tab” separated text file. It consists of one line per feature, each containing 3-12 columns of data.
+It is used for indicating genomic locations as the one of exons, binding sites, regulatory elements, etc.</p>
+<p>Typical 6-fields bed format</p>
+<p><a href="#id44"><span class="problematic" id="id45">|chrom|chromStart|chromEnd|name|score|strand|</span></a>
+<a href="#id46"><span class="problematic" id="id47">|:---:|</span></a>:—:<a href="#id48"><span class="problematic" id="id49">|:---:|</span></a>:—:<a href="#id50"><span class="problematic" id="id51">|:---:|</span></a>:—:|
+<a href="#id52"><span class="problematic" id="id53">|chr7|127471196|127472363|Pos1|0|+|</span></a>
+<a href="#id54"><span class="problematic" id="id55">|chr7|127472363|127473530|Pos2|0|+|</span></a>
+<a href="#id56"><span class="problematic" id="id57">|chr7|127473530|127474697|Pos3|0|+|</span></a>
+<a href="#id58"><span class="problematic" id="id59">|chr7|127474697|127475864|Pos4|0|+|</span></a></p>
+<p>Additionally you may have up to 6 more fields:</p>
+<p><a href="#id60"><span class="problematic" id="id61">|thickStart|thickEnd|itemRgb|blockCount|blockSizes|blockStarts|</span></a>
+<a href="#id62"><span class="problematic" id="id63">|:---:|</span></a>:—:<a href="#id64"><span class="problematic" id="id65">|:---:|</span></a>:—:<a href="#id66"><span class="problematic" id="id67">|:---:|</span></a>:—:|
+<a href="#id68"><span class="problematic" id="id69">|127471196|127472363|255,0,0|0|0|0|</span></a>
+<a href="#id70"><span class="problematic" id="id71">|127472363|127473530|255,0,0|0|0|0|</span></a>
+<a href="#id72"><span class="problematic" id="id73">|127473530|127474697|255,0,0|0|0|0|</span></a>
+<a href="#id74"><span class="problematic" id="id75">|127474697|127475864|255,0,0|0|0|0|</span></a></p>
+<p>This kind of file can be fed to a genome browser like <a href="#id76"><span class="problematic" id="id81">`UCSC genome browser &lt;https://genome-euro.ucsc.edu/cgi-bin/hgGateway?redirect=manual&amp;source=genome.ucsc.edu`__</span></a> to highlight the genomic positions. Here an example about our coordinates:</p>
+<section id="genome-browser">
+<h3>Genome browser<a class="headerlink" href="#genome-browser" title="Permalink to this heading"></a></h3>
+<a class="reference internal image-reference" href="_images/genome_browser.png"><img alt="_images/genome_browser.png" src="_images/genome_browser.png" style="width: 900px;" /></a>
+<p>BED files can be uploaded to public databases like <strong>GEO</strong> and <strong>ArrayExpress</strong>. As an example let’s download the putative binding site positions obtained by a ChIP-seq experiment on Suz12 transcription factor [<strong>GSE41589</strong>](<a class="reference external" href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE41589">https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE41589</a>).</p>
+<p>&lt;img src=”images/GEO_chipseq.png” width=”600”/&gt;</p>
+<p>Let’s use the right-click on FTP link to copy the link and <strong>wget</strong> to download the file.</p>
+<p><a href="#id4"><span class="problematic" id="id5">``</span></a><a href="#id6"><span class="problematic" id="id7">`</span></a>{bash}
+wget <a class="reference external" href="ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE41nnn/GSE41589/suppl/GSE41589_Suz12_BindingSites.txt.gz">ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE41nnn/GSE41589/suppl/GSE41589_Suz12_BindingSites.txt.gz</a></p>
+<dl class="simple">
+<dt>–2019-03-08 15:03:40–  <a class="reference external" href="ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE41nnn/GSE41589/suppl/GSE41589_Suz12_BindingSites.txt.gz">ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE41nnn/GSE41589/suppl/GSE41589_Suz12_BindingSites.txt.gz</a></dt><dd><p>=&gt; ‘GSE41589_Suz12_BindingSites.txt.gz’</p>
+</dd>
+</dl>
+<p>Resolving ftp.ncbi.nlm.nih.gov (ftp.ncbi.nlm.nih.gov)… 130.14.250.12, 2607:f220:41e:250::11
+Connecting to ftp.ncbi.nlm.nih.gov (ftp.ncbi.nlm.nih.gov)|130.14.250.12|:21… connected.
+Logging in as anonymous … Logged in!
+==&gt; SYST … done.    ==&gt; PWD … done.
+==&gt; TYPE I … done.  ==&gt; CWD (1) /geo/series/GSE41nnn/GSE41589/suppl … done.
+==&gt; SIZE GSE41589_Suz12_BindingSites.txt.gz … 72526
+==&gt; PASV … done.    ==&gt; RETR GSE41589_Suz12_BindingSites.txt.gz … done.
+Length: 72526 (71K) (unauthoritative)</p>
+<p>100%[======================================================================================================================&gt;] 72,526       258KB/s   in 0.3s</p>
+<p>2019-03-08 15:03:42 (258 KB/s) - ‘GSE41589_Suz12_BindingSites.txt.gz’ saved [72526]
+<a href="#id8"><span class="problematic" id="id9">``</span></a><a href="#id10"><span class="problematic" id="id11">`</span></a></p>
+<p>Since we have one row per feature, just counting the number of rows will give us the number of binding sites:</p>
+<p><a href="#id12"><span class="problematic" id="id13">``</span></a><a href="#id14"><span class="problematic" id="id15">`</span></a>{bash}
+zcat GSE41589_Suz12_BindingSites.txt.gz | wc -l</p>
+<p>8053
+<a href="#id16"><span class="problematic" id="id17">``</span></a><a href="#id18"><span class="problematic" id="id19">`</span></a></p>
+<p>While extracting the first column with <strong>cut</strong> and piping the result to <strong>uniq</strong> will give us the list of chromosomes in which there is at lease one binding site</p>
+<p><code class="docutils literal notranslate"><span class="pre">`{bash}</span>
+<span class="pre">zcat</span> <span class="pre">GSE41589_Suz12_BindingSites.txt.gz</span> <span class="pre">|</span> <span class="pre">cut</span> <span class="pre">-f</span> <span class="pre">1</span> <span class="pre">|</span> <span class="pre">uniq</span>
+<span class="pre">chr1</span>
+<span class="pre">chr10</span>
+<span class="pre">chr11</span>
+<span class="pre">chr12</span>
+<span class="pre">chr13</span>
+<span class="pre">chr14</span>
+<span class="pre">chr15</span>
+<span class="pre">chr16</span>
+<span class="pre">chr17</span>
+<span class="pre">chr18</span>
+<span class="pre">chr19</span>
+<span class="pre">chr2</span>
+<span class="pre">chr3</span>
+<span class="pre">chr4</span>
+<span class="pre">chr5</span>
+<span class="pre">chr6</span>
+<span class="pre">chr7</span>
+<span class="pre">chr8</span>
+<span class="pre">chr9</span>
+<span class="pre">chrX</span>
+<span class="pre">chrY</span>
+<span class="pre">`</span></code></p>
+<p>We should not use <strong>uniq</strong> alone if we are not sure the values are not sorted… As an example if we shuffle the chromosome order <strong>uniq</strong> won’t work as expected</p>
+<p><a href="#id20"><span class="problematic" id="id21">``</span></a><a href="#id22"><span class="problematic" id="id23">`</span></a>{bash}
+zcat GSE41589_Suz12_BindingSites.txt.gz | cut -f 1 | uniq | wc -l
+21</p>
+<p>zcat GSE41589_Suz12_BindingSites.txt.gz | cut -f 1 | shuf | uniq | wc -l
+7633
+<a href="#id24"><span class="problematic" id="id25">``</span></a><a href="#id26"><span class="problematic" id="id27">`</span></a></p>
+<p>We can fix this using another tool named <strong>sort</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">`{bash}</span>
+<span class="pre">zcat</span> <span class="pre">GSE41589_Suz12_BindingSites.txt.gz</span> <span class="pre">|</span> <span class="pre">cut</span> <span class="pre">-f</span> <span class="pre">1</span> <span class="pre">|</span> <span class="pre">shuf</span> <span class="pre">|</span> <span class="pre">sort</span> <span class="pre">|</span> <span class="pre">uniq</span> <span class="pre">|</span> <span class="pre">wc</span> <span class="pre">-l</span>
+<span class="pre">21</span>
+<span class="pre">`</span></code></p>
+<p>The tool <strong>uniq</strong> has an interesting parameter called <strong>-c</strong> that gives us the number of times that a particular row was found. In this way we have the number of binding site per chromosome.</p>
+<p><a href="#id28"><span class="problematic" id="id29">``</span></a><a href="#id30"><span class="problematic" id="id31">`</span></a>{bash}
+zcat GSE41589_Suz12_BindingSites.txt.gz | cut -f 1 | shuf | sort | uniq -c</p>
+<blockquote>
+<div><p>525 chr1
+362 chr10
+603 chr11
+367 chr12
+392 chr13
+314 chr14
+351 chr15
+193 chr16
+303 chr17
+295 chr18
+232 chr19
+672 chr2
+397 chr3
+547 chr4
+511 chr5
+445 chr6
+480 chr7
+381 chr8
+435 chr9
+244 chrX</p>
+<blockquote>
+<div><p>5 chrY</p>
+</div></blockquote>
+</div></blockquote>
+<p><a href="#id32"><span class="problematic" id="id33">``</span></a><a href="#id34"><span class="problematic" id="id35">`</span></a></p>
+<p>Now let’s try to extract the binding sites from the <strong>chromosome 1</strong>. We can use <strong>grep</strong> but we will extract also unwanted things…</p>
+<p><code class="docutils literal notranslate"><span class="pre">`{bash}</span>
+<span class="pre">zcat</span> <span class="pre">GSE41589_Suz12_BindingSites.txt.gz|</span> <span class="pre">grep</span> <span class="pre">chr1|</span> <span class="pre">cut</span> <span class="pre">-f</span> <span class="pre">1|</span> <span class="pre">uniq</span>
+<span class="pre">chr1</span>
+<span class="pre">chr10</span>
+<span class="pre">chr11</span>
+<span class="pre">chr12</span>
+<span class="pre">chr13</span>
+<span class="pre">chr14</span>
+<span class="pre">chr15</span>
+<span class="pre">chr16</span>
+<span class="pre">chr17</span>
+<span class="pre">chr18</span>
+<span class="pre">chr19</span>
+<span class="pre">`</span></code></p>
+<p>To avoid to extract also other chromosomes that simply start for chr1 we can use the option <strong>-w</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">`{bash}</span>
+<span class="pre">zcat</span> <span class="pre">GSE41589_Suz12_BindingSites.txt.gz|</span> <span class="pre">grep</span> <span class="pre">-w</span> <span class="pre">chr1|</span> <span class="pre">cut</span> <span class="pre">-f</span> <span class="pre">1|</span> <span class="pre">uniq</span>
+<span class="pre">chr1</span>
+<span class="pre">`</span></code></p>
+<p>If you want more complex search we can use the <strong>regular expression</strong>: a sequence of characters that define a search pattern.</p>
+<p>Single characters bewteen square brackets can be searched at the same time</p>
+<p><code class="docutils literal notranslate"><span class="pre">`{bash}</span>
+<span class="pre">zcat</span> <span class="pre">GSE41589_Suz12_BindingSites.txt.gz|</span> <span class="pre">grep</span> <span class="pre">-w</span> <span class="pre">&quot;chr[129]&quot;</span> <span class="pre">|</span> <span class="pre">cut</span> <span class="pre">-f</span> <span class="pre">1|uniq</span>
+<span class="pre">chr1</span>
+<span class="pre">chr2</span>
+<span class="pre">chr9</span>
+<span class="pre">`</span></code></p>
+<p>For searching chromosomes with two digits you should use more intervals</p>
+<p><code class="docutils literal notranslate"><span class="pre">`{bash}</span>
+<span class="pre">zcat</span> <span class="pre">GSE41589_Suz12_BindingSites.txt.gz|</span> <span class="pre">grep</span> <span class="pre">-w</span> <span class="pre">&quot;chr[1][123]&quot;</span> <span class="pre">|</span> <span class="pre">cut</span> <span class="pre">-f</span> <span class="pre">1|uniq</span>
+<span class="pre">chr11</span>
+<span class="pre">chr12</span>
+<span class="pre">chr13</span>
+<span class="pre">`</span></code></p>
+<p>Using a hiphen <strong>-</strong> allows to extract a whole interval from the first to the last number</p>
+<p><code class="docutils literal notranslate"><span class="pre">`{bash}</span>
+<span class="pre">zcat</span> <span class="pre">GSE41589_Suz12_BindingSites.txt.gz|</span> <span class="pre">grep</span> <span class="pre">-w</span> <span class="pre">&quot;chr[1][0-9]&quot;</span> <span class="pre">|</span> <span class="pre">cut</span> <span class="pre">-f</span> <span class="pre">1|uniq</span>
+<span class="pre">chr10</span>
+<span class="pre">chr11</span>
+<span class="pre">chr12</span>
+<span class="pre">chr13</span>
+<span class="pre">chr14</span>
+<span class="pre">chr15</span>
+<span class="pre">chr16</span>
+<span class="pre">chr17</span>
+<span class="pre">chr18</span>
+<span class="pre">chr19</span>
+<span class="pre">`</span></code></p>
+<p>Another useful regular expression is <strong>^</strong> and <strong>$</strong> that indicates that the pattern has to be found at the beginning or the end of the string. Also <strong>awk</strong> is able to use regular expressions, this will make the search more accurate since you can decide which column to scan.</p>
+<p><a href="#id36"><span class="problematic" id="id37">``</span></a><a href="#id38"><span class="problematic" id="id39">`</span></a>{bash}
+awk -F”t” ‘{if ($2~”^MCELDI”) print}’ proteins.tab</p>
+<p>&gt;ACT27842 pep supercontig:ASM2366v1:CP001665:800015:801223:-1 gene:ECBD_0774 transcript:ACT27842 gene_biotype:protein_coding transcript_biotype:protein_coding description:transposase IS4 family protein       MCELDILHDSLYQFCPELHLKRLNSLTLACHALLDCKTLTLTELGRNLPTKARTKHNIKRIDRLLGNRHLHKERLAVYRWHASFICSGNTMPIVLVDWSDIREQKRLMVLRASVALHGRSVTLYEKAFPLSEQCSKKAHDQFLADLASILPSNTTPLIVSDAGFKVPWYKSVEKLGWYWLSRVRGKVQYADLGAENWKPISNLHDMSSSHSKTLGYKRLTKSNPISCQILLYKSRSKGRKNQRSTRTHCHHPSPKIYSASAKEPWILATNLPVEIRTPKQLVNIYSKRMQIEETFRDLKSPAYGLGLRHSRTSSSERFDIMLLIALMLQLTCWLAGVHAQKQGWDKHFQANTVRNRNVLSTVRLGMEVLRHSGYTITREDSLVAATLLTQNLFTHGYVLGKL
+&gt;ACT27843 pep supercontig:ASM2366v1:CP001665:801353:802561:-1 gene:ECBD_0775 transcript:ACT27843 gene_biotype:protein_coding transcript_biotype:protein_coding description:transposase IS4 family protein       MCELDILHDSLYQFCPELHLKRLNSLTLACHALLDCKTLTLTELGRNLPTKARTKHNIKRIDRLLGNRHLHKERLAVYRWHASFICSGNTMPIVLVDWSDIREQKRLMVLRASVALHGRSVTLYEKAFPLSEQCSKKAHDQFLADLASILPSNTTPLIVSDAGFKVPWYKSVEKLGWYWLSRVRGKVQYADLGAENWKPISNLHDMSSSHSKTLGYKRLTKSNPISCQILLYKSRSKGRKNQRSTRTHCHHPSPKIYSASAKEPWVLATNLPVEIRTPKQLVNIYSKRMQIEETFRDLKSPAYGLGLRHSRTSSSERFDIMLLIALMLQLTCWLAGVHAQKQGWDKHFQANTVRNRNVLSTVRLGMEVLRHSGYTITREDLLVAATLLAQNLFTHGYALGKL
+&gt;ACT28724 pep supercontig:ASM2366v1:CP001665:1791810:1793018:-1 gene:ECBD_1670 transcript:ACT28724 gene_biotype:protein_coding transcript_biotype:protein_coding description:transposase IS4 family protein     MCELDILHDSLYQFCPELHLKRLNSLTLACHALLDCKTLTLTELGRNLPTKARTKHNIKRIDRLLGNRHLHKERLAVYRWHASFICSGNTMPIVLVDWSDIREQKRLMVLRASVALHGRSVTLYEKAFPLSEQCSKKAHDQFLADLASILPSNTTPLIVSDAGFKVPWYKSVEKLGWYWLSRVRGKVQYADLGAENWKPISNLHDMSSSHSKTLGYKRLTKSNPISCQILLYKSRSKGRKNQRSTRTHCHHPSPKIYSASAKEPWVLATNLPVEIRTPKQLVNIYSKRMQIEETFRDLKSPAYGLGLRHSRTSSSERFDIMLLIALMLQLTCWLAGVHAQKQGWDKHFQANTVRNRNVLSTVRLGMEVLRHSGYTITREDLLVAATLLAQNLFTHGYALGKL
+&gt;ACT28727 pep supercontig:ASM2366v1:CP001665:1795281:1796489:-1 gene:ECBD_1674 transcript:ACT28727 gene_biotype:protein_coding transcript_biotype:protein_coding description:transposase IS4 family protein     MCELDILHDSLYQFCPELHLKRLNSLTLACHALLDCKTLTLTELGRNLPTKARTKHNIKRIDRLLGNRHLHKERLAVYRWHASFICSGNTMPIVLVDWSDIREQKRLMVLRASVALHGRSVTLYEKAFPLSEQCSKKAHDQFLADLASILPSNTTPLIVSDAGFKVPWYKSVEKLGWYWLSRVRGKVQYADLGAENWKPISNLHDMSSSHSKTLGYKRLTKSNPISCQILLYKSRSKGRKNQRSTRTHCHHPSPKIYSASAKEPWILATNLPVEIRTPKQLVNIYSKRMQIEETFRDLKSPAYGLGLRHSRTSSSERFDIMLLIALMLQLTCWLAGVHAQKQGWDKHFQANTVRNRNVLSTVRLGMEVLRHSGYTITREDLLVAATLLAQNLFTHGYALGKL
+&gt;ACT30468 pep supercontig:ASM2366v1:CP001665:3610918:3612126:-1 gene:ECBD_3469 transcript:ACT30468 gene_biotype:protein_coding transcript_biotype:protein_coding description:transposase IS4 family protein     MCELDILHDSLYQFCPELHLKRLNSLTLACHALLDCKTLTLTELGRNLPTKARTKHNIKRIDRLLGNRHLHKERLAVYRWHASFICSGNTMPIVLVDWSDIREQKRLMVLRASVALHGRSVTLYEKAFPLSEQCSKKAHDQFLADLASILPSNTTPLIVSDAGFKVPWYKSVEKLGWYWLSRVRGKVQYADLGAENWKPISNLHDMSSSHSKTLGYKRLTKSNPISCQILLYKSRSKGRKNQRSTRTHCHHPSPKIYSASAKEPWILATNLPVEIRTPKQLVNIYSKRMQIEETFRDLKSPAYGLGLRHSRTSSSERFDIMLLIALMLQLTCWLAGVHAQKQGWDKHFQANTVRNRNVLSTVRLGMEVLRHSGYTITREDSLVAATLLTQNLFTHGYVLGKL
+&gt;ACT31152 pep supercontig:ASM2366v1:CP001665:4391870:4393078:-1 gene:ECBD_4170 transcript:ACT31152 gene_biotype:protein_coding transcript_biotype:protein_coding description:transposase IS4 family protein     MCELDILHDSLYQFCPELHLKRLNSLTLACHALLDCKTLTLTELGRNLPTKARTKHNIKRIDRLLGNRHLHKERLAVYRWHASFICSGNTMPIVLVDWSDIREQKRLMVLRASVALHGRSVTLYEKAFPLSEQCSKKAHDQFLADLASILPSNTTPLIVSDAGFKVPWYKSVEKLGWYWLSRVRGKVQYADLGAENWKPISNLHDMSSSHSKTLGYKRLTKSNPISCQILLYKSRSKGRKNQRSTRTHCHHPSPKIYSASAKEPWILATNLPVEIRTPKQLVNIYSKRMQIEETFRDLKSPAYGLGLRHSRTSSSERFDIMLLIALMLQLTCWLAGVHAQKQGWDKHFQANTVRNRNVLSTVRLGMEVLRHSGYTITREDLLVAATLLAQNLFTHGYALGKL</p>
+<p>awk -F”t” ‘{if ($2~”YFAKRLK$”) print}’ proteins.tab</p>
+<p>&gt;ACT27943 pep supercontig:ASM2366v1:CP001665:911724:912023:-1 gene:ECBD_0875 transcript:ACT27943 gene_biotype:protein_coding transcript_biotype:protein_coding description:transposase IS3/IS911 family protein MTKTVSTSKKPRKQHSPEFRSEALKLAERIGVTAAARELSLYESQLYNWRSKQQNQQTSSERELEMSTEIARLKRQLAERDEELAILQKAATYFAKRLK
+&gt;ACT29129 pep supercontig:ASM2366v1:CP001665:2195088:2195387:-1 gene:ECBD_2089 transcript:ACT29129 gene_biotype:protein_coding transcript_biotype:protein_coding description:transposase IS3/IS911 family protein       MTKTVSTSKKPRKQHSPEFRSEALKLAERIGVTAAARELSLYESQLYNWRSKQQNQQTSSERELEMSTEIARLKRQLAERDEELAILQKAATYFAKRLK
+&gt;ACT29266 pep supercontig:ASM2366v1:CP001665:2355429:2355728:-1 gene:ECBD_2236 transcript:ACT29266 gene_biotype:protein_coding transcript_biotype:protein_coding description:transposase IS3/IS911 family protein       MTKTVSTSKKPRKQHSPEFRSEALKLAERIGVTAAARELSLYESQLYNWRSKQQNQQTSSERELEMSTEIARLKRQLAERDEELAILQKAATYFAKRLK
+&gt;ACT29589 pep supercontig:ASM2366v1:CP001665:2682665:2682964:1 gene:ECBD_2567 transcript:ACT29589 gene_biotype:protein_coding transcript_biotype:protein_coding description:transposase IS3/IS911 family protein        MTKTVSTSKKPRKQHSPEFRSEALKLAERIGVTAAARELSLYESQLYNWRSKQQNQQTSSERELEMSTEIARLKRQLAERDEELAILQKAATYFAKRLK
+<a href="#id40"><span class="problematic" id="id41">``</span></a><a href="#id42"><span class="problematic" id="id43">`</span></a></p>
+<p>Other useful pattern for the regular expression is the dot <strong>.</strong> that means any charachter.</p>
+<p><code class="docutils literal notranslate"><span class="pre">`{bash}</span>
+<span class="pre">grep</span> <span class="pre">-v</span> <span class="pre">&quot;&gt;&quot;</span> <span class="pre">Escherichia_coli_bl21_gold_de3_plyss_ag_.ASM2366v1.pep.all.fa</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">&quot;AAAAA.A&quot;</span>
+<span class="pre">`</span></code>
+MKLSRRSFMKANAV**AAAAAAA**GLSVPGVARAVVGQQEAIKWDKAPCRFCGTGCGVLVGTQ
+EQQRRMEAERLAQMQQLSHQDDDS**AAAAALAA**QTGERKVGRNDPCPCGSGKKYKQCHGRL</p>
+<p><code class="docutils literal notranslate"><span class="pre">`{bash}</span>
+<span class="pre">grep</span> <span class="pre">-v</span> <span class="pre">&quot;&gt;&quot;</span> <span class="pre">Escherichia_coli_bl21_gold_de3_plyss_ag_.ASM2366v1.pep.all.fa</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">&quot;A[GA]AAA.AA&quot;</span>
+<span class="pre">`</span></code>
+GE**AGAAAPAA**KQEAAPAAAPAPAAGVKEVNVPDIGGDEVEVTEVMVKVGDKVAAEQSLIT
+EQQRRMEAERLAQMQQLSHQDDDS**AAAAALAA**QTGERKVGRNDPCPCGSGKKYKQCHGRL</p>
+<p>More extended regular expression can be searched by using grep with the parameter <strong>-E</strong>. For instance we can search for repetition:</p>
+<p><code class="docutils literal notranslate"><span class="pre">`{bash}</span>
+<span class="pre">grep</span> <span class="pre">-v</span> <span class="pre">&quot;&gt;&quot;</span> <span class="pre">Escherichia_coli_bl21_gold_de3_plyss_ag_.ASM2366v1.pep.all.fa</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">-E</span> <span class="pre">&quot;(AT){3}&quot;</span>
+<span class="pre">`</span></code>
+GVGIGIETVDGVPVKINNNSGATFVLSDGSNTLLFNTWVQAKSGRDVTLGNFT**ATATAT**F</p>
+<p>&lt;h3&gt;Recap&lt;/h3&gt;</p>
+<ul class="simple">
+<li><p><strong>uniq</strong> it removes the duplicated elements in a list</p></li>
+<li><p><strong>sort</strong> it sorts a given list</p></li>
+<li><p><strong>shuf</strong> it shuffles a given list</p></li>
+</ul>
+<p>## Exercises</p>
+<ul class="simple">
+<li><p>We see that some of the protein sequences are repeated in <strong>proteins.tab</strong> file. So different genes produce the same protein. How many unique proteins do we have in our proteins.tab file?</p></li>
+<li><p>How many sequences in SRR6466185_1.fastq.gz contain the pattern “GGGATGACGGC”? And how many in SRR6466185_2.fastq.gz?</p></li>
+<li><p>Can you calculate the sum of the size of the first 10 sequences in <strong>proteins.tab</strong>?</p></li>
+<li><p>Can you tell how many different kind of description there are in <strong>seq_names.txt</strong>?</p></li>
+<li><p>In Ensembl the chromosomes are named differently than in UCSC (1,2,3… vs chr1, chr2, chr3). Can you convert the binding sites stored within <strong>GSE41589_Suz12_BindingSites.txt.gz</strong> in a way that is compatible with Ensembl?</p></li>
+</ul>
+<p>&lt;h3&gt;Next Session&lt;/h3&gt;</p>
+<p>[Module 2](<a class="reference external" href="https://biocorecrg.github.io/advanced_linux_2019/Module2">https://biocorecrg.github.io/advanced_linux_2019/Module2</a>)</p>
 </section>
 </section>
 </section>
