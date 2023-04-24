@@ -359,7 +359,7 @@ This format is called `FASTA <https://en.wikipedia.org/wiki/FASTA_format>`__ for
 
 We can now download in the same ways the proteins:
 
-.. image:: images/right_click_2.png
+.. image:: images/righ_click_2.png
   :width: 800
 
 and after unzipping the file we can have a look at it.
