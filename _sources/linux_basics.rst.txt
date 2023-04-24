@@ -292,7 +292,7 @@ we can then use the program **more** to display part of the content of the file:
 	--More--(14%)
 
 
-Pressing the bar allows us to scroll down the file, while for exiting you just click **CTRL+C**.<br>
+Pressing the bar allows us to scroll down the file, while for exiting you just click **CTRL+C**.
 After reading the README we can download the file named **toplevel** that contains chromosomes, regions not assembled into chromosomes and N padded haplotype/patch regions:
 
 .. code-block:: bash
@@ -315,7 +315,7 @@ We can use the options **-lh** of the program **ls** to list attributes of the f
 	-rw-r--r-- 1 lcozzuto Bioinformatics_Unit 4.9K Mar  6 18:59 README
 
 
-For unzipping the file we can use the program **gunzip**. <br>The uncompressed file is now **4.5M**. 
+For unzipping the file we can use the program **gunzip**. The uncompressed file is now **4.5M**. 
 
 Let's see the content of the file.
 
@@ -418,8 +418,8 @@ Practical part III: Manipulate files, piping, parsing, reformatting
 ====================
 
 
-Parsing a file means extracting meaningful parts from a data source. <br>
-In few words if you have table and are interested only in a number of columns, extracting those columns can be an example of **parsing**. <br>
+Parsing a file means extracting meaningful parts from a data source.
+In few words if you have table and are interested only in a number of columns, extracting those columns can be an example of **parsing**.
 In our case, for example, we can extract the name of our sequences by using again the program **grep** and redirecting the output to a new file.
 
 .. code-block:: bash
@@ -457,8 +457,8 @@ We can also **pipe** the results of a program (via Standard output) to a new pro
 	>ACT31309 pep supercontig:ASM2366v1:CP001665:4570538:4570678:-1 gene:ECBD_4330 transcript:ACT31309 gene_biotype:protein_coding transcript_biotype:protein_coding description:ribosomal protein L34
 
 
-Going back to the genome file, we can use a combination of **grep** and **wc** to count the number of bases. <br>
-The option **-v** of **grep** will remove the row with the indicated character. <br>
+Going back to the genome file, we can use a combination of **grep** and **wc** to count the number of bases.
+The option **-v** of **grep** will remove the row with the indicated character.
 The option **-m** of **wc** tool allows to count only the characters, while **-l** gives you the number of lines. 
 
 .. code-block:: bash
@@ -508,7 +508,7 @@ Sometimes it can be useful to have a random list of identifiers (for instance to
 
 PS: the list is random, so it is unlikely you will get the same result.
 
-A list of identifiers can be quite useful to go back to the original name list to extract the whole information. <br>
+A list of identifiers can be quite useful to go back to the original name list to extract the whole information.
 We can do this using again the program **grep** with the options **-F** (it means search a fixed string, do not interpret it... we will explain this later) and **-f** for using patterns specified in a file.
 
 .. code-block:: bash
@@ -522,10 +522,10 @@ We can do this using again the program **grep** with the options **-F** (it mean
 	>ACT31118 pep supercontig:ASM2366v1:CP001665:4355734:4355916:-1 gene:ECBD_4135 transcript:ACT31118 gene_biotype:protein_coding transcript_biotype:protein_coding description:hypothetical protein
 
 
-If we want to extract also the corresponding sequence the situation is more complex. <br>
+If we want to extract also the corresponding sequence the situation is more complex.
 
-First of all we need to convert the fasta format in a tab separated format with two columns: and id and a sequence. <br>
-And then use **grep** again to extract our sequences of interest. <br>
+First of all we need to convert the fasta format in a tab separated format with two columns: and id and a sequence.
+And then use **grep** again to extract our sequences of interest.
 The conversion can be achieved using one of the most powerful linux tool, that is a programming language: **awk**
 
 * Awk's basic syntax:

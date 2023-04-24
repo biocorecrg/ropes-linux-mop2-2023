@@ -300,7 +300,7 @@ The<span class="w"> </span>files<span class="w"> </span>are<span class="w"> </sp
 --More--<span class="o">(</span><span class="m">14</span>%<span class="o">)</span>
 </pre></div>
 </div>
-<p>Pressing the bar allows us to scroll down the file, while for exiting you just click <strong>CTRL+C</strong>.&lt;br&gt;
+<p>Pressing the bar allows us to scroll down the file, while for exiting you just click <strong>CTRL+C</strong>.
 After reading the README we can download the file named <strong>toplevel</strong> that contains chromosomes, regions not assembled into chromosomes and N padded haplotype/patch regions:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>ftp://ftp.ensemblgenomes.org/pub/bacteria/release-42/fasta/bacteria_22_collection/escherichia_coli_bl21_gold_de3_plyss_ag_/dna/Escherichia_coli_bl21_gold_de3_plyss_ag_.ASM2366v1.dna.toplevel.fa.gz
 <span class="w">                </span><span class="sb">```</span>
@@ -318,7 +318,7 @@ drwxr-xr-x<span class="w"> </span><span class="m">2</span><span class="w"> </spa
 -rw-r--r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>lcozzuto<span class="w"> </span>Bioinformatics_Unit<span class="w"> </span><span class="m">4</span>.9K<span class="w"> </span>Mar<span class="w">  </span><span class="m">6</span><span class="w"> </span><span class="m">18</span>:59<span class="w"> </span>README
 </pre></div>
 </div>
-<p>For unzipping the file we can use the program <strong>gunzip</strong>. &lt;br&gt;The uncompressed file is now <strong>4.5M</strong>.</p>
+<p>For unzipping the file we can use the program <strong>gunzip</strong>. The uncompressed file is now <strong>4.5M</strong>.</p>
 <p>Let’s see the content of the file.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>more<span class="w"> </span>Escherichia_coli_bl21_gold_de3_plyss_ag_.ASM2366v1.dna.toplevel.fa
 
@@ -400,8 +400,8 @@ GFTLLNGGPKYRRAFLDWGCFHNEPGFFTAWSNLKRLLKQRNAALRQVTRYEQLRPWDKE
 </section>
 <section id="practical-part-iii-manipulate-files-piping-parsing-reformatting">
 <h2>Practical part III: Manipulate files, piping, parsing, reformatting<a class="headerlink" href="#practical-part-iii-manipulate-files-piping-parsing-reformatting" title="Permalink to this heading"></a></h2>
-<p>Parsing a file means extracting meaningful parts from a data source. &lt;br&gt;
-In few words if you have table and are interested only in a number of columns, extracting those columns can be an example of <strong>parsing</strong>. &lt;br&gt;
+<p>Parsing a file means extracting meaningful parts from a data source.
+In few words if you have table and are interested only in a number of columns, extracting those columns can be an example of <strong>parsing</strong>.
 In our case, for example, we can extract the name of our sequences by using again the program <strong>grep</strong> and redirecting the output to a new file.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grep<span class="w"> </span><span class="s2">&quot;&gt;&quot;</span><span class="w"> </span>Escherichia_coli_bl21_gold_de3_plyss_ag_.ASM2366v1.pep.all.fa<span class="w"> </span>&gt;<span class="w"> </span>seq_names.txt
 
@@ -433,8 +433,8 @@ grep<span class="w"> </span><span class="s2">&quot;&gt;&quot;</span><span class=
 &gt;ACT31309<span class="w"> </span>pep<span class="w"> </span>supercontig:ASM2366v1:CP001665:4570538:4570678:-1<span class="w"> </span>gene:ECBD_4330<span class="w"> </span>transcript:ACT31309<span class="w"> </span>gene_biotype:protein_coding<span class="w"> </span>transcript_biotype:protein_coding<span class="w"> </span>description:ribosomal<span class="w"> </span>protein<span class="w"> </span>L34
 </pre></div>
 </div>
-<p>Going back to the genome file, we can use a combination of <strong>grep</strong> and <strong>wc</strong> to count the number of bases. &lt;br&gt;
-The option <strong>-v</strong> of <strong>grep</strong> will remove the row with the indicated character. &lt;br&gt;
+<p>Going back to the genome file, we can use a combination of <strong>grep</strong> and <strong>wc</strong> to count the number of bases.
+The option <strong>-v</strong> of <strong>grep</strong> will remove the row with the indicated character.
 The option <strong>-m</strong> of <strong>wc</strong> tool allows to count only the characters, while <strong>-l</strong> gives you the number of lines.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;&gt;&quot;</span><span class="w"> </span>Escherichia_coli_bl21_gold_de3_plyss_ag_.ASM2366v1.dna.toplevel.fa<span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-m
 <span class="m">4647121</span>
@@ -474,7 +474,7 @@ ACT29418
 </pre></div>
 </div>
 <p>PS: the list is random, so it is unlikely you will get the same result.</p>
-<p>A list of identifiers can be quite useful to go back to the original name list to extract the whole information. &lt;br&gt;
+<p>A list of identifiers can be quite useful to go back to the original name list to extract the whole information.
 We can do this using again the program <strong>grep</strong> with the options <strong>-F</strong> (it means search a fixed string, do not interpret it… we will explain this later) and <strong>-f</strong> for using patterns specified in a file.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grep<span class="w"> </span>-Ff<span class="w"> </span>random.list<span class="w"> </span>seq_names.txt
 
@@ -485,9 +485,9 @@ We can do this using again the program <strong>grep</strong> with the options <s
 &gt;ACT31118<span class="w"> </span>pep<span class="w"> </span>supercontig:ASM2366v1:CP001665:4355734:4355916:-1<span class="w"> </span>gene:ECBD_4135<span class="w"> </span>transcript:ACT31118<span class="w"> </span>gene_biotype:protein_coding<span class="w"> </span>transcript_biotype:protein_coding<span class="w"> </span>description:hypothetical<span class="w"> </span>protein
 </pre></div>
 </div>
-<p>If we want to extract also the corresponding sequence the situation is more complex. &lt;br&gt;</p>
-<p>First of all we need to convert the fasta format in a tab separated format with two columns: and id and a sequence. &lt;br&gt;
-And then use <strong>grep</strong> again to extract our sequences of interest. &lt;br&gt;
+<p>If we want to extract also the corresponding sequence the situation is more complex.</p>
+<p>First of all we need to convert the fasta format in a tab separated format with two columns: and id and a sequence.
+And then use <strong>grep</strong> again to extract our sequences of interest.
 The conversion can be achieved using one of the most powerful linux tool, that is a programming language: <strong>awk</strong></p>
 <ul class="simple">
 <li><p>Awk’s basic syntax:</p></li>
