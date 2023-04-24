@@ -530,7 +530,7 @@ The conversion can be achieved using one of the most powerful linux tool, that i
 
 * Awk's basic syntax:
 
-.. highlight:: awk
+.. code-block:: bash
 
    awk 'OPTIONAL PATTERN {SOME INSTRUCTIONS}' FILENAME
 
