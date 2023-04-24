@@ -55,7 +55,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#id1"><strong>Recap</strong></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#practical-part-iii-manipulate-files-piping-parsing-reformatting">Practical part III: Manipulate files, piping, parsing, reformatting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#practical-part-iii-manipulate-files-piping-parsing-reformatting">Practical part III: Manipulate files, piping, parsing, reformatting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2"><strong>Recap</strong></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="containers.html">Containers</a></li>
@@ -246,7 +249,7 @@ Manual<span class="w"> </span>page<span class="w"> </span>ls<span class="o">(</s
 <p>And then on <strong>DNA</strong></p>
 <a class="reference internal image-reference" href="_images/file_list_escherichia.png"><img alt="_images/file_list_escherichia.png" src="_images/file_list_escherichia.png" style="width: 800px;" /></a>
 <p>Then as an example we can use the copy the link address of the <strong>README</strong> file using the mouse right button.</p>
-<a class="reference internal image-reference" href="_images/right_click.png"><img alt="_images/right_click.png" src="_images/right_click.png" style="width: 800px;" /></a>
+<a class="reference internal image-reference" href="images/righ_click.png"><img alt="images/righ_click.png" src="images/righ_click.png" style="width: 800px;" /></a>
 <p>Then we can go back to our command line and use the program <strong>wget</strong> to download that file and using <strong>CTRL+C</strong> to paste the address:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>ftp://ftp.ensemblgenomes.org/pub/bacteria/release-42/fasta/bacteria_22_collection/escherichia_coli_bl21_gold_de3_plyss_ag_/dna/README
 
@@ -347,7 +350,7 @@ CGCCAAGCGTCTACGATCTAACGTACGTGAGCTGGAAGGGGCGCTGAACCGCGTCATTGC
 </div>
 <p>The file contains the whole genome of the bacteria.</p>
 <p>The first line contains the character <strong>&gt;</strong> and the name of the molecule / genome.</p>
-<p>This format is called <a class="reference external" href="https://en.wikipedia.org/wiki/FASTA_format">**FASTA**</a> format and is universally used for storing one or multiple DNA/RNA/Protein sequences.</p>
+<p>This format is called <a class="reference external" href="https://en.wikipedia.org/wiki/FASTA_format">FASTA</a> format and is universally used for storing one or multiple DNA/RNA/Protein sequences.</p>
 <p>We can now download in the same ways the proteins:</p>
 <a class="reference internal image-reference" href="images/right_click_2.png"><img alt="images/right_click_2.png" src="images/right_click_2.png" style="width: 800px;" /></a>
 <p>and after unzipping the file we can have a look at it.</p>
@@ -400,81 +403,88 @@ GFTLLNGGPKYRRAFLDWGCFHNEPGFFTAWSNLKRLLKQRNAALRQVTRYEQLRPWDKE
 <p>Parsing a file means extracting meaningful parts from a data source. &lt;br&gt;
 In few words if you have table and are interested only in a number of columns, extracting those columns can be an example of <strong>parsing</strong>. &lt;br&gt;
 In our case, for example, we can extract the name of our sequences by using again the program <strong>grep</strong> and redirecting the output to a new file.</p>
-<p><a href="#id2"><span class="problematic" id="id3">``</span></a><a href="#id4"><span class="problematic" id="id5">`</span></a>{bash}
-grep “&gt;” <a href="#id88"><span class="problematic" id="id89">Escherichia_coli_bl21_gold_de3_plyss_ag_</span></a>.ASM2366v1.pep.all.fa &gt; seq_names.txt</p>
-<p>more seq_names.txt</p>
-<p>&gt;ACT27082 pep supercontig:ASM2366v1:CP001665:347:1750:1 gene:ECBD_0001 transcript:ACT27082 gene_biotype:protein_coding transcript_biotype:protein_coding descrip
-tion:chromosomal replication initiator protein DnaA
-&gt;ACT27083 pep supercontig:ASM2366v1:CP001665:1755:2855:1 gene:ECBD_0002 transcript:ACT27083 gene_biotype:protein_coding transcript_biotype:protein_coding descri
-ption:DNA polymerase III, beta subunit
-&gt;ACT27084 pep supercontig:ASM2366v1:CP001665:2855:3928:1 gene:ECBD_0003 transcript:ACT27084 gene_biotype:protein_coding transcript_biotype:protein_coding descri
-ption:DNA replication and repair protein RecF
-&gt;ACT27085 pep supercontig:ASM2366v1:CP001665:3957:6371:1 gene:ECBD_0004 transcript:ACT27085 gene_biotype:protein_coding transcript_biotype:protein_coding descri
-ption:DNA gyrase, B subunit
-<a href="#id6"><span class="problematic" id="id7">``</span></a><a href="#id8"><span class="problematic" id="id9">`</span></a></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grep<span class="w"> </span><span class="s2">&quot;&gt;&quot;</span><span class="w"> </span>Escherichia_coli_bl21_gold_de3_plyss_ag_.ASM2366v1.pep.all.fa<span class="w"> </span>&gt;<span class="w"> </span>seq_names.txt
+
+more<span class="w"> </span>seq_names.txt
+
+&gt;ACT27082<span class="w"> </span>pep<span class="w"> </span>supercontig:ASM2366v1:CP001665:347:1750:1<span class="w"> </span>gene:ECBD_0001<span class="w"> </span>transcript:ACT27082<span class="w"> </span>gene_biotype:protein_coding<span class="w"> </span>transcript_biotype:protein_coding<span class="w"> </span>descrip
+tion:chromosomal<span class="w"> </span>replication<span class="w"> </span>initiator<span class="w"> </span>protein<span class="w"> </span>DnaA
+&gt;ACT27083<span class="w"> </span>pep<span class="w"> </span>supercontig:ASM2366v1:CP001665:1755:2855:1<span class="w"> </span>gene:ECBD_0002<span class="w"> </span>transcript:ACT27083<span class="w"> </span>gene_biotype:protein_coding<span class="w"> </span>transcript_biotype:protein_coding<span class="w"> </span>descri
+ption:DNA<span class="w"> </span>polymerase<span class="w"> </span>III,<span class="w"> </span>beta<span class="w"> </span>subunit
+&gt;ACT27084<span class="w"> </span>pep<span class="w"> </span>supercontig:ASM2366v1:CP001665:2855:3928:1<span class="w"> </span>gene:ECBD_0003<span class="w"> </span>transcript:ACT27084<span class="w"> </span>gene_biotype:protein_coding<span class="w"> </span>transcript_biotype:protein_coding<span class="w"> </span>descri
+ption:DNA<span class="w"> </span>replication<span class="w"> </span>and<span class="w"> </span>repair<span class="w"> </span>protein<span class="w"> </span>RecF
+&gt;ACT27085<span class="w"> </span>pep<span class="w"> </span>supercontig:ASM2366v1:CP001665:3957:6371:1<span class="w"> </span>gene:ECBD_0004<span class="w"> </span>transcript:ACT27085<span class="w"> </span>gene_biotype:protein_coding<span class="w"> </span>transcript_biotype:protein_coding<span class="w"> </span>descri
+ption:DNA<span class="w"> </span>gyrase,<span class="w"> </span>B<span class="w"> </span>subunit
+</pre></div>
+</div>
 <p>We can also <strong>pipe</strong> the results of a program (via Standard output) to a new program (via Standard input) by using the character
 <code class="docutils literal notranslate"><span class="pre">`|`</span></code>, the program <strong>head</strong> allows to extract the first N rows (indicated by the parameter <strong>-n</strong>). Tail, instead allows to get the latest N rows.</p>
-<p><a href="#id10"><span class="problematic" id="id11">``</span></a><a href="#id12"><span class="problematic" id="id13">`</span></a>{bash}
-grep “&gt;” -c <a href="#id90"><span class="problematic" id="id91">Escherichia_coli_bl21_gold_de3_plyss_ag_</span></a>.ASM2366v1.pep.all.fa
-4228</p>
-<p>grep “&gt;” <a href="#id92"><span class="problematic" id="id93">Escherichia_coli_bl21_gold_de3_plyss_ag_</span></a>.ASM2366v1.pep.all.fa | head -n 3
-&gt;ACT27082 pep supercontig:ASM2366v1:CP001665:347:1750:1 gene:ECBD_0001 transcript:ACT27082 gene_biotype:protein_coding transcript_biotype:protein_coding description:chromosomal replication initiator protein DnaA
-&gt;ACT27083 pep supercontig:ASM2366v1:CP001665:1755:2855:1 gene:ECBD_0002 transcript:ACT27083 gene_biotype:protein_coding transcript_biotype:protein_coding description:DNA polymerase III, beta subunit
-&gt;ACT27084 pep supercontig:ASM2366v1:CP001665:2855:3928:1 gene:ECBD_0003 transcript:ACT27084 gene_biotype:protein_coding transcript_biotype:protein_coding description:DNA replication and repair protein RecF</p>
-<p>grep “&gt;” <a href="#id94"><span class="problematic" id="id95">Escherichia_coli_bl21_gold_de3_plyss_ag_</span></a>.ASM2366v1.pep.all.fa | tail -n 3
-&gt;ACT31307 pep supercontig:ASM2366v1:CP001665:4569941:4570198:-1 gene:ECBD_4328 transcript:ACT31307 gene_biotype:protein_coding transcript_biotype:protein_coding description:protein of unknown function DUF37
-&gt;ACT31308 pep supercontig:ASM2366v1:CP001665:4570162:4570488:-1 gene:ECBD_4329 transcript:ACT31308 gene_biotype:protein_coding transcript_biotype:protein_coding description:ribonuclease P protein component
-&gt;ACT31309 pep supercontig:ASM2366v1:CP001665:4570538:4570678:-1 gene:ECBD_4330 transcript:ACT31309 gene_biotype:protein_coding transcript_biotype:protein_coding description:ribosomal protein L34
-<a href="#id14"><span class="problematic" id="id15">``</span></a><a href="#id16"><span class="problematic" id="id17">`</span></a></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grep<span class="w"> </span><span class="s2">&quot;&gt;&quot;</span><span class="w"> </span>-c<span class="w"> </span>Escherichia_coli_bl21_gold_de3_plyss_ag_.ASM2366v1.pep.all.fa
+<span class="m">4228</span>
+
+grep<span class="w"> </span><span class="s2">&quot;&gt;&quot;</span><span class="w"> </span>Escherichia_coli_bl21_gold_de3_plyss_ag_.ASM2366v1.pep.all.fa<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">3</span>
+&gt;ACT27082<span class="w"> </span>pep<span class="w"> </span>supercontig:ASM2366v1:CP001665:347:1750:1<span class="w"> </span>gene:ECBD_0001<span class="w"> </span>transcript:ACT27082<span class="w"> </span>gene_biotype:protein_coding<span class="w"> </span>transcript_biotype:protein_coding<span class="w"> </span>description:chromosomal<span class="w"> </span>replication<span class="w"> </span>initiator<span class="w"> </span>protein<span class="w"> </span>DnaA
+&gt;ACT27083<span class="w"> </span>pep<span class="w"> </span>supercontig:ASM2366v1:CP001665:1755:2855:1<span class="w"> </span>gene:ECBD_0002<span class="w"> </span>transcript:ACT27083<span class="w"> </span>gene_biotype:protein_coding<span class="w"> </span>transcript_biotype:protein_coding<span class="w"> </span>description:DNA<span class="w"> </span>polymerase<span class="w"> </span>III,<span class="w"> </span>beta<span class="w"> </span>subunit
+&gt;ACT27084<span class="w"> </span>pep<span class="w"> </span>supercontig:ASM2366v1:CP001665:2855:3928:1<span class="w"> </span>gene:ECBD_0003<span class="w"> </span>transcript:ACT27084<span class="w"> </span>gene_biotype:protein_coding<span class="w"> </span>transcript_biotype:protein_coding<span class="w"> </span>description:DNA<span class="w"> </span>replication<span class="w"> </span>and<span class="w"> </span>repair<span class="w"> </span>protein<span class="w"> </span>RecF
+
+grep<span class="w"> </span><span class="s2">&quot;&gt;&quot;</span><span class="w"> </span>Escherichia_coli_bl21_gold_de3_plyss_ag_.ASM2366v1.pep.all.fa<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-n<span class="w"> </span><span class="m">3</span>
+&gt;ACT31307<span class="w"> </span>pep<span class="w"> </span>supercontig:ASM2366v1:CP001665:4569941:4570198:-1<span class="w"> </span>gene:ECBD_4328<span class="w"> </span>transcript:ACT31307<span class="w"> </span>gene_biotype:protein_coding<span class="w"> </span>transcript_biotype:protein_coding<span class="w"> </span>description:protein<span class="w"> </span>of<span class="w"> </span>unknown<span class="w"> </span><span class="k">function</span><span class="w"> </span>DUF37
+&gt;ACT31308<span class="w"> </span>pep<span class="w"> </span>supercontig:ASM2366v1:CP001665:4570162:4570488:-1<span class="w"> </span>gene:ECBD_4329<span class="w"> </span>transcript:ACT31308<span class="w"> </span>gene_biotype:protein_coding<span class="w"> </span>transcript_biotype:protein_coding<span class="w"> </span>description:ribonuclease<span class="w"> </span>P<span class="w"> </span>protein<span class="w"> </span>component
+&gt;ACT31309<span class="w"> </span>pep<span class="w"> </span>supercontig:ASM2366v1:CP001665:4570538:4570678:-1<span class="w"> </span>gene:ECBD_4330<span class="w"> </span>transcript:ACT31309<span class="w"> </span>gene_biotype:protein_coding<span class="w"> </span>transcript_biotype:protein_coding<span class="w"> </span>description:ribosomal<span class="w"> </span>protein<span class="w"> </span>L34
+</pre></div>
+</div>
 <p>Going back to the genome file, we can use a combination of <strong>grep</strong> and <strong>wc</strong> to count the number of bases. &lt;br&gt;
 The option <strong>-v</strong> of <strong>grep</strong> will remove the row with the indicated character. &lt;br&gt;
 The option <strong>-m</strong> of <strong>wc</strong> tool allows to count only the characters, while <strong>-l</strong> gives you the number of lines.</p>
-<p><a href="#id18"><span class="problematic" id="id19">``</span></a><a href="#id20"><span class="problematic" id="id21">`</span></a>{bash}
-grep -v “&gt;” <a href="#id96"><span class="problematic" id="id97">Escherichia_coli_bl21_gold_de3_plyss_ag_</span></a>.ASM2366v1.dna.toplevel.fa| wc -m
-4647121</p>
-<p>grep -v “&gt;” <a href="#id98"><span class="problematic" id="id99">Escherichia_coli_bl21_gold_de3_plyss_ag_</span></a>.ASM2366v1.dna.toplevel.fa| wc -l
-76183
-<a href="#id22"><span class="problematic" id="id23">``</span></a><a href="#id24"><span class="problematic" id="id25">`</span></a></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;&gt;&quot;</span><span class="w"> </span>Escherichia_coli_bl21_gold_de3_plyss_ag_.ASM2366v1.dna.toplevel.fa<span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-m
+<span class="m">4647121</span>
+
+grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;&gt;&quot;</span><span class="w"> </span>Escherichia_coli_bl21_gold_de3_plyss_ag_.ASM2366v1.dna.toplevel.fa<span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
+<span class="m">76183</span>
+</pre></div>
+</div>
 <p>Now let’s try to extract only the identifiers from the protein file. As we can see they are located just before a
 <strong>space</strong>. So we can slice the first column using the space as delimiter using the program <strong>cut</strong> and the option <strong>-d ” “</strong>.</p>
-<p><code class="docutils literal notranslate"><span class="pre">`{bash}</span>
-<span class="pre">cut</span> <span class="pre">-f</span> <span class="pre">1</span> <span class="pre">-d</span> <span class="pre">&quot;</span> <span class="pre">&quot;</span> <span class="pre">seq_names.txt</span> <span class="pre">|head</span> <span class="pre">-n</span> <span class="pre">5</span>
-<span class="pre">&gt;ACT27082</span>
-<span class="pre">&gt;ACT27083</span>
-<span class="pre">&gt;ACT27084</span>
-<span class="pre">&gt;ACT27085</span>
-<span class="pre">&gt;ACT27086</span>
-<span class="pre">`</span></code>
-We still have the character <strong>&gt;</strong> from the fasta file. For removing it we can use the program <strong>tr</strong> with the option <strong>-d</strong> (delete).</p>
-<p><code class="docutils literal notranslate"><span class="pre">`{bash}</span>
-<span class="pre">cut</span> <span class="pre">-f</span> <span class="pre">1</span> <span class="pre">-d</span> <span class="pre">&quot;</span> <span class="pre">&quot;</span> <span class="pre">seq_names.txt</span> <span class="pre">|</span> <span class="pre">tr</span> <span class="pre">-d</span> <span class="pre">&quot;&gt;&quot;</span> <span class="pre">|</span> <span class="pre">head</span> <span class="pre">-n</span> <span class="pre">5</span>
-<span class="pre">ACT27082</span>
-<span class="pre">ACT27083</span>
-<span class="pre">ACT27084</span>
-<span class="pre">ACT27085</span>
-<span class="pre">ACT27086</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cut<span class="w"> </span>-f<span class="w"> </span><span class="m">1</span><span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot; &quot;</span><span class="w"> </span>seq_names.txt<span class="w"> </span><span class="p">|</span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">5</span>
+&gt;ACT27082
+&gt;ACT27083
+&gt;ACT27084
+&gt;ACT27085
+&gt;ACT27086
+</pre></div>
+</div>
+<p>We still have the character <strong>&gt;</strong> from the fasta file. For removing it we can use the program <strong>tr</strong> with the option <strong>-d</strong> (delete).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cut<span class="w"> </span>-f<span class="w"> </span><span class="m">1</span><span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot; &quot;</span><span class="w"> </span>seq_names.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;&gt;&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">5</span>
+ACT27082
+ACT27083
+ACT27084
+ACT27085
+ACT27086
+</pre></div>
+</div>
 <p>Sometimes it can be useful to have a random list of identifiers (for instance to have a random background). We can achieve this with the program <strong>shuf</strong>. The program <strong>cat</strong> shows the full content of a file.</p>
-<p><a href="#id26"><span class="problematic" id="id27">``</span></a><a href="#id28"><span class="problematic" id="id29">`</span></a>{bash}
-cut -f 1 -d ” ” seq_names.txt | tr -d “&gt;” <a href="#id30"><span class="problematic" id="id31">|</span></a>shuf | head -n 5 &gt; random.list</p>
-<p>cat random.list
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cut<span class="w"> </span>-f<span class="w"> </span><span class="m">1</span><span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot; &quot;</span><span class="w"> </span>seq_names.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;&gt;&quot;</span><span class="w"> </span><span class="p">|</span>shuf<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">5</span><span class="w"> </span>&gt;<span class="w"> </span>random.list
+
+cat<span class="w"> </span>random.list
 ACT31118
 ACT27123
 ACT31080
 ACT28234
 ACT29418
-<a href="#id32"><span class="problematic" id="id33">``</span></a>`
-PS: the list is random, so it is unlikely you will get the same result.</p>
+</pre></div>
+</div>
+<p>PS: the list is random, so it is unlikely you will get the same result.</p>
 <p>A list of identifiers can be quite useful to go back to the original name list to extract the whole information. &lt;br&gt;
 We can do this using again the program <strong>grep</strong> with the options <strong>-F</strong> (it means search a fixed string, do not interpret it… we will explain this later) and <strong>-f</strong> for using patterns specified in a file.</p>
-<p><code class="docutils literal notranslate"><span class="pre">`{bash}</span>
-<span class="pre">grep</span> <span class="pre">-Ff</span> <span class="pre">random.list</span> <span class="pre">seq_names.txt</span>
-<span class="pre">&gt;ACT27123</span> <span class="pre">pep</span> <span class="pre">supercontig:ASM2366v1:CP001665:44295:44414:-1</span> <span class="pre">gene:ECBD_0043</span> <span class="pre">transcript:ACT27123</span> <span class="pre">gene_biotype:protein_coding</span> <span class="pre">transcript_biotype:protein_coding</span> <span class="pre">description:hypothetical</span> <span class="pre">protein</span>
-<span class="pre">&gt;ACT28234</span> <span class="pre">pep</span> <span class="pre">supercontig:ASM2366v1:CP001665:1230560:1230991:1</span> <span class="pre">gene:ECBD_1168</span> <span class="pre">transcript:ACT28234</span> <span class="pre">gene_biotype:protein_coding</span> <span class="pre">transcript_biotype:protein_coding</span> <span class="pre">description:Nucleoside-diphosphate</span> <span class="pre">kinase</span>
-<span class="pre">&gt;ACT29418</span> <span class="pre">pep</span> <span class="pre">supercontig:ASM2366v1:CP001665:2508388:2509098:-1</span> <span class="pre">gene:ECBD_2392</span> <span class="pre">transcript:ACT29418</span> <span class="pre">gene_biotype:protein_coding</span> <span class="pre">transcript_biotype:protein_coding</span> <span class="pre">description:nitrate</span> <span class="pre">reductase</span> <span class="pre">molybdenum</span> <span class="pre">cofactor</span> <span class="pre">assembly</span> <span class="pre">chaperone</span>
-<span class="pre">&gt;ACT31080</span> <span class="pre">pep</span> <span class="pre">supercontig:ASM2366v1:CP001665:4316460:4317305:1</span> <span class="pre">gene:ECBD_4097</span> <span class="pre">transcript:ACT31080</span> <span class="pre">gene_biotype:protein_coding</span> <span class="pre">transcript_biotype:protein_coding</span> <span class="pre">description:MIP</span> <span class="pre">family</span> <span class="pre">channel</span> <span class="pre">protein</span>
-<span class="pre">&gt;ACT31118</span> <span class="pre">pep</span> <span class="pre">supercontig:ASM2366v1:CP001665:4355734:4355916:-1</span> <span class="pre">gene:ECBD_4135</span> <span class="pre">transcript:ACT31118</span> <span class="pre">gene_biotype:protein_coding</span> <span class="pre">transcript_biotype:protein_coding</span> <span class="pre">description:hypothetical</span> <span class="pre">protein</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grep<span class="w"> </span>-Ff<span class="w"> </span>random.list<span class="w"> </span>seq_names.txt
+
+&gt;ACT27123<span class="w"> </span>pep<span class="w"> </span>supercontig:ASM2366v1:CP001665:44295:44414:-1<span class="w"> </span>gene:ECBD_0043<span class="w"> </span>transcript:ACT27123<span class="w"> </span>gene_biotype:protein_coding<span class="w"> </span>transcript_biotype:protein_coding<span class="w"> </span>description:hypothetical<span class="w"> </span>protein
+&gt;ACT28234<span class="w"> </span>pep<span class="w"> </span>supercontig:ASM2366v1:CP001665:1230560:1230991:1<span class="w"> </span>gene:ECBD_1168<span class="w"> </span>transcript:ACT28234<span class="w"> </span>gene_biotype:protein_coding<span class="w"> </span>transcript_biotype:protein_coding<span class="w"> </span>description:Nucleoside-diphosphate<span class="w"> </span>kinase
+&gt;ACT29418<span class="w"> </span>pep<span class="w"> </span>supercontig:ASM2366v1:CP001665:2508388:2509098:-1<span class="w"> </span>gene:ECBD_2392<span class="w"> </span>transcript:ACT29418<span class="w"> </span>gene_biotype:protein_coding<span class="w"> </span>transcript_biotype:protein_coding<span class="w"> </span>description:nitrate<span class="w"> </span>reductase<span class="w"> </span>molybdenum<span class="w"> </span>cofactor<span class="w"> </span>assembly<span class="w"> </span>chaperone
+&gt;ACT31080<span class="w"> </span>pep<span class="w"> </span>supercontig:ASM2366v1:CP001665:4316460:4317305:1<span class="w"> </span>gene:ECBD_4097<span class="w"> </span>transcript:ACT31080<span class="w"> </span>gene_biotype:protein_coding<span class="w"> </span>transcript_biotype:protein_coding<span class="w"> </span>description:MIP<span class="w"> </span>family<span class="w"> </span>channel<span class="w"> </span>protein
+&gt;ACT31118<span class="w"> </span>pep<span class="w"> </span>supercontig:ASM2366v1:CP001665:4355734:4355916:-1<span class="w"> </span>gene:ECBD_4135<span class="w"> </span>transcript:ACT31118<span class="w"> </span>gene_biotype:protein_coding<span class="w"> </span>transcript_biotype:protein_coding<span class="w"> </span>description:hypothetical<span class="w"> </span>protein
+</pre></div>
+</div>
 <p>If we want to extract also the corresponding sequence the situation is more complex. &lt;br&gt;</p>
 <p>First of all we need to convert the fasta format in a tab separated format with two columns: and id and a sequence. &lt;br&gt;
 And then use <strong>grep</strong> again to extract our sequences of interest. &lt;br&gt;
@@ -483,64 +493,71 @@ The conversion can be achieved using one of the most powerful linux tool, that i
 <li><p>Awk’s basic syntax:</p></li>
 </ul>
 <p>&lt;font size=”4” color=”#ff0000”&gt;awk ‘&lt;/font&gt;&lt;font size=”4” color=”#000000”&gt;OPTIONAL PATTERN&lt;/font&gt; &lt;font size=”4” color=”#ff0000”&gt;{&lt;/font&gt; &lt;font size=”4” color=”#000000”&gt;SOME INSTRUCTIONS&lt;/font&gt; &lt;font size=”4” color=”#ff0000”&gt;}’&lt;/font&gt; &lt;font size=”4” color=”#000000”&gt;FILENAME&lt;/font&gt;</p>
-<p>&lt;br&gt;
-Awk reads the files line by line.
-&lt;br&gt;
-As a naive example we can just print the content of the file using <strong>awk</strong> (<strong>$0</strong> is the whole line):</p>
-<p><a href="#id34"><span class="problematic" id="id35">``</span></a><a href="#id36"><span class="problematic" id="id37">`</span></a>{bash}
-awk ‘{print $0}’  <a href="#id100"><span class="problematic" id="id101">Escherichia_coli_bl21_gold_de3_plyss_ag_</span></a>.ASM2366v1.pep.all.fa <a href="#id38"><span class="problematic" id="id39">|</span></a>head -n 3</p>
-<p>&gt;ACT27082 pep supercontig:ASM2366v1:CP001665:347:1750:1 gene:ECBD_0001 transcript:ACT27082 gene_biotype:protein_coding transcript_biotype:protein_coding description:chromosomal replication initiator protein DnaA
+<p>Awk reads the files line by line.</p>
+<p>As a naive example we can just print the content of the file using <strong>awk</strong> (<strong>$0</strong> is the whole line):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>awk<span class="w"> </span><span class="s1">&#39;{print $0}&#39;</span><span class="w">  </span>Escherichia_coli_bl21_gold_de3_plyss_ag_.ASM2366v1.pep.all.fa<span class="w"> </span><span class="p">|</span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">3</span>
+
+&gt;ACT27082<span class="w"> </span>pep<span class="w"> </span>supercontig:ASM2366v1:CP001665:347:1750:1<span class="w"> </span>gene:ECBD_0001<span class="w"> </span>transcript:ACT27082<span class="w"> </span>gene_biotype:protein_coding<span class="w"> </span>transcript_biotype:protein_coding<span class="w"> </span>description:chromosomal<span class="w"> </span>replication<span class="w"> </span>initiator<span class="w"> </span>protein<span class="w"> </span>DnaA
 MSLSLWQQCLARLQDELPATEFSMWIRPLQAELSDNTLALYAPNRFVLDWVRDKYLNNIN
 GLLTSFCGADAPQLRFEVGTKPVTQTPQAAVTSNVAAPAQVAQTQPQRAAPSTRSGWDNV
-<a href="#id40"><span class="problematic" id="id41">``</span></a><a href="#id42"><span class="problematic" id="id43">`</span></a></p>
+</pre></div>
+</div>
 <p>Or we can remove the carriage return by setting the built-in variable <strong>ORS</strong> to empty (Output Record Separator Variable)</p>
-<p><a href="#id44"><span class="problematic" id="id45">``</span></a><a href="#id46"><span class="problematic" id="id47">`</span></a>{bash}
-head -n 10 <a href="#id102"><span class="problematic" id="id103">Escherichia_coli_bl21_gold_de3_plyss_ag_</span></a>.ASM2366v1.pep.all.fa | awk ‘{ORS=””; print $0}’</p>
-<p>&gt;ACT27082 pep supercontig:ASM2366v1:CP001665:347:1750:1 gene:ECBD_0001 transcript:ACT27082 gene_biotype:protein_coding transcript_biotype:protein_coding description:chromosomal replication initiator protein DnaAMSLSLWQQCLARLQDELPATEFSMWIRPLQAELSDNTLALYAPNRFVLDWVRDKYLNNINGLLTSFCGADAPQLRFEVGTKPVTQTPQAAVTSNVAAPAQVAQTQPQRAAPSTRSGWDNVPAPAEPTYRSNVNVKHTFDNFVEGKSNQLARAAARQVADNPGGAYNPLFLYGGTGLGKTHLLHAVGNGIMARKPNAKVVYMHSERFVQDMVKALQNNAIEEFKRYYRSVDALLIDDIQFFANKERSQEEFFHTFNALLEGNQQIILTSDRYPKEINGVEDRLKSRFGWGLTVAIEPPELETRVAILMKKADENDIRLPGEVAFFIAKRLRSNVRELEGALNRVIANANFTGRAITIDFVREALRDLLALQEKLVTIDNIQKTVAEYYKIKVADLLSKRRSRSVARPRQMAMALAKELTNHSLPEIGDAFGGRDHTTVLHACRKIEQLREESHDIKEDFSNLIRTLSS&gt;ACT27083 pep supercontig:ASM2366v1:CP001665:1755:2855:1 gene:ECBD_0002 transcript:ACT27083 gene_biotype:protein_coding transcript_biotype:protein_coding description:DNA polymerase III, beta subunit
-<a href="#id48"><span class="problematic" id="id49">``</span></a><a href="#id50"><span class="problematic" id="id51">`</span></a></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">10</span><span class="w"> </span>Escherichia_coli_bl21_gold_de3_plyss_ag_.ASM2366v1.pep.all.fa<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{ORS=&quot;&quot;; print $0}&#39;</span>
+
+&gt;ACT27082<span class="w"> </span>pep<span class="w"> </span>supercontig:ASM2366v1:CP001665:347:1750:1<span class="w"> </span>gene:ECBD_0001<span class="w"> </span>transcript:ACT27082<span class="w"> </span>gene_biotype:protein_coding<span class="w"> </span>transcript_biotype:protein_coding<span class="w"> </span>description:chromosomal<span class="w"> </span>replication<span class="w"> </span>initiator<span class="w"> </span>protein<span class="w"> </span>DnaAMSLSLWQQCLARLQDELPATEFSMWIRPLQAELSDNTLALYAPNRFVLDWVRDKYLNNINGLLTSFCGADAPQLRFEVGTKPVTQTPQAAVTSNVAAPAQVAQTQPQRAAPSTRSGWDNVPAPAEPTYRSNVNVKHTFDNFVEGKSNQLARAAARQVADNPGGAYNPLFLYGGTGLGKTHLLHAVGNGIMARKPNAKVVYMHSERFVQDMVKALQNNAIEEFKRYYRSVDALLIDDIQFFANKERSQEEFFHTFNALLEGNQQIILTSDRYPKEINGVEDRLKSRFGWGLTVAIEPPELETRVAILMKKADENDIRLPGEVAFFIAKRLRSNVRELEGALNRVIANANFTGRAITIDFVREALRDLLALQEKLVTIDNIQKTVAEYYKIKVADLLSKRRSRSVARPRQMAMALAKELTNHSLPEIGDAFGGRDHTTVLHACRKIEQLREESHDIKEDFSNLIRTLSS&gt;ACT27083<span class="w"> </span>pep<span class="w"> </span>supercontig:ASM2366v1:CP001665:1755:2855:1<span class="w"> </span>gene:ECBD_0002<span class="w"> </span>transcript:ACT27083<span class="w"> </span>gene_biotype:protein_coding<span class="w"> </span>transcript_biotype:protein_coding<span class="w"> </span>description:DNA<span class="w"> </span>polymerase<span class="w"> </span>III,<span class="w"> </span>beta<span class="w"> </span>subunit
+</pre></div>
+</div>
 <p>At this point using we need a <strong>if</strong> statement to reach the point. In few words this statement says: EXECUTE a piece of code IF a given condition is met OTHERWISE (<strong>else</strong>) do something else.</p>
 <p>As an example we can use the <strong>if</strong> to select the header like a <strong>grep</strong> function using the matching expression tilde <strong>~</strong> with the character <strong>*&gt;*</strong></p>
-<p><a href="#id52"><span class="problematic" id="id53">``</span></a><a href="#id54"><span class="problematic" id="id55">`</span></a>{bash}
-awk ‘{if ($0~”&gt;”) {print $0}}’ <a href="#id104"><span class="problematic" id="id105">Escherichia_coli_bl21_gold_de3_plyss_ag_</span></a>.ASM2366v1.pep.all.fa <a href="#id56"><span class="problematic" id="id57">|</span></a>head -n 3</p>
-<p>&gt;ACT27082 pep supercontig:ASM2366v1:CP001665:347:1750:1 gene:ECBD_0001 transcript:ACT27082 gene_biotype:protein_coding transcript_biotype:protein_coding description:chromosomal replication initiator protein DnaA
-&gt;ACT27083 pep supercontig:ASM2366v1:CP001665:1755:2855:1 gene:ECBD_0002 transcript:ACT27083 gene_biotype:protein_coding transcript_biotype:protein_coding description:DNA polymerase III, beta subunit
-&gt;ACT27084 pep supercontig:ASM2366v1:CP001665:2855:3928:1 gene:ECBD_0003 transcript:ACT27084 gene_biotype:protein_coding transcript_biotype:protein_coding description:DNA replication and repair protein RecF
-<a href="#id58"><span class="problematic" id="id59">``</span></a><a href="#id60"><span class="problematic" id="id61">`</span></a></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>awk<span class="w"> </span><span class="s1">&#39;{if ($0~&quot;&gt;&quot;) {print $0}}&#39;</span><span class="w"> </span>Escherichia_coli_bl21_gold_de3_plyss_ag_.ASM2366v1.pep.all.fa<span class="w"> </span><span class="p">|</span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">3</span>
+
+&gt;ACT27082<span class="w"> </span>pep<span class="w"> </span>supercontig:ASM2366v1:CP001665:347:1750:1<span class="w"> </span>gene:ECBD_0001<span class="w"> </span>transcript:ACT27082<span class="w"> </span>gene_biotype:protein_coding<span class="w"> </span>transcript_biotype:protein_coding<span class="w"> </span>description:chromosomal<span class="w"> </span>replication<span class="w"> </span>initiator<span class="w"> </span>protein<span class="w"> </span>DnaA
+&gt;ACT27083<span class="w"> </span>pep<span class="w"> </span>supercontig:ASM2366v1:CP001665:1755:2855:1<span class="w"> </span>gene:ECBD_0002<span class="w"> </span>transcript:ACT27083<span class="w"> </span>gene_biotype:protein_coding<span class="w"> </span>transcript_biotype:protein_coding<span class="w"> </span>description:DNA<span class="w"> </span>polymerase<span class="w"> </span>III,<span class="w"> </span>beta<span class="w"> </span>subunit
+&gt;ACT27084<span class="w"> </span>pep<span class="w"> </span>supercontig:ASM2366v1:CP001665:2855:3928:1<span class="w"> </span>gene:ECBD_0003<span class="w"> </span>transcript:ACT27084<span class="w"> </span>gene_biotype:protein_coding<span class="w"> </span>transcript_biotype:protein_coding<span class="w"> </span>description:DNA<span class="w"> </span>replication<span class="w"> </span>and<span class="w"> </span>repair<span class="w"> </span>protein<span class="w"> </span>RecF
+</pre></div>
+</div>
 <p>Note that this syntax can be simplified when looking for patterns:</p>
-<p><a href="#id62"><span class="problematic" id="id63">``</span></a><a href="#id64"><span class="problematic" id="id65">`</span></a>{bash}
-awk ‘$0 ~ “&gt;” {print $0}’ <a href="#id106"><span class="problematic" id="id107">Escherichia_coli_bl21_gold_de3_plyss_ag_</span></a>.ASM2366v1.pep.all.fa | head -n 3</p>
-<p>&gt;ACT27082 pep supercontig:ASM2366v1:CP001665:347:1750:1 gene:ECBD_0001 transcript:ACT27082 gene_biotype:protein_coding transcript_biotype:protein_coding description:chromosomal replication initiator protein DnaA
-&gt;ACT27083 pep supercontig:ASM2366v1:CP001665:1755:2855:1 gene:ECBD_0002 transcript:ACT27083 gene_biotype:protein_coding transcript_biotype:protein_coding description:DNA polymerase III, beta subunit
-&gt;ACT27084 pep supercontig:ASM2366v1:CP001665:2855:3928:1 gene:ECBD_0003 transcript:ACT27084 gene_biotype:protein_coding transcript_biotype:protein_coding description:DNA replication and repair protein RecF
-<a href="#id66"><span class="problematic" id="id67">``</span></a><a href="#id68"><span class="problematic" id="id69">`</span></a></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>awk<span class="w"> </span><span class="s1">&#39;$0 ~ &quot;&gt;&quot; {print $0}&#39;</span><span class="w"> </span>Escherichia_coli_bl21_gold_de3_plyss_ag_.ASM2366v1.pep.all.fa<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">3</span>
+
+&gt;ACT27082<span class="w"> </span>pep<span class="w"> </span>supercontig:ASM2366v1:CP001665:347:1750:1<span class="w"> </span>gene:ECBD_0001<span class="w"> </span>transcript:ACT27082<span class="w"> </span>gene_biotype:protein_coding<span class="w"> </span>transcript_biotype:protein_coding<span class="w"> </span>description:chromosomal<span class="w"> </span>replication<span class="w"> </span>initiator<span class="w"> </span>protein<span class="w"> </span>DnaA
+&gt;ACT27083<span class="w"> </span>pep<span class="w"> </span>supercontig:ASM2366v1:CP001665:1755:2855:1<span class="w"> </span>gene:ECBD_0002<span class="w"> </span>transcript:ACT27083<span class="w"> </span>gene_biotype:protein_coding<span class="w"> </span>transcript_biotype:protein_coding<span class="w"> </span>description:DNA<span class="w"> </span>polymerase<span class="w"> </span>III,<span class="w"> </span>beta<span class="w"> </span>subunit
+&gt;ACT27084<span class="w"> </span>pep<span class="w"> </span>supercontig:ASM2366v1:CP001665:2855:3928:1<span class="w"> </span>gene:ECBD_0003<span class="w"> </span>transcript:ACT27084<span class="w"> </span>gene_biotype:protein_coding<span class="w"> </span>transcript_biotype:protein_coding<span class="w"> </span>description:DNA<span class="w"> </span>replication<span class="w"> </span>and<span class="w"> </span>repair<span class="w"> </span>protein<span class="w"> </span>RecF
+</pre></div>
+</div>
 <p>So, combining the previous example, we can remove the carriage return and in case we found the <strong>&gt;</strong> character we print that row preceded by a carriage return and followed by a tab (<strong>t</strong>)</p>
-<p><a href="#id70"><span class="problematic" id="id71">``</span></a><a href="#id72"><span class="problematic" id="id73">`</span></a>{bash}
-awk ‘{ORS=””; if ($0~”&gt;”) {print “n”$0”t”} else {print $0}}’ <a href="#id108"><span class="problematic" id="id109">Escherichia_coli_bl21_gold_de3_plyss_ag_</span></a>.ASM2366v1.pep.all.fa <a href="#id74"><span class="problematic" id="id75">|</span></a>head -n 3</p>
-<p>&gt;ACT27082 pep supercontig:ASM2366v1:CP001665:347:1750:1 gene:ECBD_0001 transcript:ACT27082 gene_biotype:protein_coding transcript_biotype:protein_coding description:chromosomal replication initiator protein DnaA     MSLSLWQQCLARLQDELPATEFSMWIRPLQAELSDNTLALYAPNRFVLDWVRDKYLNNINGLLTSFCGADAPQLRFEVGTKPVTQTPQAAVTSNVAAPAQVAQTQPQRAAPSTRSGWDNVPAPAEPTYRSNVNVKHTFDNFVEGKSNQLARAAARQVADNPGGAYNPLFLYGGTGLGKTHLLHAVGNGIMARKPNAKVVYMHSERFVQDMVKALQNNAIEEFKRYYRSVDALLIDDIQFFANKERSQEEFFHTFNALLEGNQQIILTSDRYPKEINGVEDRLKSRFGWGLTVAIEPPELETRVAILMKKADENDIRLPGEVAFFIAKRLRSNVRELEGALNRVIANANFTGRAITIDFVREALRDLLALQEKLVTIDNIQKTVAEYYKIKVADLLSKRRSRSVARPRQMAMALAKELTNHSLPEIGDAFGGRDHTTVLHACRKIEQLREESHDIKEDFSNLIRTLSS
-&gt;ACT27083 pep supercontig:ASM2366v1:CP001665:1755:2855:1 gene:ECBD_0002 transcript:ACT27083 gene_biotype:protein_coding transcript_biotype:protein_coding description:DNA polymerase III, beta subunit  MKFTVEREHLLKPLQQVSGPLGGRPTLPILGNLLLQVADGTLSLTGTDLEMEMVARVALVQPHEPGATTVPARKFFDICRGLPEGAEIAVQLEGERMLVRSGRSRFSLSTLPAADFPNLDDWQSEVEFTLPQATMKRLIEATQFSMAHQDVRYYLNGMLFETEGEELRTVATDGHRLAVCSMPIGQSLPSHSVIVPRKGVIELMRMLDGGDNPLRVQIGSNNIRAHVGDFIFTSKLVDGRFPDYRRVLPKNPDKHLEAGCDLLKQAFARAAILSNEKFRGVRLYVSENQLKITANNPEQEEAEEILDVTYSGAEMEIGFNVSYVLDVLNALKCENVRMMLTDSVSSVQIEDAASQSAAYVVMPMRL</p>
-<p>awk ‘{ORS=””; if ($0~”&gt;”) {print “n”$0”t”} else {print $0}}’ <a href="#id110"><span class="problematic" id="id111">Escherichia_coli_bl21_gold_de3_plyss_ag_</span></a>.ASM2366v1.pep.all.fa &gt; proteins.tab</p>
-<p>wc -l proteins.tab
-4228 proteins.tab</p>
-<p>wc -l seq_names.txt
-4228 seq_names.txt
-<a href="#id76"><span class="problematic" id="id77">``</span></a><a href="#id78"><span class="problematic" id="id79">`</span></a></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>awk<span class="w"> </span><span class="s1">&#39;{ORS=&quot;&quot;; if ($0~&quot;&gt;&quot;) {print &quot;\n&quot;$0&quot;\t&quot;} else {print $0}}&#39;</span><span class="w"> </span>Escherichia_coli_bl21_gold_de3_plyss_ag_.ASM2366v1.pep.all.fa<span class="w"> </span><span class="p">|</span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">3</span>
+
+&gt;ACT27082<span class="w"> </span>pep<span class="w"> </span>supercontig:ASM2366v1:CP001665:347:1750:1<span class="w"> </span>gene:ECBD_0001<span class="w"> </span>transcript:ACT27082<span class="w"> </span>gene_biotype:protein_coding<span class="w"> </span>transcript_biotype:protein_coding<span class="w"> </span>description:chromosomal<span class="w"> </span>replication<span class="w"> </span>initiator<span class="w"> </span>protein<span class="w"> </span>DnaA<span class="w">     </span>MSLSLWQQCLARLQDELPATEFSMWIRPLQAELSDNTLALYAPNRFVLDWVRDKYLNNINGLLTSFCGADAPQLRFEVGTKPVTQTPQAAVTSNVAAPAQVAQTQPQRAAPSTRSGWDNVPAPAEPTYRSNVNVKHTFDNFVEGKSNQLARAAARQVADNPGGAYNPLFLYGGTGLGKTHLLHAVGNGIMARKPNAKVVYMHSERFVQDMVKALQNNAIEEFKRYYRSVDALLIDDIQFFANKERSQEEFFHTFNALLEGNQQIILTSDRYPKEINGVEDRLKSRFGWGLTVAIEPPELETRVAILMKKADENDIRLPGEVAFFIAKRLRSNVRELEGALNRVIANANFTGRAITIDFVREALRDLLALQEKLVTIDNIQKTVAEYYKIKVADLLSKRRSRSVARPRQMAMALAKELTNHSLPEIGDAFGGRDHTTVLHACRKIEQLREESHDIKEDFSNLIRTLSS
+&gt;ACT27083<span class="w"> </span>pep<span class="w"> </span>supercontig:ASM2366v1:CP001665:1755:2855:1<span class="w"> </span>gene:ECBD_0002<span class="w"> </span>transcript:ACT27083<span class="w"> </span>gene_biotype:protein_coding<span class="w"> </span>transcript_biotype:protein_coding<span class="w"> </span>description:DNA<span class="w"> </span>polymerase<span class="w"> </span>III,<span class="w"> </span>beta<span class="w"> </span>subunit<span class="w">  </span>MKFTVEREHLLKPLQQVSGPLGGRPTLPILGNLLLQVADGTLSLTGTDLEMEMVARVALVQPHEPGATTVPARKFFDICRGLPEGAEIAVQLEGERMLVRSGRSRFSLSTLPAADFPNLDDWQSEVEFTLPQATMKRLIEATQFSMAHQDVRYYLNGMLFETEGEELRTVATDGHRLAVCSMPIGQSLPSHSVIVPRKGVIELMRMLDGGDNPLRVQIGSNNIRAHVGDFIFTSKLVDGRFPDYRRVLPKNPDKHLEAGCDLLKQAFARAAILSNEKFRGVRLYVSENQLKITANNPEQEEAEEILDVTYSGAEMEIGFNVSYVLDVLNALKCENVRMMLTDSVSSVQIEDAASQSAAYVVMPMRL
+
+awk<span class="w"> </span><span class="s1">&#39;{ORS=&quot;&quot;; if ($0~&quot;&gt;&quot;) {print &quot;\n&quot;$0&quot;\t&quot;} else {print $0}}&#39;</span><span class="w"> </span>Escherichia_coli_bl21_gold_de3_plyss_ag_.ASM2366v1.pep.all.fa<span class="w"> </span>&gt;<span class="w"> </span>proteins.tab
+
+wc<span class="w"> </span>-l<span class="w"> </span>proteins.tab
+<span class="m">4228</span><span class="w"> </span>proteins.tab
+
+wc<span class="w"> </span>-l<span class="w"> </span>seq_names.txt
+<span class="m">4228</span><span class="w"> </span>seq_names.txt
+</pre></div>
+</div>
 <p>So now we can use the grep command to extract our sequence of interest.</p>
-<p><a href="#id80"><span class="problematic" id="id81">``</span></a><a href="#id82"><span class="problematic" id="id83">`</span></a>{bash}
-grep -Ff random.list proteins.tab</p>
-<p>&gt;ACT27123 pep supercontig:ASM2366v1:CP001665:44295:44414:-1 gene:ECBD_0043 transcript:ACT27123 gene_biotype:protein_coding transcript_biotype:protein_coding description:hypothetical protein   MEYKVWHFLLTTQARFVQHDESDESKLHLCFIRYTFVKG
-&gt;ACT28234 pep supercontig:ASM2366v1:CP001665:1230560:1230991:1 gene:ECBD_1168 transcript:ACT28234 gene_biotype:protein_coding transcript_biotype:protein_coding description:Nucleoside-diphosphate kinase       MAIERTFSIIKPNAVAKNVIGNIFARFEAAGFKIVGTKMLHLTVEQARGFYAEHDGKPFFDGLVEFMTSGPIVVSVLEGENAVQRHRDLLGATNPANALAGTLRADYADSLTENGTHGSDSVESAAREIAYFFGEGEVCPRTR
-&gt;ACT29418 pep supercontig:ASM2366v1:CP001665:2508388:2509098:-1 gene:ECBD_2392 transcript:ACT29418 gene_biotype:protein_coding transcript_biotype:protein_coding description:nitrate reductase molybdenum cofactor assembly chaperone   MIELVIVSRLLEYPDAALWQHQQEMFEAIAASKNLSKEDAHALGIFLRDLTAMDPLDAQAQYSELFDRGRATSLLLFEHVHGESRDRGQAMVDLLAQYEQHGLQLNSRELPDHLPLYLEYLSQLPQSEAVEGLKDIAPILALLSARLQQRESRYAVMFDLLLKLANTAIDSDKVAEKIADEARDDTPQALDAVWEEEQVKFFADKGCGDSAITAHQRRFAGAVAPQYLNITTGGQH
-&gt;ACT31080 pep supercontig:ASM2366v1:CP001665:4316460:4317305:1 gene:ECBD_4097 transcript:ACT31080 gene_biotype:protein_coding transcript_biotype:protein_coding description:MIP family channel protein  MSQTSTLKGQCIAEFLGTGLLIFFGVGCVAALKVAGASFGQWEISVIWGLGVAMAIYLTAGVSGAHLNPAVTIALWLFACFDKRKVIPFIVSQVAGAFCAAALVYGLYYNLFFDFEQTHHIVRGSVESVDLAGTFSTYPNPHINFVQAFAVEMVITAILMGLILALTDDGNGVPRGPLAPLLIGLLIAVIGASMGPLTGFAMNPARDFGPKVFAWLAGWGNVAFTGGRDIPYFLVPLFGPIVGAIVGAFAYRKLIGRHLPCDICVVEEKETTTPSEQKASL
-&gt;ACT31118 pep supercontig:ASM2366v1:CP001665:4355734:4355916:-1 gene:ECBD_4135 transcript:ACT31118 gene_biotype:protein_coding transcript_biotype:protein_coding description:hypothetical protein       MGKNDVNQIADNVRVVHAGCGVNALSGLQSRINSMYCSLLVGLISAAHQAILRLSSVSCP
-<a href="#id84"><span class="problematic" id="id85">``</span></a><a href="#id86"><span class="problematic" id="id87">`</span></a></p>
-<p>&lt;h3&gt;Recap&lt;/h3&gt;</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grep<span class="w"> </span>-Ff<span class="w"> </span>random.list<span class="w"> </span>proteins.tab
+
+&gt;ACT27123<span class="w"> </span>pep<span class="w"> </span>supercontig:ASM2366v1:CP001665:44295:44414:-1<span class="w"> </span>gene:ECBD_0043<span class="w"> </span>transcript:ACT27123<span class="w"> </span>gene_biotype:protein_coding<span class="w"> </span>transcript_biotype:protein_coding<span class="w"> </span>description:hypothetical<span class="w"> </span>protein<span class="w">   </span>MEYKVWHFLLTTQARFVQHDESDESKLHLCFIRYTFVKG
+&gt;ACT28234<span class="w"> </span>pep<span class="w"> </span>supercontig:ASM2366v1:CP001665:1230560:1230991:1<span class="w"> </span>gene:ECBD_1168<span class="w"> </span>transcript:ACT28234<span class="w"> </span>gene_biotype:protein_coding<span class="w"> </span>transcript_biotype:protein_coding<span class="w"> </span>description:Nucleoside-diphosphate<span class="w"> </span>kinase<span class="w">       </span>MAIERTFSIIKPNAVAKNVIGNIFARFEAAGFKIVGTKMLHLTVEQARGFYAEHDGKPFFDGLVEFMTSGPIVVSVLEGENAVQRHRDLLGATNPANALAGTLRADYADSLTENGTHGSDSVESAAREIAYFFGEGEVCPRTR
+&gt;ACT29418<span class="w"> </span>pep<span class="w"> </span>supercontig:ASM2366v1:CP001665:2508388:2509098:-1<span class="w"> </span>gene:ECBD_2392<span class="w"> </span>transcript:ACT29418<span class="w"> </span>gene_biotype:protein_coding<span class="w"> </span>transcript_biotype:protein_coding<span class="w"> </span>description:nitrate<span class="w"> </span>reductase<span class="w"> </span>molybdenum<span class="w"> </span>cofactor<span class="w"> </span>assembly<span class="w"> </span>chaperone<span class="w">   </span>MIELVIVSRLLEYPDAALWQHQQEMFEAIAASKNLSKEDAHALGIFLRDLTAMDPLDAQAQYSELFDRGRATSLLLFEHVHGESRDRGQAMVDLLAQYEQHGLQLNSRELPDHLPLYLEYLSQLPQSEAVEGLKDIAPILALLSARLQQRESRYAVMFDLLLKLANTAIDSDKVAEKIADEARDDTPQALDAVWEEEQVKFFADKGCGDSAITAHQRRFAGAVAPQYLNITTGGQH
+&gt;ACT31080<span class="w"> </span>pep<span class="w"> </span>supercontig:ASM2366v1:CP001665:4316460:4317305:1<span class="w"> </span>gene:ECBD_4097<span class="w"> </span>transcript:ACT31080<span class="w"> </span>gene_biotype:protein_coding<span class="w"> </span>transcript_biotype:protein_coding<span class="w"> </span>description:MIP<span class="w"> </span>family<span class="w"> </span>channel<span class="w"> </span>protein<span class="w">  </span>MSQTSTLKGQCIAEFLGTGLLIFFGVGCVAALKVAGASFGQWEISVIWGLGVAMAIYLTAGVSGAHLNPAVTIALWLFACFDKRKVIPFIVSQVAGAFCAAALVYGLYYNLFFDFEQTHHIVRGSVESVDLAGTFSTYPNPHINFVQAFAVEMVITAILMGLILALTDDGNGVPRGPLAPLLIGLLIAVIGASMGPLTGFAMNPARDFGPKVFAWLAGWGNVAFTGGRDIPYFLVPLFGPIVGAIVGAFAYRKLIGRHLPCDICVVEEKETTTPSEQKASL
+&gt;ACT31118<span class="w"> </span>pep<span class="w"> </span>supercontig:ASM2366v1:CP001665:4355734:4355916:-1<span class="w"> </span>gene:ECBD_4135<span class="w"> </span>transcript:ACT31118<span class="w"> </span>gene_biotype:protein_coding<span class="w"> </span>transcript_biotype:protein_coding<span class="w"> </span>description:hypothetical<span class="w"> </span>protein<span class="w">       </span>MGKNDVNQIADNVRVVHAGCGVNALSGLQSRINSMYCSLLVGLISAAHQAILRLSSVSCP
+</pre></div>
+</div>
+<section id="id2">
+<h3><strong>Recap</strong><a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p><strong>cut</strong> extract the indicated column</p></li>
 <li><p><strong>awk</strong> allows several kind of parsing operations</p></li>
 <li><p><strong>head</strong> extract the indicated number of rows from the beginning of a file</p></li>
 </ul>
-<p>&lt;h3&gt;Next Session&lt;/h3&gt;</p>
-<p>[Sequence file formats: Fasta and fastq](<a class="reference external" href="https://biocorecrg.github.io/advanced_linux_2019/bioformat">https://biocorecrg.github.io/advanced_linux_2019/bioformat</a>)</p>
+</section>
 </section>
 </section>
 
