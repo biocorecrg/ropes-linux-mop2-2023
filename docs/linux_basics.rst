@@ -235,7 +235,7 @@ And then on **DNA**
 
 Then as an example we can use the copy the link address of the **README** file using the mouse right button.
 
-.. image:: images/righ_click.png
+.. image:: images/right_click.png
   :width: 800
 
 Then we can go back to our command line and use the program **wget** to download that file and using **CTRL+C** to paste the address:
@@ -706,7 +706,7 @@ We should have 32,345 reads. Let's try to count them using a combination of **zc
 	zcat SRR6466185_2.fastq.gz | wc -l
 	129380
 
-So considering that each sequence is defined by 4 rows we should have ```32,345*4=129,380```. We can also use **awk** for embedding also the division:
+So considering that each sequence is defined by 4 rows we should have ``32,345 * 4 = 129,380``. We can also use **awk** for embedding also the division:
 
 .. code-block:: bash
 	zcat SRR6466185_1.fastq.gz | wc -l | awk '{print $0/4}'
@@ -754,7 +754,7 @@ Additionally you may have up to 6 more fields:
 
 
 
-This kind of file can be fed to a genome browser like `UCSC genome browser <https://genome-euro.ucsc.edu/cgi-bin/hgGateway?redirect=manual&source=genome.ucsc.edu`__ to highlight the genomic positions. Here an example about our coordinates:
+This kind of file can be fed to a genome browser like `UCSC genome browser <https://genome-euro.ucsc.edu/cgi-bin/hgGateway?redirect=manual&source=genome.ucsc.edu>`__ to highlight the genomic positions. Here an example about our coordinates:
 
 Genome browser
 ----------------
@@ -966,14 +966,14 @@ Other useful pattern for the regular expression is the dot **.** that means any 
 	grep -v ">" Escherichia_coli_bl21_gold_de3_plyss_ag_.ASM2366v1.pep.all.fa | grep "AAAAA.A"
 
 	MKLSRRSFMKANAV**AAAAAAA**GLSVPGVARAVVGQQEAIKWDKAPCRFCGTGCGVLVGTQ
-EQQRRMEAERLAQMQQLSHQDDDS**AAAAALAA**QTGERKVGRNDPCPCGSGKKYKQCHGRL
+	EQQRRMEAERLAQMQQLSHQDDDS**AAAAALAA**QTGERKVGRNDPCPCGSGKKYKQCHGRL
 
 .. code-block:: bash
 
 	grep -v ">" Escherichia_coli_bl21_gold_de3_plyss_ag_.ASM2366v1.pep.all.fa | grep "A[GA]AAA.AA"
 
 	GE**AGAAAPAA**KQEAAPAAAPAPAAGVKEVNVPDIGGDEVEVTEVMVKVGDKVAAEQSLIT
-EQQRRMEAERLAQMQQLSHQDDDS**AAAAALAA**QTGERKVGRNDPCPCGSGKKYKQCHGRL
+	EQQRRMEAERLAQMQQLSHQDDDS**AAAAALAA**QTGERKVGRNDPCPCGSGKKYKQCHGRL
 
 More extended regular expression can be searched by using grep with the parameter **-E**. For instance we can search for repetition:
 
