@@ -648,9 +648,10 @@ The format contains four rows for sequence with:
 Currently most of the journals require the submissions of NGS data in a public repository upon publishing.
 
 The major repositories are:
+
 * `SRA <https://www.ncbi.nlm.nih.gov/sra>`__ (Sequence Read Archive) from US
-* `ENA <https://www.ebi.ac.uk/ena`__ (European Nucleotide Archive) 
-* `DDBJ-DRA <https://www.ddbj.nig.ac.jp/dra/index-e.html`__ from Japan.
+* `ENA <https://www.ebi.ac.uk/ena>`__ (European Nucleotide Archive) 
+* `DDBJ-DRA <https://www.ddbj.nig.ac.jp/dra/index-e.html>`__ from Japan.
 
 They are interconnected and mirror the data among them and are connected to other databases that contain also the results of a given analysis such as `GEO <https://www.ncbi.nlm.nih.gov/geo/>`__ and `Array-express <https://www.ebi.ac.uk/arrayexpress/>`__ that contain expression data.
 
@@ -979,17 +980,19 @@ More extended regular expression can be searched by using grep with the paramete
 .. code-block:: bash
 
 	grep -v ">" Escherichia_coli_bl21_gold_de3_plyss_ag_.ASM2366v1.pep.all.fa | grep -E "(AT){3}"
-	```
-GVGIGIETVDGVPVKINNNSGATFVLSDGSNTLLFNTWVQAKSGRDVTLGNFT**ATATAT**F
+
+	GVGIGIETVDGVPVKINNNSGATFVLSDGSNTLLFNTWVQAKSGRDVTLGNFT**ATATAT**F
 
 
-<h3>Recap</h3>
+Recap
+-----------
 
 * **uniq** it removes the duplicated elements in a list
 * **sort** it sorts a given list
 * **shuf** it shuffles a given list
 
-## Exercises
+Exercises
+------------
 
 * We see that some of the protein sequences are repeated in **proteins.tab** file. So different genes produce the same protein. How many unique proteins do we have in our proteins.tab file?
 
@@ -1000,8 +1003,4 @@ GVGIGIETVDGVPVKINNNSGATFVLSDGSNTLLFNTWVQAKSGRDVTLGNFT**ATATAT**F
 * Can you tell how many different kind of description there are in **seq_names.txt**?
 
 * In Ensembl the chromosomes are named differently than in UCSC (1,2,3... vs chr1, chr2, chr3). Can you convert the binding sites stored within **GSE41589_Suz12_BindingSites.txt.gz** in a way that is compatible with Ensembl? 
-
-<h3>Next Session</h3>
-
-[Module 2](https://biocorecrg.github.io/advanced_linux_2019/Module2)
 
