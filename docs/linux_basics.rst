@@ -9,8 +9,8 @@ Introduction to Linux
 * `Create directory and practice moving around`_
 * `Download files from repositories`_
 * `Manipulate files, piping, parsing, reformatting`_
-* `Sequence file formats: Fasta and fastq`__
-* `Bed format and regular expressions`__
+* `Sequence file formats: Fasta and fastq`_
+* `Bed format and regular expressions`_
 
 
 
