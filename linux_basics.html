@@ -594,26 +594,13 @@ This format allows to store also the information about the quality of that parti
 <li><p><a class="reference external" href="https://www.ddbj.nig.ac.jp/dra/index-e.html">DDBJ-DRA</a> from Japan.</p></li>
 </ul>
 <p>They are interconnected and mirror the data among them and are connected to other databases that contain also the results of a given analysis such as <a class="reference external" href="https://www.ncbi.nlm.nih.gov/geo/">GEO</a> and <a class="reference external" href="https://www.ebi.ac.uk/arrayexpress/">Array-express</a> that contain expression data.</p>
-<p>As an example we can have a look at this paper about the <a class="reference external" href="https://www.ncbi.nlm.nih.gov/pubmed/30522523">characterization of the oral microbiome of young Spaniards</a> (in which we were collaborators :) )</p>
-<a class="reference internal image-reference" href="_images/sacalalengua.png"><img alt="_images/sacalalengua.png" src="_images/sacalalengua.png" style="width: 800px;" /></a>
-<p>As you can see there is a section with <strong>“Availability of data and materials”</strong> with a link to the SRA accession number: <a class="reference external" href="https://www.ncbi.nlm.nih.gov/bioproject/PRJNA427101">PRJNA427101</a>.</p>
-<a class="reference internal image-reference" href="_images/accession.png"><img alt="_images/accession.png" src="_images/accession.png" style="width: 800px;" /></a>
-<p>We can visit the webpage containing the information about every experiment submitted for that paper / project. This page is called <strong>BioProject</strong></p>
-<a class="reference internal image-reference" href="_images/bioproject.png"><img alt="_images/bioproject.png" src="_images/bioproject.png" style="width: 800px;" /></a>
-<p>The page links to the whole list of sequencing runs (1319)</p>
-<a class="reference internal image-reference" href="_images/list_of_runs.png"><img alt="_images/list_of_runs.png" src="_images/list_of_runs.png" style="width: 800px;" /></a>
-<p>We can send now the whole list to <strong>Send results to Run selector</strong>.</p>
-<a class="reference internal image-reference" href="_images/run_selector.png"><img alt="_images/run_selector.png" src="_images/run_selector.png" style="width: 800px;" /></a>
-<p>Now we can select the samples of interest and download the meta-data or the accession list.
-The accession list is needed for the download using <strong>fastq-dump</strong> a program that is mandatory for this kind of database.</p>
-<p>Let’s try to download the first sample with the access <strong>SRR6466185</strong>.
-We need to indicate to the program that the data are from a paired end experiment, so they need to be written in separate files (option <strong>–split-files</strong>), and we want the to be compressed to avoid to waste disk space (option <strong>–gzip</strong>).</p>
+<p>Let’s download a test fastq files we stored in our repository with the access <strong>SRR6466185</strong> using again <strong>wget</strong>. Then we untar the file.</p>
 <p>We should have 32,345 reads. Let’s try to count them using a combination of <strong>zcat</strong> that uncompress the file and writes the content to the terminal and <strong>wc</strong>.</p>
 <p>So considering that each sequence is defined by 4 rows we should have <code class="docutils literal notranslate"><span class="pre">32,345</span> <span class="pre">*</span> <span class="pre">4</span> <span class="pre">=</span> <span class="pre">129,380</span></code>. We can also use <strong>awk</strong> for embedding also the division:</p>
 <section id="id3">
 <h3><strong>Recap</strong><a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
 <ul class="simple">
-<li><p><strong>fastq-dump</strong> is a program to retrieve data from SRA database (installation is needed)</p></li>
+<li><p><strong>tar</strong> allows to compress / uncompress more files in one</p></li>
 <li><p><strong>zcat</strong> equivalent of <strong>cat</strong> for gzipped files</p></li>
 </ul>
 </section>

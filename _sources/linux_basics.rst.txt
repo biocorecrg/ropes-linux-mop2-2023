@@ -654,42 +654,16 @@ The major repositories are:
 
 They are interconnected and mirror the data among them and are connected to other databases that contain also the results of a given analysis such as `GEO <https://www.ncbi.nlm.nih.gov/geo/>`__ and `Array-express <https://www.ebi.ac.uk/arrayexpress/>`__ that contain expression data.
 
-As an example we can have a look at this paper about the `characterization of the oral microbiome of young Spaniards <https://www.ncbi.nlm.nih.gov/pubmed/30522523>`__ (in which we were collaborators :) )
 
-.. image:: images/sacalalengua.png
-  :width: 800
-
-As you can see there is a section with **"Availability of data and materials"** with a link to the SRA accession number: `PRJNA427101 <https://www.ncbi.nlm.nih.gov/bioproject/PRJNA427101>`__. 
-
-.. image:: images/accession.png
-  :width: 800
-
-We can visit the webpage containing the information about every experiment submitted for that paper / project. This page is called **BioProject**
-
-.. image:: images/bioproject.png
-  :width: 800
-
-The page links to the whole list of sequencing runs (1319) 
-
-.. image:: images/list_of_runs.png
-  :width: 800
-
-We can send now the whole list to **Send results to Run selector**. 
-
-.. image:: images/run_selector.png
-  :width: 800
-  
-Now we can select the samples of interest and download the meta-data or the accession list.
-The accession list is needed for the download using **fastq-dump** a program that is mandatory for this kind of database.
-
-Let's try to download the first sample with the access **SRR6466185**.
-We need to indicate to the program that the data are from a paired end experiment, so they need to be written in separate files (option **--split-files**), and we want the to be compressed to avoid to waste disk space (option **--gzip**).
+Let's download a test fastq files we stored in our repository with the access **SRR6466185** using again **wget**. Then we untar the file.
 
 .. code-block:: bash
-	fastq-dump --gzip --split-files SRR6466185
+	wget ****
 
-	Read 32345 spots for SRR6466185
-	Written 32345 spots for SRR6466185
+	tar -zvxf SRR6466185.tar.gz 
+	SRR6466185_1.fastq.gz
+	SRR6466185_2.fastq.gz
+
 
 	ls -lh SRR*
 	-rw-r--r-- 1 lcozzuto Bioinformatics_Unit 6.4M Mar  8 12:01 SRR6466185_1.fastq.gz
@@ -714,7 +688,7 @@ So considering that each sequence is defined by 4 rows we should have ``32,345 *
 **Recap**
 --------------
 
-* **fastq-dump** is a program to retrieve data from SRA database (installation is needed)
+* **tar** allows to compress / uncompress more files in one
 * **zcat** equivalent of **cat** for gzipped files
 
 Bed format and regular expressions
