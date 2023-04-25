@@ -301,7 +301,6 @@ After reading the README we can download the file named **toplevel** that contai
 .. code-block:: bash
 
 	wget ftp://ftp.ensemblgenomes.org/pub/bacteria/release-42/fasta/bacteria_22_collection/escherichia_coli_bl21_gold_de3_plyss_ag_/dna/Escherichia_coli_bl21_gold_de3_plyss_ag_.ASM2366v1.dna.toplevel.fa.gz
-			```
 
 We can use the options **-lh** of the program **ls** to list attributes of the files and show in human readable format the size fo the files
 
