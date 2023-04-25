@@ -218,7 +218,7 @@ Several institutions host different kind of genomics data.
 
 For example the genome browser `Ensembl <https://www.ensembl.org/index.html>`__ is also a public repository of genomes and annotation that can be freely downloaded and used for any kind of analysis
 
-The resource `Ensembl Bacteria <https://bacteria.ensembl.org/index.html>`__ contains a large number of bacterial genomes and their annotation. As an example we can browse the page corresponding to `*Escherichia coli 'BL21-Gold(DE3)pLysS AG'* <https://bacteria.ensembl.org/Escherichia_coli_bl21_gold_de3_plyss_ag_/Info/Index/>`__
+The resource `Ensembl Bacteria <https://bacteria.ensembl.org/index.html>`__ contains a large number of bacterial genomes and their annotation. As an example we can browse the page corresponding to `Escherichia coli 'BL21-Gold(DE3)pLysS AG' <https://bacteria.ensembl.org/Escherichia_coli_bl21_gold_de3_plyss_ag_/Info/Index/>`__
 
 .. image:: images/ensembl_escherichia.png
   :width: 800
