@@ -25,7 +25,7 @@ jobs:
       with:
         requirements_path: "requirements.txt"
     - name: Copy files and so
-      run: pwd; cp -pr ../../main/docs/data .; git status
+      run: pwd; cp -pr ../../main/docs/data .; git add data
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
