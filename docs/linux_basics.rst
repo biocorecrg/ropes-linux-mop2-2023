@@ -11,7 +11,7 @@ Introduction to Linux
 * `Manipulate files, piping, parsing, reformatting`_
 * `Sequence file formats: Fasta and fastq`_
 * `Bed format and regular expressions`_
-* `Space in volumes and permissions`__
+* `Space in volumes and permissions`_
 
 
 
