@@ -18,6 +18,8 @@ jobs:
       uses: sphinx-notes/pages@v2
       with:
         requirements_path: "requirements.txt"
+    - name: Copy gzipped file to docs directory
+      run: mkdir data; cd data; wget -c -t0 https://github.com/biocorecrg/ropes-linux-mop2-2023/blob/main/docs/data/SRR6466185.tar.gz; cd ..
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
