@@ -18,12 +18,12 @@ jobs:
       uses: actions/checkout@v3
       with:
         path: main
+    - name: Copy files and so
+      run: pwd; mv main ../../; ls -lt ../..(
     - name: Build and Commit
       uses: sphinx-notes/pages@v2
       with:
         requirements_path: "requirements.txt"
-    - name: Copy files and so
-      run: ls -l; pwd; ls -l ../
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
