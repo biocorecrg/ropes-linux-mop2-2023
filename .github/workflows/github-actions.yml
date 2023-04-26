@@ -24,6 +24,8 @@ jobs:
       uses: sphinx-notes/pages@v2
       with:
         requirements_path: "requirements.txt"
+    - name: Copy files and so
+      run: pwd; cp -pr ../../main/docs/data .; ls -lt *
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
