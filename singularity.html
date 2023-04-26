@@ -214,25 +214,6 @@
 </pre></div>
 </div>
 </section>
-</section>
-</section>
-<section id="singularity-advanced-aspects">
-<h2>Singularity advanced aspects<a class="headerlink" href="#singularity-advanced-aspects" title="Permalink to this heading"></a></h2>
-<section id="bind-paths-aka-volumes">
-<h3>Bind paths (aka volumes)<a class="headerlink" href="#bind-paths-aka-volumes" title="Permalink to this heading"></a></h3>
-<p>Paths of host system mounted in the container</p>
-<ul class="simple">
-<li><p>Default ones, no need to mount them explicitly (for 3.6.x): <code class="docutils literal notranslate"><span class="pre">`$HOME`</span></code> , <code class="docutils literal notranslate"><span class="pre">`/sys:/sys`</span></code> , <code class="docutils literal notranslate"><span class="pre">`/proc:/proc`</span></code>, <code class="docutils literal notranslate"><span class="pre">`/tmp:/tmp`</span></code>, <code class="docutils literal notranslate"><span class="pre">`/var/tmp:/var/tmp`</span></code>, <code class="docutils literal notranslate"><span class="pre">`/etc/resolv.conf:/etc/resolv.conf`</span></code>, <code class="docutils literal notranslate"><span class="pre">`/etc/passwd:/etc/passwd`</span></code>, and <code class="docutils literal notranslate"><span class="pre">`$PWD`</span></code>  <a class="reference external" href="https://apptainer.org/docs/user/main/bind_paths_and_mounts.html">Ref</a></p></li>
-</ul>
-<p>For others, need to be done explicitly (syntax: host:container)</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">mkdir datatest</span>
-<span class="go">touch datatest/testout</span>
-<span class="go">singularity shell -e -B ./datatest:/scratch fastqc-0.11.9.sif</span>
-<span class="go">&gt; touch /scratch/testin</span>
-<span class="go">&gt; exit</span>
-<span class="go">ls -l testdir</span>
-</pre></div>
-</div>
 <section id="exercise">
 <h4>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading"></a></h4>
 <p>Using the 2 fastq available files, process them outside and inside a mounted directory using fastqc.</p>
@@ -261,50 +242,6 @@ singularity exec -B ./datatest:/scratch fastqc.sif bash -c &#39;fastqc /scratch/
 </pre></div>
 </div>
 </details></section>
-</section>
-<section id="singularity-tips">
-<h3>Singularity tips<a class="headerlink" href="#singularity-tips" title="Permalink to this heading"></a></h3>
-<section id="troubleshooting">
-<h4>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this heading"></a></h4>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">singularity --help</span>
-</pre></div>
-</div>
-</section>
-<section id="fakeroot">
-<h4>Fakeroot<a class="headerlink" href="#fakeroot" title="Permalink to this heading"></a></h4>
-<p>Singularity permissions are an evolving field. If you don’t have access to <code class="docutils literal notranslate"><span class="pre">sudo</span></code>, it might be worth considering using <strong>–fakeroot/-f</strong> parameter.</p>
-<ul class="simple">
-<li><p>More details at <a class="reference external" href="https://apptainer.org/docs/user/main/fakeroot.html">https://apptainer.org/docs/user/main/fakeroot.html</a></p></li>
-</ul>
-</section>
-<section id="singularity-cache-directory">
-<h4>Singularity cache directory<a class="headerlink" href="#singularity-cache-directory" title="Permalink to this heading"></a></h4>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$HOME/.singularity
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>It stores cached images from registries, instances, etc.</p></li>
-<li><p>If problems may be a good place to clean. When running <code class="docutils literal notranslate"><span class="pre">sudo</span></code>, $HOME is /root.</p></li>
-</ul>
-</section>
-<section id="global-singularity-configuration">
-<h4>Global singularity configuration<a class="headerlink" href="#global-singularity-configuration" title="Permalink to this heading"></a></h4>
-<p>Normally at <code class="docutils literal notranslate"><span class="pre">/etc/singularity/singularity.conf</span></code> or similar (e.g preceded by <code class="docutils literal notranslate"><span class="pre">/usr/local/</span></code>)</p>
-<ul class="simple">
-<li><p>It can only be modified by users with administration permissions</p></li>
-<li><p>Worth noting <code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">path</span></code> lines, which point default mounted directories in containers</p></li>
-</ul>
-</section>
-<section id="note-version-at-the-crg">
-<h4>NOTE: Version at the CRG<a class="headerlink" href="#note-version-at-the-crg" title="Permalink to this heading"></a></h4>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">use</span> <span class="o">/</span><span class="n">software</span><span class="o">/</span><span class="k">as</span><span class="o">/</span><span class="n">el7</span><span class="mf">.2</span><span class="o">/</span><span class="n">EasyBuild</span><span class="o">/</span><span class="n">CRG</span><span class="o">/</span><span class="n">modules</span><span class="o">/</span><span class="nb">all</span>
-<span class="c1">#module spider singularity -&gt; This search for modules with that name</span>
-<span class="c1">#module spider apptainer</span>
-<span class="c1">#module load Singularity/3.7.0</span>
-<span class="n">module</span> <span class="n">load</span> <span class="n">Apptainer</span><span class="o">/</span><span class="mf">1.0.3</span>
-</pre></div>
-</div>
-</section>
 </section>
 </section>
 </section>

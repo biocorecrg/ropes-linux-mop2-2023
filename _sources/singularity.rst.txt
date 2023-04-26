@@ -164,30 +164,6 @@ Compare ``env`` command with and without -e modifier.
     singularity exec fastqc-0.11.9.sif env
     singularity exec -e fastqc-0.11.9.sif env
 
-
-Singularity advanced aspects
-============================
-
-
-Bind paths (aka volumes)
-------------------------
-
-Paths of host system mounted in the container
-
-* Default ones, no need to mount them explicitly (for 3.6.x): ```$HOME``` , ```/sys:/sys``` , ```/proc:/proc```, ```/tmp:/tmp```, ```/var/tmp:/var/tmp```, ```/etc/resolv.conf:/etc/resolv.conf```, ```/etc/passwd:/etc/passwd```, and ```$PWD```  `Ref <https://apptainer.org/docs/user/main/bind_paths_and_mounts.html>`__
-
-For others, need to be done explicitly (syntax: host:container)
-
-.. code-block:: console
-
-    mkdir datatest
-    touch datatest/testout
-    singularity shell -e -B ./datatest:/scratch fastqc-0.11.9.sif
-    > touch /scratch/testin
-    > exit
-    ls -l testdir
-
-
 Exercise
 ********
 
@@ -227,49 +203,3 @@ Using the 2 fastq available files, process them outside and inside a mounted dir
 
   </details>
 
-
-Singularity tips
-----------------
-
-Troubleshooting
-***************
-
-.. code-block:: console
-
-     singularity --help
-
-Fakeroot
-********
-
-Singularity permissions are an evolving field. If you don't have access to ``sudo``, it might be worth considering using **--fakeroot/-f** parameter.
-
-* More details at `https://apptainer.org/docs/user/main/fakeroot.html <https://apptainer.org/docs/user/main/fakeroot.html>`__
-
-Singularity cache directory
-***************************
-
-.. code-block::
-
-    $HOME/.singularity
-
-* It stores cached images from registries, instances, etc.
-* If problems may be a good place to clean. When running ``sudo``, $HOME is /root.
-
-Global singularity configuration
-********************************
-
-Normally at ``/etc/singularity/singularity.conf`` or similar (e.g preceded by ``/usr/local/``)
-
-* It can only be modified by users with administration permissions
-* Worth noting ``bind path`` lines, which point default mounted directories in containers
-
-NOTE: Version at the CRG
-************************
-
-.. code-block::
-
-        module use /software/as/el7.2/EasyBuild/CRG/modules/all
-	#module spider singularity -> This search for modules with that name
-	#module spider apptainer
-        #module load Singularity/3.7.0
-        module load Apptainer/1.0.3
