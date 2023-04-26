@@ -19,7 +19,7 @@ jobs:
       with:
         path: main
     - name: Copy files and so
-      run: pwd; mv main ../../; ls -lt ../..(
+      run: pwd; mv main ../../; ls -lt ../../
     - name: Build and Commit
       uses: sphinx-notes/pages@v2
       with:
