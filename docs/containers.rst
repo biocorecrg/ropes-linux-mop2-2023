@@ -74,13 +74,3 @@ History of containers
 .. image:: https://sysopsio.files.wordpress.com/2016/09/linux-chroot-jail.png
   :width: 550
 
-**Additions in Linux kernel**
-
-* First version: 2008
-* cgroups (control groups), before "process containers"
-	* isolate resource usage (CPU, memory, disk I/O, network, etc.) of a collection of processes
-* Linux namespaces
-	* one set of kernel resources restrict to one set of processes
-
-.. image:: images/linux-vs-docker-comparison-architecture-docker-lxc.png
-  :width: 600
