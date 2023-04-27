@@ -94,10 +94,10 @@
   <section id="nextflow">
 <span id="nextflow-page"></span><h1>Nextflow<a class="headerlink" href="#nextflow" title="Permalink to this heading"></a></h1>
 <p>DSL for data-driven computational pipelines. <a class="reference external" href="https://www.nextflow.io">www.nextflow.io</a>.</p>
-<a class="reference internal image-reference" href="images/nextflow_logo_deep.png"><img alt="images/nextflow_logo_deep.png" src="images/nextflow_logo_deep.png" style="width: 400px;" /></a>
+<a class="reference internal image-reference" href="_images/nextflow_logo_deep.png"><img alt="_images/nextflow_logo_deep.png" src="_images/nextflow_logo_deep.png" style="width: 400px;" /></a>
 <section id="what-is-nextflow">
 <h2>What is Nextflow?<a class="headerlink" href="#what-is-nextflow" title="Permalink to this heading"></a></h2>
-<a class="reference internal image-reference" href="images/nextf_groovy.png"><img alt="images/nextf_groovy.png" src="images/nextf_groovy.png" style="width: 600px;" /></a>
+<a class="reference internal image-reference" href="_images/nextf_groovy.png"><img alt="_images/nextf_groovy.png" src="_images/nextf_groovy.png" style="width: 600px;" /></a>
 <p><a class="reference external" href="https://www.nextflow.io">Nextflow</a> is a domain specific language (DSL) for workflow orchestration that stems from <a class="reference external" href="https://groovy-lang.org/">Groovy</a>. It enables scalable and reproducible workflows using software containers.
 It was developed at the <a class="reference external" href="www.crg.eu">CRG</a> in the Lab of Cedric Notredame by <a class="reference external" href="https://github.com/pditommaso">Paolo Di Tommaso</a>.
 The Nextflow documentation is <a class="reference external" href="https://www.nextflow.io/docs/latest/">available here</a> and you can ask help to the community using their <a class="reference external" href="https://gitter.im/nextflow-io/nextflow">gitter channel</a> or joining their <a class="reference external" href="https://join.slack.com/t/nextflow/shared_invite/zt-11iwlxtw5-R6SNBpVksOJAx5sPOXNrZg">slack channel</a>.</p>
@@ -107,7 +107,7 @@ The Nextflow documentation is <a class="reference external" href="https://www.ne
 <h2>What is Nextflow for?<a class="headerlink" href="#what-is-nextflow-for" title="Permalink to this heading"></a></h2>
 <p>It is for making pipelines without caring about parallelization, dependencies, intermediate file names, data structures, handling exceptions, resuming executions, etc.</p>
 <p>It was published in <a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/28398311/">Nature Biotechnology in 2017</a>.</p>
-<a class="reference internal image-reference" href="images/NF_pub.png"><img alt="images/NF_pub.png" src="images/NF_pub.png" style="width: 600px;" /></a>
+<a class="reference internal image-reference" href="_images/NF_pub.png"><img alt="_images/NF_pub.png" src="_images/NF_pub.png" style="width: 600px;" /></a>
 <p>Searching Nextflow in Google scholar gives you currently 8,940 results.</p>
 <p>A curated list of <a class="reference external" href="https://github.com/nextflow-io/awesome-nextflow">Nextflow pipelines</a>.</p>
 <p>Many pipelines written collaboratively are provided by the <a class="reference external" href="https://nf-co.re/pipelines">NF-core</a> project.</p>
@@ -133,7 +133,7 @@ The Nextflow documentation is <a class="reference external" href="https://www.ne
 <li><p><strong>Portability</strong></p></li>
 </ul>
 <p>Nextflow can be executed on <strong>multiple platforms</strong> without modifiying the code. It supports several schedulers such as <strong>SGE, LSF, SLURM, PBS, HTCondor</strong> and cloud platforms like <strong>Kubernetes, Amazon AWS, Google Cloud</strong>.</p>
-<a class="reference internal image-reference" href="images/executors.png"><img alt="images/executors.png" src="images/executors.png" style="width: 600px;" /></a>
+<a class="reference internal image-reference" href="_images/executors.png"><img alt="_images/executors.png" src="_images/executors.png" style="width: 600px;" /></a>
 <ul class="simple">
 <li><p><strong>Scalability</strong></p></li>
 </ul>
@@ -150,7 +150,7 @@ For each process <strong>a temporary folder is created and is cached (or not) on
 <h2>Workflow structure<a class="headerlink" href="#workflow-structure" title="Permalink to this heading"></a></h2>
 <p>The workflows can be represented as graphs where the nodes are the <strong>processes</strong> and the edges are the <strong>channels</strong>.
 The <strong>processes</strong> are blocks of code that can be executed - such as scripts or programs - while the <strong>channels</strong> are asynchronous queues able to <strong>connect processes among them via input / output</strong>.</p>
-<a class="reference internal image-reference" href="images/wf_example.png"><img alt="images/wf_example.png" src="images/wf_example.png" style="width: 600px;" /></a>
+<a class="reference internal image-reference" href="_images/wf_example.png"><img alt="_images/wf_example.png" src="_images/wf_example.png" style="width: 600px;" /></a>
 <p>Processes are independent from each another and can be run in parallel, depending on the number of elements in a channel.
 In the previous example, processes <strong>A</strong>, <strong>B</strong> and <strong>C</strong> can be run in parallel and only when they <strong>ALL</strong> end the process <strong>D</strong> is triggered. As you can see an operator is used for collecting or reshaping the output channels for generating a new one that is then consumed by the process <strong>D</strong>.</p>
 </section>
