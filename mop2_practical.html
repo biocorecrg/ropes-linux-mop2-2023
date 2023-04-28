@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Master of Pores 2 practical &mdash; ROPES summer school - CRG - May 2023  documentation</title>
+  <title>Direct RNA Sequencing data analysis with Master of Pores 2 &mdash; ROPES summer school - CRG - May 2023  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
     <link rel="canonical" href="https://biocorecrg.github.io/ropes-linux-mop2-2023/mop2_practical.html" />
@@ -46,10 +46,13 @@
 <li class="toctree-l1"><a class="reference internal" href="linux_basics.html">Introduction to Linux</a></li>
 <li class="toctree-l1"><a class="reference internal" href="containers.html">Containers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nextflow.html">Nextflow</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Master of Pores 2 practical</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#introduction-to-linux">Introduction to Linux</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Direct RNA Sequencing data analysis with Master of Pores 2</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#basics-of-direct-rna-sequencing-drs">Basics of Direct RNA Sequencing (DRS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#drs-data-analysis-with-master-of-pores-2-mop2">DRS data analysis with Master Of Pores 2 (MOP2)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#basic-preprocessing-module-mop-preprocessing">Basic preprocessing (module: <em>mop_preprocessing</em>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#polya-tail-length-analysis-module-mop-tail">PolyA tail length analysis (module: <em>mop_tail</em>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hands-on-1-mop-preprocess-and-mop-tail">Hands-on 1: mop_preprocess and mop_tail</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#what-are-containers">What are containers?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#virtual-machines-or-containers">Virtual machines or containers ?</a></li>
 </ul>
 </li>
 </ul>
@@ -70,7 +73,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Master of Pores 2 practical</li>
+      <li class="breadcrumb-item active">Direct RNA Sequencing data analysis with Master of Pores 2</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/mop2_practical.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -80,23 +83,51 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="master-of-pores-2-practical">
-<span id="mop2-practical-page"></span><h1>Master of Pores 2 practical<a class="headerlink" href="#master-of-pores-2-practical" title="Permalink to this heading"></a></h1>
-<section id="introduction-to-linux">
-<h2>Introduction to Linux<a class="headerlink" href="#introduction-to-linux" title="Permalink to this heading"></a></h2>
+  <section id="direct-rna-sequencing-data-analysis-with-master-of-pores-2">
+<span id="mop2-practical-page"></span><h1>Direct RNA Sequencing data analysis with Master of Pores 2<a class="headerlink" href="#direct-rna-sequencing-data-analysis-with-master-of-pores-2" title="Permalink to this heading"></a></h1>
+<section id="basics-of-direct-rna-sequencing-drs">
+<h2>Basics of Direct RNA Sequencing (DRS)<a class="headerlink" href="#basics-of-direct-rna-sequencing-drs" title="Permalink to this heading"></a></h2>
+<p>Direct RNA sequencing is a technology developed by Oxford Nanopore Technologies (ONT) that allows the sequencing of native RNA molecules without the need of previous amplification nor fragmentation. Therefore, it provides information about the presence of RNA modifications, polyA tail length and composition at per-read level.</p>
+<p>This method is based on the use of protein nanopores that are embedded into a membrane. As the molecule goes through the pore, it alters the ionic current that is applied to it. These changes are then stored in <strong>fast5 files</strong>.</p>
+<p>TO ADD IMAGE HERE</p>
+</section>
+<section id="drs-data-analysis-with-master-of-pores-2-mop2">
+<h2>DRS data analysis with Master Of Pores 2 (MOP2)<a class="headerlink" href="#drs-data-analysis-with-master-of-pores-2-mop2" title="Permalink to this heading"></a></h2>
+<section id="basic-preprocessing-module-mop-preprocessing">
+<h3>Basic preprocessing (module: <em>mop_preprocessing</em>)<a class="headerlink" href="#basic-preprocessing-module-mop-preprocessing" title="Permalink to this heading"></a></h3>
+<p>In order to analyse this type of data, and before proceeding to any other downstream analysis such as RNA modification detection and polyA tail analysis, the steps below must be performed:</p>
+<ul>
+<li><p><strong>Step 1: Basecalling</strong></p>
+<p>It is the process by which the current intensity data is translated into a nucleotide sequence by a machine learning algorithm called basecaller. Currently, the most widely used is <strong>Guppy</strong>, which was developed by ONT and it is only available if you are part of the ONT community. The model that Guppy uses to analyse RNA data is not modification aware and therefore, it can only identify the four canonical bases (A, U, C and G).</p>
+</li>
+<li><p><strong>Step 2: Alignment</strong></p>
+<p>XXX</p>
+</li>
+<li><p><strong>Step 3: Counting and read-gene assignment</strong></p>
+<p>XXX</p>
+</li>
+</ul>
+</section>
+<section id="polya-tail-length-analysis-module-mop-tail">
+<h3>PolyA tail length analysis (module: <em>mop_tail</em>)<a class="headerlink" href="#polya-tail-length-analysis-module-mop-tail" title="Permalink to this heading"></a></h3>
+</section>
+<section id="hands-on-1-mop-preprocess-and-mop-tail">
+<h3>Hands-on 1: mop_preprocess and mop_tail<a class="headerlink" href="#hands-on-1-mop-preprocess-and-mop-tail" title="Permalink to this heading"></a></h3>
+<p>For installing the MoP2 pipeline and downloading guppy 3.4.2, please use the code below:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git clone --depth 1 --recurse-submodules https://github.com/biocorecrg/MOP2.git</span>
+
+<span class="go">cd MoP2; bash INSTALL.sh</span>
+</pre></div>
+</div>
+<p>For this hands-on exercise, we will analyse several total RNA DRS samples from <em>Saccharomyces cerevisiae</em>:</p>
+<ul class="simple">
+<li><p>Sample 1: snR36 knock-out strain</p></li>
+<li><p>Samples 2,3 and 4: wild-type strain</p></li>
+</ul>
+</section>
 <section id="what-are-containers">
 <h3>What are containers?<a class="headerlink" href="#what-are-containers" title="Permalink to this heading"></a></h3>
-<a class="reference internal image-reference" href="https://www.synopsys.com/blogs/software-security/wp-content/uploads/2018/04/containers-rsa.jpg"><img alt="https://www.synopsys.com/blogs/software-security/wp-content/uploads/2018/04/containers-rsa.jpg" src="https://www.synopsys.com/blogs/software-security/wp-content/uploads/2018/04/containers-rsa.jpg" style="width: 700px;" /></a>
-<p>A Container can be seen as a <strong>minimal virtual environment</strong> that can be used in any Linux-compatible machine (and beyond).</p>
-<p>Using containers is time- and resource-saving as they allow:</p>
-<ul class="simple">
-<li><p>Controlling for software installation and dependencies.</p></li>
-<li><p>Reproducibility of the analysis.</p></li>
-</ul>
-<p>Containers allow us to use <strong>exactly the same versions of the tools</strong>.</p>
-</section>
-<section id="virtual-machines-or-containers">
-<h3>Virtual machines or containers ?<a class="headerlink" href="#virtual-machines-or-containers" title="Permalink to this heading"></a></h3>
+<a class="reference internal image-reference" href="https://lifeboat.com/images/layout/lightbox_mask.png"><img alt="https://lifeboat.com/images/layout/lightbox_mask.png" src="https://lifeboat.com/images/layout/lightbox_mask.png" style="width: 700px;" /></a>
 </section>
 </section>
 </section>
