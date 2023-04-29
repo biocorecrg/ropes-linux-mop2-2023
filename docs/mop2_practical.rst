@@ -10,11 +10,16 @@ Direct RNA sequencing is a technology developed by Oxford Nanopore Technologies 
 
 This method is based on the use of protein nanopores that are embedded into a membrane. As the molecule goes through the pore, it alters the ionic current that is applied to it. These changes are then stored in **fast5 files**.
 
-TO ADD IMAGE HERE
+TO ADD PORE HERE
 
 DRS data analysis with Master Of Pores 2 (MOP2)
 ---------------------
 
+The complexity of analysing current intensity data together with the lack of systematic and reproducible pipelines have hindered the access of this technology to the general users. To overcome this limitation, we developed Master Of Pores 2 (MOP2) - a nextflow based workflow that simplifies the analysis of DRS datasets and aims to make it accessible to non-bioinformatic experts. 
+
+MOP2 can perform all steps required to analyse DRS data - from converting raw current intensities into multiple types of processed data to RNA modified sites detection and polyA tail length predictions. This pipeline consists of four modules: *mop_preprocess*, *mop_tail*, *mop_mod* and *mop_consensus*.
+
+TO ADD MOP2 SCHEME
 
 Basic preprocessing (module: *mop_preprocessing*)
 ......................
@@ -38,8 +43,8 @@ PolyA tail length analysis (module: *mop_tail*)
 ......................
 
 
-Hands-on 1: mop_preprocess and mop_tail
-......................
+Hands-on 1: *mop_preprocess* and *mop_tail*
+---------------------
 
 For installing the MoP2 pipeline and downloading guppy 3.4.2, please use the code below:
 
@@ -52,7 +57,9 @@ For installing the MoP2 pipeline and downloading guppy 3.4.2, please use the cod
 For this hands-on exercise, we will analyse several total RNA DRS samples from *Saccharomyces cerevisiae*:
 
 - Sample 1: snR36 knock-out strain
-- Samples 2,3 and 4: wild-type strain
+- Samples 2, 3 and 4: wild-type strains
+
+
 
 
 What are containers?
