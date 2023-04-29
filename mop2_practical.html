@@ -51,7 +51,9 @@
 <li class="toctree-l2"><a class="reference internal" href="#drs-data-analysis-with-master-of-pores-2-mop2">DRS data analysis with Master Of Pores 2 (MOP2)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#basic-preprocessing-module-mop-preprocessing">Basic preprocessing (module: <em>mop_preprocessing</em>)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#polya-tail-length-analysis-module-mop-tail">PolyA tail length analysis (module: <em>mop_tail</em>)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#hands-on-1-mop-preprocess-and-mop-tail">Hands-on 1: mop_preprocess and mop_tail</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#hands-on-1-mop-preprocess-and-mop-tail">Hands-on 1: <em>mop_preprocess</em> and <em>mop_tail</em></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#what-are-containers">What are containers?</a></li>
 </ul>
 </li>
@@ -89,10 +91,13 @@
 <h2>Basics of Direct RNA Sequencing (DRS)<a class="headerlink" href="#basics-of-direct-rna-sequencing-drs" title="Permalink to this heading"></a></h2>
 <p>Direct RNA sequencing is a technology developed by Oxford Nanopore Technologies (ONT) that allows the sequencing of native RNA molecules without the need of previous amplification nor fragmentation. Therefore, it provides information about the presence of RNA modifications, polyA tail length and composition at per-read level.</p>
 <p>This method is based on the use of protein nanopores that are embedded into a membrane. As the molecule goes through the pore, it alters the ionic current that is applied to it. These changes are then stored in <strong>fast5 files</strong>.</p>
-<p>TO ADD IMAGE HERE</p>
+<p>TO ADD PORE HERE</p>
 </section>
 <section id="drs-data-analysis-with-master-of-pores-2-mop2">
 <h2>DRS data analysis with Master Of Pores 2 (MOP2)<a class="headerlink" href="#drs-data-analysis-with-master-of-pores-2-mop2" title="Permalink to this heading"></a></h2>
+<p>The complexity of analysing current intensity data together with the lack of systematic and reproducible pipelines have hindered the access of this technology to the general users. To overcome this limitation, we developed Master Of Pores 2 (MOP2) - a nextflow based workflow that simplifies the analysis of DRS datasets and aims to make it accessible to non-bioinformatic experts.</p>
+<p>MOP2 can perform all steps required to analyse DRS data - from converting raw current intensities into multiple types of processed data to RNA modified sites detection and polyA tail length predictions. This pipeline consists of four modules: <em>mop_preprocess</em>, <em>mop_tail</em>, <em>mop_mod</em> and <em>mop_consensus</em>.</p>
+<p>TO ADD MOP2 SCHEME</p>
 <section id="basic-preprocessing-module-mop-preprocessing">
 <h3>Basic preprocessing (module: <em>mop_preprocessing</em>)<a class="headerlink" href="#basic-preprocessing-module-mop-preprocessing" title="Permalink to this heading"></a></h3>
 <p>In order to analyse this type of data, and before proceeding to any other downstream analysis such as RNA modification detection and polyA tail analysis, the steps below must be performed:</p>
@@ -111,8 +116,9 @@
 <section id="polya-tail-length-analysis-module-mop-tail">
 <h3>PolyA tail length analysis (module: <em>mop_tail</em>)<a class="headerlink" href="#polya-tail-length-analysis-module-mop-tail" title="Permalink to this heading"></a></h3>
 </section>
+</section>
 <section id="hands-on-1-mop-preprocess-and-mop-tail">
-<h3>Hands-on 1: mop_preprocess and mop_tail<a class="headerlink" href="#hands-on-1-mop-preprocess-and-mop-tail" title="Permalink to this heading"></a></h3>
+<h2>Hands-on 1: <em>mop_preprocess</em> and <em>mop_tail</em><a class="headerlink" href="#hands-on-1-mop-preprocess-and-mop-tail" title="Permalink to this heading"></a></h2>
 <p>For installing the MoP2 pipeline and downloading guppy 3.4.2, please use the code below:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git clone --depth 1 --recurse-submodules https://github.com/biocorecrg/MOP2.git</span>
 
@@ -122,9 +128,8 @@
 <p>For this hands-on exercise, we will analyse several total RNA DRS samples from <em>Saccharomyces cerevisiae</em>:</p>
 <ul class="simple">
 <li><p>Sample 1: snR36 knock-out strain</p></li>
-<li><p>Samples 2,3 and 4: wild-type strain</p></li>
+<li><p>Samples 2, 3 and 4: wild-type strains</p></li>
 </ul>
-</section>
 <section id="what-are-containers">
 <h3>What are containers?<a class="headerlink" href="#what-are-containers" title="Permalink to this heading"></a></h3>
 <a class="reference internal image-reference" href="https://lifeboat.com/images/layout/lightbox_mask.png"><img alt="https://lifeboat.com/images/layout/lightbox_mask.png" src="https://lifeboat.com/images/layout/lightbox_mask.png" style="width: 700px;" /></a>
