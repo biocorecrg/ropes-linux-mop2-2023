@@ -10,7 +10,8 @@ Direct RNA sequencing is a technology developed by Oxford Nanopore Technologies 
 
 This method is based on the use of protein nanopores that are embedded into a membrane. As the molecule goes through the pore, it alters the ionic current that is applied to it. These changes are then stored in **fast5 files**.
 
-TO ADD PORE HERE
+.. image:: images/Pore.png
+  :width: 700
 
 DRS data analysis with Master Of Pores 2 (MOP2)
 ---------------------
