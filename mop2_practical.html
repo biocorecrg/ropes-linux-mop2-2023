@@ -53,10 +53,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#polya-tail-length-analysis-module-mop-tail">PolyA tail length analysis (module: <em>mop_tail</em>)</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#hands-on-1-mop-preprocess-and-mop-tail">Hands-on 1: <em>mop_preprocess</em> and <em>mop_tail</em></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#what-are-containers">What are containers?</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#hands-on-1-mop-preprocess-and-mop-tail">Hands-on 1: <em>mop_preprocess</em> and <em>mop_tail</em></a></li>
 </ul>
 </li>
 </ul>
@@ -97,24 +94,86 @@
 <h2>DRS data analysis with Master Of Pores 2 (MOP2)<a class="headerlink" href="#drs-data-analysis-with-master-of-pores-2-mop2" title="Permalink to this heading"></a></h2>
 <p>The complexity of analysing current intensity data together with the lack of systematic and reproducible pipelines have hindered the access of this technology to the general users. To overcome this limitation, we developed Master Of Pores 2 (MOP2) - a nextflow based workflow that simplifies the analysis of DRS datasets and aims to make it accessible to non-bioinformatic experts.</p>
 <p>MOP2 can perform all steps required to analyse DRS data - from converting raw current intensities into multiple types of processed data to RNA modified sites detection and polyA tail length predictions. This pipeline consists of four modules: <em>mop_preprocess</em>, <em>mop_tail</em>, <em>mop_mod</em> and <em>mop_consensus</em>.</p>
-<p>TO ADD MOP2 SCHEME</p>
+<a class="reference internal image-reference" href="_images/MOP_scheme.png"><img alt="_images/MOP_scheme.png" src="_images/MOP_scheme.png" style="width: 700px;" /></a>
 <section id="basic-preprocessing-module-mop-preprocessing">
 <h3>Basic preprocessing (module: <em>mop_preprocessing</em>)<a class="headerlink" href="#basic-preprocessing-module-mop-preprocessing" title="Permalink to this heading"></a></h3>
-<p>In order to analyse this type of data, and before proceeding to any other downstream analysis such as RNA modification detection and polyA tail analysis, the steps below must be performed:</p>
+<p>The pre-processing module is able to perform base-calling, mapping (either to a genome or a transcriptome), feature counting (per-gene level) and quality control. Furthermore, if required by the user, it can run demultiplexing, filtering and discovery of novel transcripts. As the final step, the workflow generates a final report of the performance and results of each of the steps performed.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Before proceeding to any other downstream analysis such as RNA modification detection and polyA tail analysis, this module <strong>must</strong> be executed.</p>
+</div>
+<p><strong>Analysis overview:</strong></p>
 <ul>
-<li><p><strong>Step 1: Basecalling</strong></p>
+<li><p><strong>Step 1a: Basecalling</strong></p>
 <p>It is the process by which the current intensity data is translated into a nucleotide sequence by a machine learning algorithm called basecaller. Currently, the most widely used is <strong>Guppy</strong>, which was developed by ONT and it is only available if you are part of the ONT community. The model that Guppy uses to analyse RNA data is not modification aware and therefore, it can only identify the four canonical bases (A, U, C and G).</p>
+<ul class="simple">
+<li><p><strong>Input:</strong> Raw fast5 files</p></li>
+<li><p><strong>Output:</strong> Basecalled fast5 and fastq files</p></li>
+</ul>
 </li>
-<li><p><strong>Step 2: Alignment</strong></p>
-<p>XXX</p>
+<li><p><strong>Step 1b: Demultiplexing</strong></p>
+<p>Demultiplexing is required when analysing a barcoded sample; otherwise, this step should be skipped. Here, <strong>Deeplexicon</strong> is used. This algorithm converts the barcode’s signal into an image, which is then classified based on a machine-learning approach.</p>
+<ul class="simple">
+<li><p><strong>Input:</strong> Raw fast5 files</p></li>
+<li><p><strong>Output:</strong> Demuxed raw fast5 files</p></li>
+</ul>
 </li>
-<li><p><strong>Step 3: Counting and read-gene assignment</strong></p>
-<p>XXX</p>
+<li><p><strong>Step 2: Filtering</strong></p>
+<p>Filter out reads based on either quality and/or length performed by <strong>Nanofilt</strong>. For RNA modification detection using DRS data, this step should be turned off as modified reads tend to have lower quality than unmodified ones and thus, filtering based on quality would bias the results.</p>
+<ul class="simple">
+<li><p><strong>Input:</strong> Fastq files</p></li>
+<li><p><strong>Output:</strong> Filtered fastq files</p></li>
+</ul>
+</li>
+<li><p><strong>Step 3: Alignment</strong></p>
+<p>Mapping step performed by either <strong>minimap2</strong> or <strong>grapmap</strong>. Both can perform spliced or unspliced alignments. Briefly, we would use spliced alignments when using a genome as a reference and; unspliced for transcriptome. Furthermore, it has been reported that minimap2 fails to align highly modified reads and thus, it should not be used to analyse data from highly modified RNA species such as rRNAs.</p>
+<ul class="simple">
+<li><p><strong>Input:</strong> Fastq files and reference file (genome or transcriptome)</p></li>
+<li><p><strong>Output:</strong> Bam (and bai) files</p></li>
+</ul>
+</li>
+<li><p><strong>Step 4: Feature counts</strong></p>
+<p>The software run by MOP2 to perform this step depends on the type of reference used in the mapping step. For transcriptome alignments, <strong>NanoCount</strong> is used and it reports per transcript abundances whereas for genome alignments, <strong>htseq-count</strong> is executed and it generates per-gene counts.</p>
+<ul class="simple">
+<li><p><strong>Input:</strong> Reference and alignment file (bam) for NanoCount // Reference, annotation (<em>.gtf) and alignment files (</em>.bam) for htseq-count</p></li>
+<li><p><strong>Output:</strong> Transcript abundances’ estimations // Per-gene counts</p></li>
+</ul>
+</li>
+<li><p><strong>Step 5: Transcript discovery</strong></p>
+<p><strong>Bambu</strong> aims to identify novel transcripts from mapped reads. For more information about how to use this tool, please visit its <a class="reference external" href="https://github.com/GoekeLab/bambu#General-Usage">GitHub page</a>.</p>
+<ul class="simple">
+<li><p><strong>Input:</strong> Alignment (.bam), reference (.fa) and annotation (.gtf)</p></li>
+<li><p><strong>Output:</strong> Transcript’s abundances and read id-transcript assignments</p></li>
+</ul>
+</li>
+<li><p><strong>Step 6: Reporting and quality control</strong></p>
+<p><strong>multiQC</strong> produces the final report, as a html page, which contains the quality control’s results generated by <strong>MinionQC</strong> together with the stats from the previous executed steps.</p>
+<ul class="simple">
+<li><p><strong>Input:</strong> all inputs and outputs</p></li>
+<li><p><strong>Output:</strong> final report</p></li>
+</ul>
 </li>
 </ul>
+<p>We will show how to use and configurate this module in the next hands-on exercise.</p>
 </section>
 <section id="polya-tail-length-analysis-module-mop-tail">
 <h3>PolyA tail length analysis (module: <em>mop_tail</em>)<a class="headerlink" href="#polya-tail-length-analysis-module-mop-tail" title="Permalink to this heading"></a></h3>
+<p>This module estimates poly(A) tail length at read level provided by <strong>Tailfindr</strong> and/or <strong>Nanopolish</strong>. This workflow uses as input all the files generated by <em>mop_preprocess</em>.</p>
+<p><strong>Analysis overview:</strong></p>
+<ul class="simple">
+<li><p><strong>Software 1: Tailfindr</strong></p>
+<ul>
+<li><p><strong>Input:</strong> Basecalled fast5 files and read id-gene assignments</p></li>
+<li><p><strong>Output:</strong> PolyA tail length estimations</p></li>
+</ul>
+</li>
+<li><p><strong>Software 2: Nanopolish</strong></p>
+<ul>
+<li><p><strong>Input:</strong> Fastq (.fq.gz), alignment (.bam) and reference (.fa) files</p></li>
+<li><p><strong>Output:</strong> PolyA tail length estimations</p></li>
+</ul>
+</li>
+</ul>
 </section>
 </section>
 <section id="hands-on-1-mop-preprocess-and-mop-tail">
@@ -130,10 +189,6 @@
 <li><p>Sample 1: snR36 knock-out strain</p></li>
 <li><p>Samples 2, 3 and 4: wild-type strains</p></li>
 </ul>
-<section id="what-are-containers">
-<h3>What are containers?<a class="headerlink" href="#what-are-containers" title="Permalink to this heading"></a></h3>
-<a class="reference internal image-reference" href="https://lifeboat.com/images/layout/lightbox_mask.png"><img alt="https://lifeboat.com/images/layout/lightbox_mask.png" src="https://lifeboat.com/images/layout/lightbox_mask.png" style="width: 700px;" /></a>
-</section>
 </section>
 </section>
 
