@@ -39,15 +39,40 @@ The pre-processing module is able to perform base-calling, mapping (either to a 
   
   - **Input:** Raw fast5 files
   - **Output:** Basecalled fast5 and fastq files
+
+.. tip::
+  **How do we know if fast5 files are bassecalled or not?**
+
+  Raw and basecall fast5 files have the same extension (.fast5) and in consequence, the only way of knowing if a fast5 file is basecalled or not is to check its contents. Please use the code below:
   
+  .. code-block:: console
+
+    h5ls /path/to/fast5 | head -n15
+  
+  
+  .. |raw| image::
+    :alt: Missing raw fast5
+
+  .. |basecalled| image:: 
+    :alt: Missing basecalled fast5
+    
+  .. list-table::
+   :widths: 10 100
+   :header-rows: 1
+
+   * - Raw
+     - Basecalled
+
+   * - |raw|
+     - |basecalled|
+
 - **Step 1b: Demultiplexing**
   
   Demultiplexing is required when analysing a barcoded sample; otherwise, this step should be skipped. Here, **Deeplexicon** is used. This algorithm converts the barcode's signal into an image, which is then classified based on a machine-learning approach.
   
   - **Input:** Raw fast5 files
   - **Output:** Demuxed raw fast5 files
-  
-  
+   
 - **Step 2: Filtering**
   
   Filter out reads based on either quality and/or length performed by **Nanofilt**. For RNA modification detection using DRS data, this step should be turned off as modified reads tend to have lower quality than unmodified ones and thus, filtering based on quality would bias the results.
@@ -106,6 +131,9 @@ This module estimates poly(A) tail length at read level provided by **Tailfindr*
 Hands-on 1: *mop_preprocess* and *mop_tail*
 ---------------------
 
+MOP2 installation and data preprocessing:
+......................
+
 For installing the MoP2 pipeline and downloading guppy 3.4.2, please use the code below:
 
 .. code-block:: console
@@ -114,7 +142,104 @@ For installing the MoP2 pipeline and downloading guppy 3.4.2, please use the cod
   
   cd MoP2; bash INSTALL.sh
 
-For this hands-on exercise, we will analyse several total RNA DRS samples from *Saccharomyces cerevisiae*:
+For this hands-on exercise, we will perform polyA tail length estimation and RNA modification detection on total RNA DRS samples from *Saccharomyces cerevisiae* (see list below):
 
 - Sample 1: snR36 knock-out strain
 - Samples 2, 3 and 4: wild-type strains
+
+Before setting up *mop_preproceess* module, it is important that you think about which softwares and parameters should be used - otherwise you might run analysis that are not suitable to your sample (and you will lose time and resources). Please, answers the questions below:
+
+- **Question 1:** Which is the most abundant RNA specie in your samples? Is it highly or lowly modified?
+
+- **Question 2:** Which reference would you use (genome or transcriptome)? 
+
+- **Question 3:** Would you use spliced or unspliced alignment? Why?
+
+- **Question 4:** Which counter would you use? Why?
+
+
+Now, we can start setting up the *mop_preproceess* module. Please follow the code below:
+
+.. code-block:: console
+
+  #Enter the mop_preprocess directory:
+  cd mop_preprocess
+  
+  #List all files and directories:
+  ls -l 
+  
+  #Summary of files:
+  ## bin directory: it contains all the binaries used by this module. If you wanna change guppy version, you should go here.
+  ## *_opt.tsv files: it is used to input additional parameters to the individual softwares executed by the workflow.
+  ## params.config file: it is the file that the user must edit to introduce the inputs required by the workflow.
+  
+  #Edit params.config file:
+  nano params.config
+  
+  #Params.config content:
+  params {
+    conffile            = "final_summary_01.txt"
+    fast5               = "/home/andelgado/Documents/cluster/users/andelgado/ROPES_training/data_mod_consensus/**/*.fast5"
+    fastq               = ""
+
+    reference           = "/home/andelgado/Documents/software/NanoConsensus/ref/Saccharomyces_cerevisiae.rRNA.fa"
+    annotation          = ""
+    ref_type            = "transcriptome"
+
+    pars_tools          = "drna_tool_unsplice_opt.tsv" 
+    output              = "$baseDir/output"
+    qualityqc           = 5
+    granularity         = 1
+
+    basecalling         = "guppy"
+    GPU                 = "OFF"
+    demultiplexing      = "NO"
+    demulti_fast5       = "NO" 
+
+    filtering           = "NO"
+
+    mapping             = "graphmap"
+    counting            = "nanocount"
+    discovery           = "NO"
+
+    cram_conv           = "NO"
+    subsampling_cram    = 50
+
+    saveSpace           = "NO"
+
+    email               = "anna.delgado@crg.eu"
+  }
+  
+  #Save file and exit:
+  CTRL+o
+  CTRL+x
+
+As discussed earlier, these options are okay when analysing total RNA samples. However, depending on the type of sample, changes in the params.config file should be made. Click `here <https://biocorecrg.github.io/MOP2/docs/mop_preprocess.html>`_ to check all parameters accepted by *mop_preprocess*.
+
+.. code-block:: console
+
+  #Run the module in the background, with singularity and in the local computer:
+  nextflow run mop_preprocess.nf -with-singularity -bg -profile local > log_preprocess.txt
+  
+Results
+......................
+
+Once the module has finished, these directories should be in your output folder:
+
+- **fast5_files**: Contains the basecalled fast5 files.
+
+- **fastq_files**: Contains one or, in case of demultiplexing, more fastq files.
+
+- **QC_files**: Contains each single QC produced by the pipeline.
+
+- **alignment**: Contains the bam and bai file(s).
+
+- **counts**: Contains read counts per gene / transcript.
+
+- **assigned**: Contains assignment of each read to a given gene / transcript.
+
+- **report**: Contains the final multiqc report.
+
+Now, we would look at the alignments in IGV (genome browser) together with the stats reported in the multiQC html to decide if we have enough quality data to proceed with the polyA tail length estimation and RNA modification detection analysis. Due to time limitations, here you should decide if we can proceed or not only based on the multiQC report.
+
+- **Question 5:** Do we have enough data in all samples to proceed to the downstream analysis? Why? 
