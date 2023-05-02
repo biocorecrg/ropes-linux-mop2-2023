@@ -13,7 +13,7 @@ This method is based on the use of protein nanopores that are embedded into a me
 .. image:: images/Pore.png
   :width: 700
 
-DRS data analysis with Master Of Pores 2 (MOP2)
+Master Of Pores 2 (MOP2) - preprocessing and polyA tail estimation (1)
 ---------------------
 
 The complexity of analysing current intensity data together with the lack of systematic and reproducible pipelines have hindered the access of this technology to the general users. To overcome this limitation, we developed Master Of Pores 2 (MOP2) - a nextflow based workflow that simplifies the analysis of DRS datasets and aims to make it accessible to non-bioinformatic experts. 
@@ -207,7 +207,7 @@ Now, we can start setting up the *mop_preproceess* module. Please follow the cod
 
     saveSpace           = "NO"
 
-    email               = "anna.delgado@crg.eu"
+    email               = "username@domain"
   }
   
   #Save file and exit:
@@ -243,3 +243,62 @@ Once the module has finished, these directories should be in your output folder:
 Now, we would look at the alignments in IGV (genome browser) together with the stats reported in the multiQC html to decide if we have enough quality data to proceed with the polyA tail length estimation and RNA modification detection analysis. Due to time limitations, here you should decide if we can proceed or not only based on the multiQC report.
 
 - **Question 5:** Do we have enough data in all samples to proceed to the downstream analysis? Why? 
+
+PolyA tail length estimation
+......................
+
+After preprocessing the data, we can go directly to run the *mop_tail* module which will output polyA tail length estimation at per read level. Please run the code below:
+
+.. code-block:: console
+
+  #Go to the directory:
+  cd ./../mop_tail/
+  
+  #Edit params.config file:
+  nano params.config
+  
+  #Params.config content:
+  params {
+    
+    input_path         = "$baseDir/../mop_preprocess/output/"
+    reference           = "/home/andelgado/Documents/software/NanoConsensus/ref/Saccharomyces_cerevisiae.rRNA.fa"
+
+    pars_tools         = "$baseDir/tools_opt.tsv"
+
+    output             = "$baseDir/outputPoly"
+
+    tailfindr          = "YES"
+    nanopolish         = "YES"
+ 
+    email              = "username@domain"
+  }
+  
+  #Save file and exit:
+  CTRL+o
+  CTRL+x
+
+  #Run the module in the background, with singularity and in the local computer:
+  nextflow run mop_tail.nf -with-singularity -bg -profile local > log_tail.txt
+  
+Results
+......................
+
+Once the module has finished, these directories should be in your output folder:
+
+- **nanopolish_flow**: Contains nanopolish's results.
+
+- **tailfindr_flow**: Contains tailfindr's results.
+
+- **polya_common**: Contains the text files that include the combined polyA tail length predictions at per read-level. 
+
+Check the generated files and answer these questions below:
+
+- **Question 6:** Which predictions would you trust? Why? 
+
+- **Question 7:** Should we have done this analysis? Why? 
+
+Master Of Pores 2 (MOP2) - RNA modification detection (2)
+---------------------
+
+Hands-on 2: *mop_mod* and *mop_consensus*
+---------------------
