@@ -48,7 +48,7 @@
 <li class="toctree-l1"><a class="reference internal" href="nextflow.html">Nextflow</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Direct RNA Sequencing data analysis with Master of Pores 2</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#basics-of-direct-rna-sequencing-drs">Basics of Direct RNA Sequencing (DRS)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#drs-data-analysis-with-master-of-pores-2-mop2">DRS data analysis with Master Of Pores 2 (MOP2)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#master-of-pores-2-mop2-preprocessing-and-polya-tail-estimation-1">Master Of Pores 2 (MOP2) - preprocessing and polyA tail estimation (1)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#basic-preprocessing-module-mop-preprocessing">Basic preprocessing (module: <em>mop_preprocessing</em>)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#polya-tail-length-analysis-module-mop-tail">PolyA tail length analysis (module: <em>mop_tail</em>)</a></li>
 </ul>
@@ -56,8 +56,12 @@
 <li class="toctree-l2"><a class="reference internal" href="#hands-on-1-mop-preprocess-and-mop-tail">Hands-on 1: <em>mop_preprocess</em> and <em>mop_tail</em></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#mop2-installation-and-data-preprocessing">MOP2 installation and data preprocessing:</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#results">Results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#polya-tail-length-estimation">PolyA tail length estimation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Results</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#master-of-pores-2-mop2-rna-modification-detection-2">Master Of Pores 2 (MOP2) - RNA modification detection (2)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hands-on-2-mop-mod-and-mop-consensus">Hands-on 2: <em>mop_mod</em> and <em>mop_consensus</em></a></li>
 </ul>
 </li>
 </ul>
@@ -94,8 +98,8 @@
 <p>This method is based on the use of protein nanopores that are embedded into a membrane. As the molecule goes through the pore, it alters the ionic current that is applied to it. These changes are then stored in <strong>fast5 files</strong>.</p>
 <a class="reference internal image-reference" href="_images/Pore.png"><img alt="_images/Pore.png" src="_images/Pore.png" style="width: 700px;" /></a>
 </section>
-<section id="drs-data-analysis-with-master-of-pores-2-mop2">
-<h2>DRS data analysis with Master Of Pores 2 (MOP2)<a class="headerlink" href="#drs-data-analysis-with-master-of-pores-2-mop2" title="Permalink to this heading"></a></h2>
+<section id="master-of-pores-2-mop2-preprocessing-and-polya-tail-estimation-1">
+<h2>Master Of Pores 2 (MOP2) - preprocessing and polyA tail estimation (1)<a class="headerlink" href="#master-of-pores-2-mop2-preprocessing-and-polya-tail-estimation-1" title="Permalink to this heading"></a></h2>
 <p>The complexity of analysing current intensity data together with the lack of systematic and reproducible pipelines have hindered the access of this technology to the general users. To overcome this limitation, we developed Master Of Pores 2 (MOP2) - a nextflow based workflow that simplifies the analysis of DRS datasets and aims to make it accessible to non-bioinformatic experts.</p>
 <p>MOP2 can perform all steps required to analyse DRS data - from converting raw current intensities into multiple types of processed data to RNA modified sites detection and polyA tail length predictions. This pipeline consists of four modules: <em>mop_preprocess</em>, <em>mop_tail</em>, <em>mop_mod</em> and <em>mop_consensus</em>.</p>
 <a class="reference internal image-reference" href="_images/MOP_scheme.png"><img alt="_images/MOP_scheme.png" src="_images/MOP_scheme.png" style="width: 700px;" /></a>
@@ -134,8 +138,8 @@
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><a href="#id1"><span class="problematic" id="id2">|raw|</span></a></p></td>
-<td><p><a href="#id3"><span class="problematic" id="id4">|basecalled|</span></a></p></td>
+<tr class="row-even"><td><p><a href="#id2"><span class="problematic" id="id3">|raw|</span></a></p></td>
+<td><p><a href="#id4"><span class="problematic" id="id5">|basecalled|</span></a></p></td>
 </tr>
 </tbody>
 </table>
@@ -274,7 +278,7 @@
 
 <span class="go">  saveSpace           = &quot;NO&quot;</span>
 
-<span class="go">  email               = &quot;anna.delgado@crg.eu&quot;</span>
+<span class="go">  email               = &quot;username@domain&quot;</span>
 <span class="go">}</span>
 
 <span class="gp">#</span>Save<span class="w"> </span>file<span class="w"> </span>and<span class="w"> </span>exit:
@@ -305,6 +309,60 @@
 <li><p><strong>Question 5:</strong> Do we have enough data in all samples to proceed to the downstream analysis? Why?</p></li>
 </ul>
 </section>
+<section id="polya-tail-length-estimation">
+<h3>PolyA tail length estimation<a class="headerlink" href="#polya-tail-length-estimation" title="Permalink to this heading"></a></h3>
+<p>After preprocessing the data, we can go directly to run the <em>mop_tail</em> module which will output polyA tail length estimation at per read level. Please run the code below:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span>Go<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>directory:
+<span class="go">cd ./../mop_tail/</span>
+
+<span class="gp">#</span>Edit<span class="w"> </span>params.config<span class="w"> </span>file:
+<span class="go">nano params.config</span>
+
+<span class="gp">#</span>Params.config<span class="w"> </span>content:
+<span class="go">params {</span>
+
+<span class="go">  input_path         = &quot;$baseDir/../mop_preprocess/output/&quot;</span>
+<span class="go">  reference           = &quot;/home/andelgado/Documents/software/NanoConsensus/ref/Saccharomyces_cerevisiae.rRNA.fa&quot;</span>
+
+<span class="go">  pars_tools         = &quot;$baseDir/tools_opt.tsv&quot;</span>
+
+<span class="go">  output             = &quot;$baseDir/outputPoly&quot;</span>
+
+<span class="go">  tailfindr          = &quot;YES&quot;</span>
+<span class="go">  nanopolish         = &quot;YES&quot;</span>
+
+<span class="go">  email              = &quot;username@domain&quot;</span>
+<span class="go">}</span>
+
+<span class="gp">#</span>Save<span class="w"> </span>file<span class="w"> </span>and<span class="w"> </span>exit:
+<span class="go">CTRL+o</span>
+<span class="go">CTRL+x</span>
+
+<span class="gp">#</span>Run<span class="w"> </span>the<span class="w"> </span>module<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>background,<span class="w"> </span>with<span class="w"> </span>singularity<span class="w"> </span>and<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span><span class="nb">local</span><span class="w"> </span>computer:
+<span class="go">nextflow run mop_tail.nf -with-singularity -bg -profile local &gt; log_tail.txt</span>
+</pre></div>
+</div>
+</section>
+<section id="id1">
+<h3>Results<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<p>Once the module has finished, these directories should be in your output folder:</p>
+<ul class="simple">
+<li><p><strong>nanopolish_flow</strong>: Contains nanopolish’s results.</p></li>
+<li><p><strong>tailfindr_flow</strong>: Contains tailfindr’s results.</p></li>
+<li><p><strong>polya_common</strong>: Contains the text files that include the combined polyA tail length predictions at per read-level.</p></li>
+</ul>
+<p>Check the generated files and answer these questions below:</p>
+<ul class="simple">
+<li><p><strong>Question 6:</strong> Which predictions would you trust? Why?</p></li>
+<li><p><strong>Question 7:</strong> Should we have done this analysis? Why?</p></li>
+</ul>
+</section>
+</section>
+<section id="master-of-pores-2-mop2-rna-modification-detection-2">
+<h2>Master Of Pores 2 (MOP2) - RNA modification detection (2)<a class="headerlink" href="#master-of-pores-2-mop2-rna-modification-detection-2" title="Permalink to this heading"></a></h2>
+</section>
+<section id="hands-on-2-mop-mod-and-mop-consensus">
+<h2>Hands-on 2: <em>mop_mod</em> and <em>mop_consensus</em><a class="headerlink" href="#hands-on-2-mop-mod-and-mop-consensus" title="Permalink to this heading"></a></h2>
 </section>
 </section>
 
