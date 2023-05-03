@@ -50,14 +50,14 @@ The pre-processing module is able to perform base-calling, mapping (either to a 
     h5ls /path/to/fast5 | head -n15
   
   
-  .. |raw| image::
+  .. |raw| image:: images/raw.png
     :alt: Missing raw fast5
 
-  .. |basecalled| image:: 
+  .. |basecalled| image:: images/basecalled.png
     :alt: Missing basecalled fast5
     
   .. list-table::
-   :widths: 10 100
+   :widths: 100 100
    :header-rows: 1
 
    * - Raw
@@ -244,6 +244,12 @@ Now, we would look at the alignments in IGV (genome browser) together with the s
 
 - **Question 5:** Do we have enough data in all samples to proceed to the downstream analysis? Why? 
 
+.. image:: images/report1.png
+  :width: 700
+
+.. image:: images/report2.png
+  :width: 700
+
 PolyA tail length estimation
 ......................
 
@@ -299,6 +305,9 @@ Check the generated files and answer these questions below:
 
 Master Of Pores 2 (MOP2) - RNA modification detection (2)
 ---------------------
+
+.. image:: images/Detection_methods.png
+  :width: 700
 
 Hands-on 2: *mop_mod* and *mop_consensus*
 ---------------------
