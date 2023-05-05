@@ -185,11 +185,12 @@
 <section id="singularity-exec">
 <h4>Singularity exec<a class="headerlink" href="#singularity-exec" title="Permalink to this heading"></a></h4>
 <p>That is the most common way to execute Singularity (equivalent to <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">exec</span></code>). That would be the normal approach in a HPC environment.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">singularity exec fastqc-0.11.9.sif fastqc</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">   singularity exec fastqc-0.11.9.sif fastqc</span>
+
+<span class="go">a processing of a FASTQ file from *data* directory:</span>
 </pre></div>
 </div>
-<p>Test a processing of a file from <em>testdata</em> directory:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">singularity exec fastqc-0.11.9_cv7.sif fastqc B7_input_s_chr19.fastq.gz</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">singularity exec fastqc-0.11.9_cv7.sif fastqc SRR6466185_1.fastq.gz</span>
 </pre></div>
 </div>
 </section>
@@ -219,26 +220,26 @@
 <p>Using the 2 fastq available files, process them outside and inside a mounted directory using fastqc.</p>
 <details>
 <summary><a>Suggested solution</a></summary><div class="highlight-console notranslate"><div class="highlight"><pre><span></span># Let&#39;s create a dummy directory
-mkdir datatest
+mkdir data
 
-# Let&#39;s copy contents of testdata in that directory
+# Let&#39;s copy contents of data in that directory
 
-singularity exec fastqc.sif fastqc datatest/*fastq.gz
+singularity exec fastqc.sif fastqc data/*fastq.gz
 
 # Check you have some HTMLs there. Remove them
-rm datatest/*html
+rm data/*html
 
 # Let&#39;s use shell
 singularity shell fastqc.sif
-&gt; cd datatest
+&gt; cd data
 &gt; fastqc *fastq.gz
 &gt; exit
 
 # Check you have some HTMLs there. Remove them
-singularity exec -B ./datatest:/scratch fastqc.sif fastqc /scratch/*fastq.gz
+singularity exec -B ./data:/scratch fastqc.sif fastqc /scratch/*fastq.gz
 
 # What happens here!
-singularity exec -B ./datatest:/scratch fastqc.sif bash -c &#39;fastqc /scratch/*fastq.gz&#39;
+singularity exec -B ./data:/scratch fastqc.sif bash -c &#39;fastqc /scratch/*fastq.gz&#39;
 </pre></div>
 </div>
 </details></section>
