@@ -10,7 +10,7 @@ About the course
 
 This slow-paced hands-on course is designed for absolute beginners who want to start using scientific containers to achieve reproducibility of data analysis.
 
-* `Course page <https://github.com/biocorecrg/ropes-linux-mop2-2023 >`_
+* `Course page <https://github.com/biocorecrg/ropes-linux-mop2-2023>`_
 
 
 .. |luca| image:: images/lcozzuto.jpg
