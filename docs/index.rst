@@ -15,7 +15,5 @@ Contents:
    about
    linux_basics   
    containers
-   docker
-   singularity
    nextflow
    mop2_practical
