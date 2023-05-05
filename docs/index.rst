@@ -10,10 +10,12 @@ ROPES summer school - CRG - May 2023
 Contents:
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    about
    linux_basics   
    containers
+      docker
+      singularity
    nextflow
    mop2_practical
