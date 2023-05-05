@@ -46,14 +46,14 @@
 <li class="toctree-l1"><a class="reference internal" href="about.html">About the course</a></li>
 <li class="toctree-l1"><a class="reference internal" href="linux_basics.html">Introduction to Linux</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Containers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#introduction-to-linux-containers">Introduction to Linux containers.</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#linux-containers">Linux containers</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#what-are-containers">What are containers?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#virtual-machines-or-containers">Virtual machines or containers ?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#virtual-machines-vs-containers">Virtual machines vs containers</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#history-of-containers">History of containers</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#introduction-to-docker">Introduction to Docker</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#docker">Docker</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#what-is-docker">What is Docker?</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#docker-components">Docker components</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#images-versus-containers">Images versus containers</a></li>
@@ -73,10 +73,10 @@
 <li class="toctree-l4"><a class="reference internal" href="#major-clean">Major clean</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#volumes">Volumes</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#volumes">Volumes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#introduction-to-singularity">Introduction to Singularity</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#singularity">Singularity</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#singularity-architecture">Singularity architecture</a></li>
 </ul>
 </li>
@@ -129,8 +129,8 @@
              
   <section id="containers">
 <span id="containers-page"></span><h1>Containers<a class="headerlink" href="#containers" title="Permalink to this heading"></a></h1>
-<section id="introduction-to-linux-containers">
-<h2>Introduction to Linux containers.<a class="headerlink" href="#introduction-to-linux-containers" title="Permalink to this heading"></a></h2>
+<section id="linux-containers">
+<h2>Linux containers<a class="headerlink" href="#linux-containers" title="Permalink to this heading"></a></h2>
 <section id="what-are-containers">
 <h3>What are containers?<a class="headerlink" href="#what-are-containers" title="Permalink to this heading"></a></h3>
 <a class="reference internal image-reference" href="https://www.synopsys.com/blogs/software-security/wp-content/uploads/2018/04/containers-rsa.jpg"><img alt="https://www.synopsys.com/blogs/software-security/wp-content/uploads/2018/04/containers-rsa.jpg" src="https://www.synopsys.com/blogs/software-security/wp-content/uploads/2018/04/containers-rsa.jpg" style="width: 700px;" /></a>
@@ -222,8 +222,8 @@
 <a class="reference internal image-reference" href="https://sysopsio.files.wordpress.com/2016/09/linux-chroot-jail.png"><img alt="https://sysopsio.files.wordpress.com/2016/09/linux-chroot-jail.png" src="https://sysopsio.files.wordpress.com/2016/09/linux-chroot-jail.png" style="width: 550px;" /></a>
 </section>
 </section>
-<section id="introduction-to-docker">
-<h2>Introduction to Docker<a class="headerlink" href="#introduction-to-docker" title="Permalink to this heading"></a></h2>
+<section id="docker">
+<h2>Docker<a class="headerlink" href="#docker" title="Permalink to this heading"></a></h2>
 <a class="reference internal image-reference" href="https://connpass-tokyo.s3.amazonaws.com/thumbs/80/52/80521f18aec0945dfedbb471dad6aa1a.png"><img alt="https://connpass-tokyo.s3.amazonaws.com/thumbs/80/52/80521f18aec0945dfedbb471dad6aa1a.png" src="https://connpass-tokyo.s3.amazonaws.com/thumbs/80/52/80521f18aec0945dfedbb471dad6aa1a.png" style="width: 400px;" /></a>
 <section id="what-is-docker">
 <h3>What is Docker?<a class="headerlink" href="#what-is-docker" title="Permalink to this heading"></a></h3>
@@ -440,9 +440,8 @@
 </ul>
 </section>
 </section>
-</section>
 <section id="volumes">
-<h2>Volumes<a class="headerlink" href="#volumes" title="Permalink to this heading"></a></h2>
+<h3>Volumes<a class="headerlink" href="#volumes" title="Permalink to this heading"></a></h3>
 <p>Docker containers are fully isolated. It is necessary to mount volumes in order to handle input/output files.</p>
 <p>Syntax: <strong>–volume/-v</strong> <em>host:container</em></p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">mkdir data</span>
@@ -457,8 +456,9 @@
 </pre></div>
 </div>
 </section>
-<section id="introduction-to-singularity">
-<h2>Introduction to Singularity<a class="headerlink" href="#introduction-to-singularity" title="Permalink to this heading"></a></h2>
+</section>
+<section id="singularity">
+<h2>Singularity<a class="headerlink" href="#singularity" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><dl class="simple">
 <dt>Focus:</dt><dd><ul>

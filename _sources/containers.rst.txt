@@ -4,8 +4,8 @@
 Containers
 *******************
 
-Introduction to Linux containers.
-=================================
+Linux containers
+================
 
 What are containers?
 ---------------------
@@ -75,8 +75,8 @@ History of containers
   :width: 550
 
 
-Introduction to Docker
-========================
+Docker
+======
 
 .. image:: https://connpass-tokyo.s3.amazonaws.com/thumbs/80/52/80521f18aec0945dfedbb471dad6aa1a.png
   :width: 400
@@ -397,7 +397,7 @@ Remove ALL non-running containers, images, etc. - **DO WITH MUCH MORE CARE!!!**
 
 
 Volumes
-=======
+-------
 
 Docker containers are fully isolated. It is necessary to mount volumes in order to handle input/output files.
 
@@ -416,8 +416,8 @@ Syntax: **--volume/-v** *host:container*
   > exit
 
 
-Introduction to Singularity
-=============================
+Singularity
+===========
 
 
 * Focus:
