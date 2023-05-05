@@ -10,20 +10,20 @@ About the course
 
 This slow-paced hands-on course is designed for absolute beginners who want to start using scientific containers to achieve reproducibility of data analysis.
 
-* `Course page <https://github.com/biocorecrg/CRG_Containers_June_2022>`_
+* `Course page <https://github.com/biocorecrg/ropes-linux-mop2-2023 >`_
 
 
 .. |luca| image:: images/lcozzuto.jpg
-  :alt: Alternative text
+  :alt: Luca Cozzuto
 
 .. |adelgado| image:: images/adelgado.jpg
-  :alt: Alternative text
+  :alt: Anna Delgado
 
 .. |toni| image:: images/thermoso.jpg
-  :alt: Alternative text
+  :alt: Toni Hermoso
 
 .. |julia| image:: images/jponomarenko.jpg
-  :alt: Alternative text
+  :alt: Julia Ponomarenko
 
 
 
@@ -54,47 +54,9 @@ Outline
 Learning objectives
 ============
 
+* Learn the basics of command-line Linux
 * Locate and fetch Docker/Singularity images from dedicated repositories.
 * Execute/Run a Docker/Singularity container from the command line.
-* Build simple Docker container images
+* Understand the components of Nextflow pipeline
+* Run a Nextflow pipeline using your own data and tuning it with different parameters
 
-.. _home-page-prereq:
-
-Prerequisite / technical requirements
-============
-
-
-Being comfortable working with the CLI (command-line interface) in a Linux-based environment.
-Knowledge of containers is not mandatory. The course materials is online in the dedicated GitHub page for self-learning.
-
-Practitioners will need to connect during the course to a remote server via the "ssh" protocotol. You can learn about it `here <https://www.hostinger.com/tutorials/ssh-tutorial-how-does-ssh-work>`_
-
-Those who follow the course should be able to use a command-line/screen-oriented text editor (such as nano or vi/vim, which are already available in the server) or to be able to use an editor able to connect remotely. For sake of information, below the basics of `nano <https://wiki.gentoo.org/wiki/Nano/Basics_Guide>`_
-
-Having a `GitHub account <https://github.com/join>`_ is recommended.
-
-.. _home-page-dates:
-
-Dates, time, location
-============
-
-* Dates: Wednesday June 29, 2022
-
-* 9:30 - 17:00 **CET**
-
-
-* Location: Training room, CRG
-
-.. _home-page-program:
-
-
-Suggested program
-============
-
-* 09:30-11:00 Introduction to containers and Docker
-* 11:00-11:15 Coffee Break
-* 11:15-13:00 Docker
-* 13:00-14:00 Lunch break
-* 14:00-15:30 More advanced Docker
-* 15:30-15:45 Coffee break
-* 15:45-17:00 Singularity
