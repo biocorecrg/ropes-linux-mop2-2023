@@ -78,13 +78,9 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#singularity">Singularity</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#singularity-architecture">Singularity architecture</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#container-registries">Container registries</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#docker-hub">Docker Hub</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id1">Biocontainers</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#via-quay-io">Via quay.io</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#via-galaxy-project-prebuilt-images">Via Galaxy project prebuilt images</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#container-registries">Container registries</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#docker-hub">Docker hub</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Biocontainers</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#running-and-executing-containers">Running and executing containers</a><ul>
@@ -513,13 +509,12 @@
 <p>They “forked” in 2021. So far they share most of the codebase, but eventually this could be different, and software might have different functionality.</p>
 <p>The former is already “End Of Life” and its development continues named as <a class="reference external" href="http://apptainer.org/">Apptainer</a>, under the support of the Linux Foundation.</p>
 </section>
-</section>
 <section id="container-registries">
-<h2>Container registries<a class="headerlink" href="#container-registries" title="Permalink to this heading"></a></h2>
+<h3>Container registries<a class="headerlink" href="#container-registries" title="Permalink to this heading"></a></h3>
 <p>Container images, normally different versions of them, are stored in container repositories.</p>
 <p>These repositories can be browser or discovered within, normally public, container registries.</p>
 <section id="docker-hub">
-<h3>Docker Hub<a class="headerlink" href="#docker-hub" title="Permalink to this heading"></a></h3>
+<h4>Docker hub<a class="headerlink" href="#docker-hub" title="Permalink to this heading"></a></h4>
 <p>It is the first and most popular public container registry (which provides also private repositories).</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://hub.docker.com">Docker Hub</a></p></li>
@@ -531,22 +526,19 @@
 </div>
 </section>
 <section id="id1">
-<h3>Biocontainers<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<h4>Biocontainers<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p><a class="reference external" href="https://biocontainers.pro">Biocontainers</a></p></li>
 </ul>
 <p>Website gathering Bioinformatics focused container images from different registries.</p>
 <p>Originally Docker Hub was used, but now other registries are preferred.</p>
 <p>Example: <a class="reference external" href="https://biocontainers.pro/tools/fastqc">https://biocontainers.pro/tools/fastqc</a></p>
-<section id="via-quay-io">
-<h4>Via quay.io<a class="headerlink" href="#via-quay-io" title="Permalink to this heading"></a></h4>
+<p><strong>Via quay.io</strong></p>
 <p><a class="reference external" href="https://quay.io/repository/biocontainers/fastqc">https://quay.io/repository/biocontainers/fastqc</a></p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">singularity build fastqc-0.11.9.sif docker://quay.io/biocontainers/fastqc:0.11.9--0</span>
 </pre></div>
 </div>
-</section>
-<section id="via-galaxy-project-prebuilt-images">
-<h4>Via Galaxy project prebuilt images<a class="headerlink" href="#via-galaxy-project-prebuilt-images" title="Permalink to this heading"></a></h4>
+<p><strong>Via Galaxy project prebuilt images</strong></p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">singularity pull --name fastqc-0.11.9.sif https://depot.galaxyproject.org/singularity/fastqc:0.11.9--0</span>
 </pre></div>
 </div>

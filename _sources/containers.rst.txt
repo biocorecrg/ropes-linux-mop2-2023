@@ -459,14 +459,14 @@ They "forked" in 2021. So far they share most of the codebase, but eventually th
 The former is already "End Of Life" and its development continues named as `Apptainer <http://apptainer.org/>`_, under the support of the Linux Foundation.
 
 Container registries
-====================
+--------------------
 
 Container images, normally different versions of them, are stored in container repositories.
 
 These repositories can be browser or discovered within, normally public, container registries.
 
-Docker Hub
-----------
+Docker hub
+**********
 
 It is the first and most popular public container registry (which provides also private repositories).
 
@@ -482,7 +482,7 @@ Example:
 
 
 Biocontainers
--------------
+*************
 
 * `Biocontainers <https://biocontainers.pro>`__
 
@@ -492,8 +492,7 @@ Originally Docker Hub was used, but now other registries are preferred.
 
 Example: `https://biocontainers.pro/tools/fastqc <https://biocontainers.pro/tools/fastqc>`__
 
-Via quay.io
-***********
+**Via quay.io**
 
 `https://quay.io/repository/biocontainers/fastqc <https://quay.io/repository/biocontainers/fastqc>`__
 
@@ -502,8 +501,7 @@ Via quay.io
 	singularity build fastqc-0.11.9.sif docker://quay.io/biocontainers/fastqc:0.11.9--0
 
 
-Via Galaxy project prebuilt images
-**********************************
+**Via Galaxy project prebuilt images**
 
 .. code-block:: console
 
