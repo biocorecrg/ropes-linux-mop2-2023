@@ -128,11 +128,11 @@ That is the most common way to execute Singularity (equivalent to ``docker exec`
 
     singularity exec fastqc-0.11.9.sif fastqc
 
-Test a processing of a file from *testdata* directory:
+ a processing of a FASTQ file from *data* directory:
 
 .. code-block:: console
 
-    singularity exec fastqc-0.11.9_cv7.sif fastqc B7_input_s_chr19.fastq.gz
+    singularity exec fastqc-0.11.9_cv7.sif fastqc SRR6466185_1.fastq.gz
 
 
 Singularity run
@@ -178,26 +178,26 @@ Using the 2 fastq available files, process them outside and inside a mounted dir
 .. code-block:: console
 
 	# Let's create a dummy directory
-	mkdir datatest
+	mkdir data
 
-	# Let's copy contents of testdata in that directory
+	# Let's copy contents of data in that directory
 
-	singularity exec fastqc.sif fastqc datatest/*fastq.gz
+	singularity exec fastqc.sif fastqc data/*fastq.gz
 
 	# Check you have some HTMLs there. Remove them
-	rm datatest/*html
+	rm data/*html
 
 	# Let's use shell
 	singularity shell fastqc.sif
-	> cd datatest
+	> cd data
 	> fastqc *fastq.gz
 	> exit
 
 	# Check you have some HTMLs there. Remove them
-	singularity exec -B ./datatest:/scratch fastqc.sif fastqc /scratch/*fastq.gz
+	singularity exec -B ./data:/scratch fastqc.sif fastqc /scratch/*fastq.gz
 
 	# What happens here!
-	singularity exec -B ./datatest:/scratch fastqc.sif bash -c 'fastqc /scratch/*fastq.gz'
+	singularity exec -B ./data:/scratch fastqc.sif bash -c 'fastqc /scratch/*fastq.gz'
 
 .. raw:: html
 

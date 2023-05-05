@@ -334,11 +334,14 @@ Syntax: **--volume/-v** *host:container*
 
 .. code-block:: console
 
-  mkdir datatest
-  touch datatest/test
-  docker run --detach --volume $(pwd)/datatest:/scratch --name fastqc_container biocontainers/fastqc:v0.11.9_cv7 tail -f /dev/null
+  mkdir data
+  touch data/test
+  # We can also copy the FASTQ we used in previous exercises... cp ...
+  docker run --detach --volume $(pwd)/data:/scratch --name fastqc_container biocontainers/fastqc:v0.11.9_cv7 tail -f /dev/null
   docker exec -ti fastqc_container /bin/bash
   > ls -l /scratch
+  # We can also run fastqc from here
+  > cd /scratch; fastqc SRR6466185_1.fastq.gz 
   > exit
 
 
