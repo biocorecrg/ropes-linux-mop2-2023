@@ -299,15 +299,23 @@ Once the module has finished, these directories should be in your output folder:
 
 Check the generated files and answer these questions below:
 
-- **Question 6:** Which predictions would you trust? Why? 
-
-- **Question 7:** Should we have done this analysis? Why? 
+- **Question 6:** Should we have done this analysis? Why? 
 
 Master Of Pores 2 (MOP2) - RNA modification detection (2)
 ---------------------
+Currently, due to the lack of RNA modification-aware basecallers, the most common methods to identify RNA modifications from DRS datasets rely on finding differences between two differentially modified samples (ie: comparing a wild-type sample against a knock-out/IVT one). All publicly available algortihms can be clustered into two groups based on the feature that they use to generate their predictions: 
 
-.. image:: images/Detection_methods.png
-  :width: 700
+.. image:: imhages/Detection_methods.png
+  :widt: 700
+
+Detection of RNA modifications (module:*mop_mod*)
+......................
+Using the files obtained from the preprocessing analysis as input, the module *mop_mod* from MOP2 runs four publicly available algorithms (EpiNano, Nanopolish, Tombo and Nanocompore) to detect RNA modifications from DRS data. However, it is important to be aware of their limitations:
+
+- Requirement of a KO/KD/IVT sample
+- Performance depends on coverage, modification type and stoichiometry
+- Presence of false positives in their predictions
+- Signal across the 5mer
 
 Hands-on 2: *mop_mod* and *mop_consensus*
 ---------------------

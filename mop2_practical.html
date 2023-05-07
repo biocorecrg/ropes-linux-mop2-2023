@@ -60,7 +60,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#id1">Results</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#master-of-pores-2-mop2-rna-modification-detection-2">Master Of Pores 2 (MOP2) - RNA modification detection (2)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#master-of-pores-2-mop2-rna-modification-detection-2">Master Of Pores 2 (MOP2) - RNA modification detection (2)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#detection-of-rna-modifications-module-mop-mod">Detection of RNA modifications (module:<em>mop_mod</em>)</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#hands-on-2-mop-mod-and-mop-consensus">Hands-on 2: <em>mop_mod</em> and <em>mop_consensus</em></a></li>
 </ul>
 </li>
@@ -355,14 +358,23 @@
 </ul>
 <p>Check the generated files and answer these questions below:</p>
 <ul class="simple">
-<li><p><strong>Question 6:</strong> Which predictions would you trust? Why?</p></li>
-<li><p><strong>Question 7:</strong> Should we have done this analysis? Why?</p></li>
+<li><p><strong>Question 6:</strong> Should we have done this analysis? Why?</p></li>
 </ul>
 </section>
 </section>
 <section id="master-of-pores-2-mop2-rna-modification-detection-2">
 <h2>Master Of Pores 2 (MOP2) - RNA modification detection (2)<a class="headerlink" href="#master-of-pores-2-mop2-rna-modification-detection-2" title="Permalink to this heading"></a></h2>
-<a class="reference internal image-reference" href="_images/Detection_methods.png"><img alt="_images/Detection_methods.png" src="_images/Detection_methods.png" style="width: 700px;" /></a>
+<p>Currently, due to the lack of RNA modification-aware basecallers, the most common methods to identify RNA modifications from DRS datasets rely on finding differences between two differentially modified samples (ie: comparing a wild-type sample against a knock-out/IVT one). All publicly available algortihms can be clustered into two groups based on the feature that they use to generate their predictions:</p>
+<section id="detection-of-rna-modifications-module-mop-mod">
+<h3>Detection of RNA modifications (module:<em>mop_mod</em>)<a class="headerlink" href="#detection-of-rna-modifications-module-mop-mod" title="Permalink to this heading"></a></h3>
+<p>Using the files obtained from the preprocessing analysis as input, the module <em>mop_mod</em> from MOP2 runs four publicly available algorithms (EpiNano, Nanopolish, Tombo and Nanocompore) to detect RNA modifications from DRS data. However, it is important to be aware of their limitations:</p>
+<ul class="simple">
+<li><p>Requirement of a KO/KD/IVT sample</p></li>
+<li><p>Performance depends on coverage, modification type and stoichiometry</p></li>
+<li><p>Presence of false positives in their predictions</p></li>
+<li><p>Signal across the 5mer</p></li>
+</ul>
+</section>
 </section>
 <section id="hands-on-2-mop-mod-and-mop-consensus">
 <h2>Hands-on 2: <em>mop_mod</em> and <em>mop_consensus</em><a class="headerlink" href="#hands-on-2-mop-mod-and-mop-consensus" title="Permalink to this heading"></a></h2>
