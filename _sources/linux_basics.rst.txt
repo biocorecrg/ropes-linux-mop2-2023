@@ -1000,7 +1000,7 @@ Check the size of a file with :
 
 
 Get a summary of the disk usage size of a directory:
-* **du -sh**:
+	* **du -sh**:
 	* **du** stands for Disk Usage.
 	* **s**: summarize.
 	* **h**: human readable format.
@@ -1012,7 +1012,7 @@ du -sh my_beautiful_folder/
 
 
 Display disk usage of all the files and directories:
-* **du -ah**:
+	* **du -ah**:
 	* **a**: all.
 
 .. code-block:: bash
