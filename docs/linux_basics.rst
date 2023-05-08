@@ -1001,7 +1001,7 @@ Check the size of a file with :
 
 Get a summary of the disk usage size of a directory:
 * **du -sh**:
-	* **du** stands for **D**isk **U**sage.
+	* **du** stands for Disk Usage.
 	* **s**: summarize.
 	* **h**: human readable format.
 
