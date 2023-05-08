@@ -1,7 +1,7 @@
 .. _mop2_practical-page:
 
 *******************
-Direct RNA Sequencing data analysis with Master of Pores 2
+Master of Pores 2
 *******************
 
 Basics of Direct RNA Sequencing (DRS)
