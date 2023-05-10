@@ -220,7 +220,7 @@
 <p>For installing the MoP2 pipeline and downloading guppy 3.4.2, please use the code below:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git clone --depth 1 --recurse-submodules https://github.com/biocorecrg/MOP2.git</span>
 
-<span class="go">cd MoP2; bash INSTALL.sh</span>
+<span class="go">cd MoP2; bash INSTALL.sh 3.4.2</span>
 </pre></div>
 </div>
 <p>For this hands-on exercise, we will perform polyA tail length estimation and RNA modification detection on total RNA DRS samples from <em>Saccharomyces cerevisiae</em> (see list below):</p>
@@ -228,6 +228,10 @@
 <li><p>Sample 1: snR36 knock-out strain</p></li>
 <li><p>Samples 2, 3 and 4: wild-type strains</p></li>
 </ul>
+<p>We need to downolad the test dataset that is bundled in this repository</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">wget https://biocorecrg.github.io/ropes-linux-mop2-2023/data/nanopore.tar.gz</span>
+</pre></div>
+</div>
 <p>Before setting up <em>mop_preproceess</em> module, it is important that you think about which softwares and parameters should be used - otherwise you might run analysis that are not suitable to your sample (and you will lose time and resources). Please, answers the questions below:</p>
 <ul class="simple">
 <li><p><strong>Question 1:</strong> Which is the most abundant RNA specie in your samples? Is it highly or lowly modified?</p></li>
