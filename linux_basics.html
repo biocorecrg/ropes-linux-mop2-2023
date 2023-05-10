@@ -47,25 +47,22 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction to Linux</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#what-is-linux">What is Linux?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#what-is-a-command-line-interface-gui">What is a Command Line Interface (GUI)?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#create-directory-and-practice-moving-around">Create directory and practice moving around</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#create-directory-and-practice-moving-around">Create directory and practice moving around</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#download-files-from-repositories">Download files from repositories</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#recap"><strong>Recap</strong></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#download-files-from-repositories">Download files from repositories</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#manipulate-files-piping-parsing-reformatting">Manipulate files, piping, parsing, reformatting</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1"><strong>Recap</strong></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#manipulate-files-piping-parsing-reformatting">Manipulate files, piping, parsing, reformatting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2"><strong>Recap</strong></a></li>
-</ul>
-</li>
 <li class="toctree-l2"><a class="reference internal" href="#sequence-file-formats-fasta-and-fastq">Sequence file formats: Fasta and fastq</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id3"><strong>Recap</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2"><strong>Recap</strong></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#bed-format-and-regular-expressions">Bed format and regular expressions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#genome-browser">Genome browser</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">Recap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Recap</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#exercises">Exercises</a></li>
 </ul>
 </li>
@@ -244,8 +241,8 @@ DESCRIPTION
 Manual<span class="w"> </span>page<span class="w"> </span>ls<span class="o">(</span><span class="m">1</span><span class="o">)</span><span class="w"> </span>line<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">(</span>press<span class="w"> </span>h<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nb">help</span><span class="w"> </span>or<span class="w"> </span>q<span class="w"> </span>to<span class="w"> </span>quit<span class="o">)</span>
 </pre></div>
 </div>
-<section id="recap">
-<h3><strong>Recap</strong><a class="headerlink" href="#recap" title="Permalink to this heading"></a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <ul class="simple">
 <li><p><strong>touch</strong> writes empty files <strong>mkdir</strong> empty directories</p></li>
 <li><p><strong>mv</strong> move files (or directory) or change their name</p></li>
@@ -257,7 +254,7 @@ Manual<span class="w"> </span>page<span class="w"> </span>ls<span class="o">(</s
 <li><p><strong>sed</strong> replace a string with another</p></li>
 <li><p><strong>man</strong> print the manual for a function</p></li>
 </ul>
-</section>
+</div>
 </section>
 <section id="download-files-from-repositories">
 <h2>Download files from repositories<a class="headerlink" href="#download-files-from-repositories" title="Permalink to this heading"></a></h2>
@@ -409,8 +406,8 @@ GFTLLNGGPKYRRAFLDWGCFHNEPGFFTAWSNLKRLLKQRNAALRQVTRYEQLRPWDKE
 <span class="m">4228</span>
 </pre></div>
 </div>
-<section id="id1">
-<h3><strong>Recap</strong><a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<section id="recap">
+<h3><strong>Recap</strong><a class="headerlink" href="#recap" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p><strong>wget</strong> downloads file from a URL</p></li>
 <li><p><strong>more</strong> prints a part of the content of a file in interactive way</p></li>
@@ -572,8 +569,8 @@ wc<span class="w"> </span>-l<span class="w"> </span>seq_names.txt
 &gt;ACT31118<span class="w"> </span>pep<span class="w"> </span>supercontig:ASM2366v1:CP001665:4355734:4355916:-1<span class="w"> </span>gene:ECBD_4135<span class="w"> </span>transcript:ACT31118<span class="w"> </span>gene_biotype:protein_coding<span class="w"> </span>transcript_biotype:protein_coding<span class="w"> </span>description:hypothetical<span class="w"> </span>protein<span class="w">       </span>MGKNDVNQIADNVRVVHAGCGVNALSGLQSRINSMYCSLLVGLISAAHQAILRLSSVSCP
 </pre></div>
 </div>
-<section id="id2">
-<h3><strong>Recap</strong><a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<section id="id1">
+<h3><strong>Recap</strong><a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p><strong>cut</strong> extract the indicated column</p></li>
 <li><p><strong>awk</strong> allows several kind of parsing operations</p></li>
@@ -606,8 +603,8 @@ This format allows to store also the information about the quality of that parti
 <p>Let’s download a test fastq files we stored in our repository with the access <strong>SRR6466185</strong> using again <strong>wget</strong>. Then we untar the file.</p>
 <p>We should have 32,345 reads. Let’s try to count them using a combination of <strong>zcat</strong> that uncompress the file and writes the content to the terminal and <strong>wc</strong>.</p>
 <p>So considering that each sequence is defined by 4 rows we should have <code class="docutils literal notranslate"><span class="pre">32,345</span> <span class="pre">*</span> <span class="pre">4</span> <span class="pre">=</span> <span class="pre">129,380</span></code>. We can also use <strong>awk</strong> for embedding also the division:</p>
-<section id="id3">
-<h3><strong>Recap</strong><a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<section id="id2">
+<h3><strong>Recap</strong><a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p><strong>tar</strong> allows to compress / uncompress more files in one</p></li>
 <li><p><strong>zcat</strong> equivalent of <strong>cat</strong> for gzipped files</p></li>
@@ -897,8 +894,8 @@ GVGIGIETVDGVPVKINNNSGATFVLSDGSNTLLFNTWVQAKSGRDVTLGNFT**ATATAT**F
 </pre></div>
 </div>
 </section>
-<section id="id4">
-<h3>Recap<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<section id="id3">
+<h3>Recap<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p><strong>uniq</strong> it removes the duplicated elements in a list</p></li>
 <li><p><strong>sort</strong> it sorts a given list</p></li>
@@ -991,7 +988,7 @@ ln<span class="w"> </span>-s<span class="w"> </span>../SRR6466185_2.fastq.gz<spa
 * <strong>df -h</strong>.</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><strong>df</strong> stands for: <a href="#id5"><span class="problematic" id="id6">**</span></a>D**isk <a href="#id7"><span class="problematic" id="id8">**</span></a>F**ilesystem.</p></li>
+<li><p><strong>df</strong> stands for: <a href="#id4"><span class="problematic" id="id5">**</span></a>D**isk <a href="#id6"><span class="problematic" id="id7">**</span></a>F**ilesystem.</p></li>
 <li><p><strong>h</strong>: human readable.</p></li>
 </ul>
 </div></blockquote>

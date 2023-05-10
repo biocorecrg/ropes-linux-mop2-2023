@@ -198,18 +198,17 @@ Every command has a manual, you can read it by using the program **man** with th
 	Manual page ls(1) line 1 (press h for help or q to quit)
 
 
-**Recap**
---------------
+.. note::
 
-* **touch** writes empty files **mkdir** empty directories
-* **mv** move files (or directory) or change their name
-* **ls** list files and directories
-* **cp** copy files and direcotries
-* **cd** change the directory
-* **echo** print values to standard output
-* **cat** print the content of a file to standard output
-* **sed** replace a string with another
-* **man** print the manual for a function
+	* **touch** writes empty files **mkdir** empty directories
+	* **mv** move files (or directory) or change their name
+	* **ls** list files and directories
+	* **cp** copy files and direcotries
+	* **cd** change the directory
+	* **echo** print values to standard output
+	* **cat** print the content of a file to standard output
+	* **sed** replace a string with another
+	* **man** print the manual for a function
 
 Download files from repositories
 =====================================
