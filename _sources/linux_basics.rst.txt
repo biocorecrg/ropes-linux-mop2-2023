@@ -961,9 +961,9 @@ More extended regular expression can be searched by using grep with the paramete
 .. note::
 
 	**Recap**	
-	* **uniq** it removes the duplicated elements in a list
-	* **sort** it sorts a given list
-	* **shuf** it shuffles a given list
+		* **uniq** it removes the duplicated elements in a list
+		* **sort** it sorts a given list
+		* **shuf** it shuffles a given list
 
 Exercises
 ------------
