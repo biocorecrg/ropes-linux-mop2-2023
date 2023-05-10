@@ -46,7 +46,7 @@ Outline
 ============
 
 .. 
-        Trainees will work in a dedicated `AWS environment <https://en.wikipedia.org/wiki/AWS/>`_.
+        Trainees will work in a dedicated Linux environment.
 
 
 .. _home-page-learning:
@@ -59,4 +59,7 @@ Learning objectives
 * Execute/Run a Docker/Singularity container from the command line.
 * Understand the components of Nextflow pipeline
 * Run a Nextflow pipeline using your own data and tuning it with different parameters
+* Write a simple Nextflow pipeline.
+* Understand the basics of direct RNA sequencing with Nanopore
+* Run the different pipelines in Master Of Pores 2 suite. 
 
