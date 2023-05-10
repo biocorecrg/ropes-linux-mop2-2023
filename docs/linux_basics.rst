@@ -658,8 +658,9 @@ They are interconnected and mirror the data among them and are connected to othe
 
 Let's download a test fastq files we stored in our repository with the access **SRR6466185** using again **wget**. Then we untar the file.
 
+
 .. code-block:: bash
-	wget https://biocorecrg.github.io/ropes-linux-mop2-2023/SRR6466185.tar.gz
+	wget https://biocorecrg.github.io/ropes-linux-mop2-2023/data/SRR6466185.tar.gz
 
 	tar -zvxf SRR6466185.tar.gz 
 	SRR6466185_1.fastq.gz
