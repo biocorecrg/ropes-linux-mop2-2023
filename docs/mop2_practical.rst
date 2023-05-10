@@ -152,8 +152,33 @@ We need to downolad the test dataset that is bundled in this repository
 .. code-block:: console
 
   wget https://biocorecrg.github.io/ropes-linux-mop2-2023/data/nanopore.tar.gz
+ 
+  --2023-05-10 15:48:30--  https://biocorecrg.github.io/ropes-linux-mop2-2023/data/nanopore.tar.gz
+  Resolving biocorecrg.github.io (biocorecrg.github.io)... 185.199.108.153, 185.199.111.153, 185.199.110.153, ...
+  Connecting to biocorecrg.github.io (biocorecrg.github.io)|185.199.108.153|:443... connected.
+  HTTP request sent, awaiting response... 200 OK
+  Length: 31740190 (30M) [application/gzip]
+  Saving to: ‘nanopore.tar.gz’
+
+  100%[=======================================================================>] 31,740,190   123MB/s   in 0.2s   
+
+  2023-05-10 15:48:35 (123 MB/s) - ‘nanopore.tar.gz’ saved [31740190/31740190]
+
+  ls -alh nanopore.tar.gz 
+  -rw-r--r-- 1 lcozzuto Bioinformatics_Unit 31M May 10 15:45 nanopore.tar.gz
   
-  
+  tar -zvxf nanopore.tar.gz 
+  nanopore/
+  nanopore/WT100_Cov50_Rep1/
+  nanopore/WT100_Cov100_Rep1/
+  nanopore/Saccharomyces_cerevisiae.rRNA.fa
+  nanopore/snR36_KO/
+  nanopore/WT50_Cov50_Rep1/
+  nanopore/WT50_Cov50_Rep1/batch_unmodified0.fast5
+  nanopore/WT50_Cov50_Rep1/batch_modified0.fast5
+  nanopore/snR36_KO/batch0.fast5
+  nanopore/WT100_Cov100_Rep1/batch_modified0.fast5
+  nanopore/WT100_Cov50_Rep1/batch_modified0.fast5
 
 Before setting up *mop_preproceess* module, it is important that you think about which softwares and parameters should be used - otherwise you might run analysis that are not suitable to your sample (and you will lose time and resources). Please, answers the questions below:
 
