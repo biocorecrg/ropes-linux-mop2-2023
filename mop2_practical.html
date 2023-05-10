@@ -61,10 +61,17 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#master-of-pores-2-mop2-rna-modification-detection-2">Master Of Pores 2 (MOP2) - RNA modification detection (2)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#detection-of-rna-modifications-module-mop-mod">Detection of RNA modifications (module:<em>mop_mod</em>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#detection-of-rna-modifications-module-mop-mod">Detection of RNA modifications (module: <em>mop_mod</em>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#consensus-detection-of-rna-modifications-module-mop-consensus">Consensus detection of RNA modifications (module: <em>mop_consensus</em>)</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#hands-on-2-mop-mod-and-mop-consensus">Hands-on 2: <em>mop_mod</em> and <em>mop_consensus</em></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hands-on-2-mop-mod-and-mop-consensus">Hands-on 2: <em>mop_mod</em> and <em>mop_consensus</em></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#detection-of-differentially-modified-sites">Detection of differentially modified sites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#detection-of-differentially-modified-sites-with-high-confidence">Detection of differentially modified sites with high confidence</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Results</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -127,7 +134,11 @@
 <p class="admonition-title">Tip</p>
 <p><strong>How do we know if fast5 files are bassecalled or not?</strong></p>
 <p>Raw and basecall fast5 files have the same extension (.fast5) and in consequence, the only way of knowing if a fast5 file is basecalled or not is to check its contents. Please use the code below:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">h5ls /path/to/fast5 | head -n15</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span>#Install h5ls:
+apt-get install hdf5-tools
+
+#Investigate fast5 files&#39; structure:
+h5ls /path/to/fast5 | head -n15
 </pre></div>
 </div>
 <table class="docutils align-default">
@@ -396,19 +407,184 @@
 <section id="master-of-pores-2-mop2-rna-modification-detection-2">
 <h2>Master Of Pores 2 (MOP2) - RNA modification detection (2)<a class="headerlink" href="#master-of-pores-2-mop2-rna-modification-detection-2" title="Permalink to this heading"></a></h2>
 <p>Currently, due to the lack of RNA modification-aware basecallers, the most common methods to identify RNA modifications from DRS datasets rely on finding differences between two differentially modified samples (ie: comparing a wild-type sample against a knock-out/IVT one). All publicly available algortihms can be clustered into two groups based on the feature that they use to generate their predictions:</p>
+<a class="reference internal image-reference" href="_images/Detection_methods.png"><img alt="_images/Detection_methods.png" src="_images/Detection_methods.png" style="width: 700px;" /></a>
 <section id="detection-of-rna-modifications-module-mop-mod">
-<h3>Detection of RNA modifications (module:<em>mop_mod</em>)<a class="headerlink" href="#detection-of-rna-modifications-module-mop-mod" title="Permalink to this heading"></a></h3>
-<p>Using the files obtained from the preprocessing analysis as input, the module <em>mop_mod</em> from MOP2 runs four publicly available algorithms (EpiNano, Nanopolish, Tombo and Nanocompore) to detect RNA modifications from DRS data. However, it is important to be aware of their limitations:</p>
+<h3>Detection of RNA modifications (module: <em>mop_mod</em>)<a class="headerlink" href="#detection-of-rna-modifications-module-mop-mod" title="Permalink to this heading"></a></h3>
+<p>Using the files obtained from the preprocessing analysis as input, the module <em>mop_mod</em> from MOP2 runs four publicly available algorithms (<strong>EpiNano</strong>, <strong>Nanopolish</strong>, <strong>Tombo</strong> and <strong>Nanocompore</strong>) to detect RNA modifications from DRS data. These softwares use several features from the data to generate their predictions (see below):</p>
+<ul class="simple">
+<li><p><strong>EpiNano</strong>: difference in basecalling errors (mismatch, insertion and deletion frequency). The sum of all these errors can also be used.</p></li>
+<li><p><strong>Nanopolish</strong>: difference in median current intensity per position - although it was not designed to identify RNA modifications.</p></li>
+<li><p><strong>Tombo</strong>: difference in current intensity values’ distribution (KS test).</p></li>
+<li><p><strong>Nanocompore</strong>: difference in clusters based on current intensity and dwell time values.</p></li>
+</ul>
+<p>When using these algorithms, it is important to be aware of their limitations (and when applicable, take them into account to interpret our results!):</p>
 <ul class="simple">
 <li><p>Requirement of a KO/KD/IVT sample</p></li>
+<li><p>Signal across the 5mer differs between softwares</p></li>
 <li><p>Performance depends on coverage, modification type and stoichiometry</p></li>
 <li><p>Presence of false positives in their predictions</p></li>
-<li><p>Signal across the 5mer</p></li>
 </ul>
+<a class="reference internal image-reference" href="_images/Limitations_CurrentMethods.png"><img alt="_images/Limitations_CurrentMethods.png" src="_images/Limitations_CurrentMethods.png" style="width: 700px;" /></a>
+<p><strong>Analysis overview:</strong></p>
+<ul>
+<li><p><strong>Software 1: EpiNano</strong></p>
+<ul class="simple">
+<li><p><strong>Input:</strong> Alignment (.bam) and reference (.fa) files</p></li>
+<li><p><strong>Output:</strong> Basecalling errors (mismatch, insertion, deletion frequencies), coverage and base quality per-position.</p></li>
+</ul>
+</li>
+<li><p><strong>Software 2: Nanopolish</strong></p>
+<ul class="simple">
+<li><p><strong>Input:</strong> Fastq (.fq.gz), alignment (.bam), reference (.fa) and summary (_final_summary.stats) files</p></li>
+<li><p><strong>Output:</strong> Median current intensity values per position as well as how many <em>resquiggled</em> reads do cover that position.</p></li>
+</ul>
+<p>MISSING TIP ABOUT RESQUIGGLING</p>
+</li>
+<li><p><strong>Software 3: Tombo</strong></p>
+<ul class="simple">
+<li><p><strong>Input:</strong> Fastq (.fq.gz), alignment (.bam), reference (.fa) and summary (_final_summary.stats) files</p></li>
+<li><p><strong>Output:</strong> -Log10(p-value) obtained from the KS-test when comparing current intensity values’ distribution as well as how many <em>resquiggled</em> reads do cover that position (per position).</p></li>
+</ul>
+</li>
+<li><p><strong>Software 4: Nanocompore</strong></p>
+<ul class="simple">
+<li><p><strong>Input:</strong> Fastq (.fq.gz), alignment (.bam), reference (.fa) and summary (_final_summary.stats) files</p></li>
+<li><p><strong>Output:</strong> P-values obtained when comparing clusters of reads from the two samples (per-position).</p></li>
+</ul>
+</li>
+</ul>
+<p>We will show how to use and configurate this module in the next hands-on exercise.</p>
+</section>
+<section id="consensus-detection-of-rna-modifications-module-mop-consensus">
+<h3>Consensus detection of RNA modifications (module: <em>mop_consensus</em>)<a class="headerlink" href="#consensus-detection-of-rna-modifications-module-mop-consensus" title="Permalink to this heading"></a></h3>
+<p>As we have previously seen, predictions generated by the four algorithms run by <em>mop_mod</em> show poor overlap due to different factors (see previous section). Based on this evidence, we reasoned that if the results from these algorithms would be combined in a consensual manner, the true differentially modified sites would be retained while the number of false positives would decrease. To this end, we developed <strong>NanoConsensus</strong>, which is run by the module <em>mop_consensus</em> inside MOP2.</p>
+<p><strong>Analysis overview:</strong></p>
+<a class="reference internal image-reference" href="_images/NanoConsensus.png"><img alt="_images/NanoConsensus.png" src="_images/NanoConsensus.png" style="width: 700px;" /></a>
+<ul class="simple">
+<li><p><strong>Input:</strong> Predictions from EpiNano, Nanopolish, Tombo and NanoCompore (at least two of them).</p></li>
+<li><p><strong>Output:</strong> Consensus prediction of differentially modified sites.</p></li>
+</ul>
+<p>For more information about <strong>NanoConsensus</strong> and the benchamrking results obtained when comparing its performance to other publicly available tools - please click <a class="reference external" href="https://www.biorxiv.org/content/10.1101/2023.03.21.533606v1">here</a>.</p>
 </section>
 </section>
 <section id="hands-on-2-mop-mod-and-mop-consensus">
 <h2>Hands-on 2: <em>mop_mod</em> and <em>mop_consensus</em><a class="headerlink" href="#hands-on-2-mop-mod-and-mop-consensus" title="Permalink to this heading"></a></h2>
+<section id="detection-of-differentially-modified-sites">
+<h3>Detection of differentially modified sites<a class="headerlink" href="#detection-of-differentially-modified-sites" title="Permalink to this heading"></a></h3>
+<p>After preprocessing the data, we can run the <em>mop_mop</em> module which runs four algorithms to identify differentially modified sites. Please run the code below:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span>Go<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>directory:
+<span class="go">cd ./../mop_mop/</span>
+
+<span class="gp">#</span>Summary<span class="w"> </span>of<span class="w"> </span>files:
+<span class="gp">#</span><span class="c1"># comparison.tsv file: it is used to input the pairwise comparisons that the workflow should analyse.</span>
+<span class="gp">#</span><span class="c1"># params.config file: it is the file that the user must edit to introduce the inputs required by the workflow.</span>
+
+<span class="gp">#</span>Edit<span class="w"> </span>params.config<span class="w"> </span>file:
+<span class="go">nano params.config</span>
+
+<span class="gp">#</span>Params.config<span class="w"> </span>content:
+<span class="go">params {</span>
+<span class="go">  input_path         = &quot;$baseDir/../mop_preprocess/output/&quot;</span>
+<span class="go">  comparison         = &quot;$baseDir/comparison.tsv&quot;</span>
+
+<span class="go">  reference           = &quot;/home/andelgado/Documents/software/NanoConsensus/ref/Saccharomyces_cerevisiae.rRNA.fa&quot;</span>
+
+<span class="go">  output             = &quot;$baseDir/output_mod&quot;</span>
+
+<span class="go">  pars_tools         = &quot;$baseDir/tools_opt.tsv&quot;</span>
+
+<span class="go">  // flows</span>
+<span class="go">  epinano       = &quot;YES&quot;</span>
+<span class="go">  nanocompore   = &quot;YES&quot;</span>
+<span class="go">  tombo_lsc     = &quot;YES&quot;</span>
+<span class="go">  tombo_msc     = &quot;NO&quot;</span>
+
+<span class="go">  // epinano plots</span>
+<span class="go">  epinano_plots = &quot;YES&quot;</span>
+
+<span class="go">  email              = &quot;username@domain&quot;</span>
+<span class="go">}</span>
+
+<span class="gp">#</span>Save<span class="w"> </span>file<span class="w"> </span>and<span class="w"> </span>exit:
+<span class="go">CTRL+o</span>
+<span class="go">CTRL+x</span>
+
+<span class="gp">#</span>Edit<span class="w"> </span>comparison.tsv<span class="w"> </span>file:
+<span class="go">nano comparison.tsv</span>
+
+<span class="gp">#</span>Comparison.tsv<span class="w"> </span>content<span class="w"> </span>-<span class="w"> </span>IT<span class="w"> </span>MUST<span class="w"> </span>BE<span class="w"> </span>TAB<span class="w"> </span>SEPARATED!
+<span class="go">snR36_KO        WT100_Cov100_Rep1</span>
+<span class="go">snR36_KO        WT100_Cov50_Rep1</span>
+<span class="go">snR36_KO        WT50_Cov50_Rep1</span>
+
+<span class="gp">#</span>Save<span class="w"> </span>file<span class="w"> </span>and<span class="w"> </span>exit:
+<span class="go">CTRL+o</span>
+<span class="go">CTRL+x</span>
+
+<span class="gp">#</span>Run<span class="w"> </span>the<span class="w"> </span>module<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>background,<span class="w"> </span>with<span class="w"> </span>singularity<span class="w"> </span>and<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span><span class="nb">local</span><span class="w"> </span>computer:
+<span class="go">nextflow run mop_mod.nf -with-singularity -bg -profile local &gt; log_mod.txt</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h3>Results<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<p>Once the module has finished, these directories should be in your output folder: MISSING!!!</p>
+</section>
+<section id="detection-of-differentially-modified-sites-with-high-confidence">
+<h3>Detection of differentially modified sites with high confidence<a class="headerlink" href="#detection-of-differentially-modified-sites-with-high-confidence" title="Permalink to this heading"></a></h3>
+<p>Once we have obtained the predictions from the four algorithms run by <em>mop_mod</em>, we can run <strong>NanoConsensus</strong> using the <em>mop_consensus</em> module. Please, run the code below:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span>Go<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>directory:
+<span class="go">cd ./../mop_consensus/</span>
+
+<span class="gp">#</span>Summary<span class="w"> </span>of<span class="w"> </span>files:
+<span class="gp">#</span><span class="c1"># comparison.tsv file: it is used to input the pairwise comparisons that the workflow should analyse (it must be the same as the one used when running mop_mod)</span>
+<span class="gp">#</span><span class="c1"># params.config file: it is the file that the user must edit to introduce the inputs required by the workflow.</span>
+
+<span class="gp">#</span>Edit<span class="w"> </span>params.config<span class="w"> </span>file:
+<span class="go">nano params.config</span>
+
+<span class="gp">#</span>Params.config<span class="w"> </span>content:
+<span class="go">params {</span>
+
+<span class="go">  input_path         = &quot;$baseDir/../mop_mod/output_mod&quot;</span>
+<span class="go">  reference          = &quot;/home/andelgado/Documents/software/NanoConsensus/ref/Saccharomyces_cerevisiae.rRNA.fa&quot;</span>
+
+<span class="go">  comparison         = &quot;$baseDir/comparison.tsv&quot;</span>
+<span class="go">  padsize            = 50</span>
+<span class="go">  output             = &quot;$baseDir/output_consensus&quot;</span>
+
+<span class="go">  email              = &quot;username@domain&quot;</span>
+<span class="go">}</span>
+
+<span class="gp">#</span>Save<span class="w"> </span>file<span class="w"> </span>and<span class="w"> </span>exit:
+<span class="go">CTRL+o</span>
+<span class="go">CTRL+x</span>
+
+<span class="gp">#</span>For<span class="w"> </span>the<span class="w"> </span>comparison.tsv<span class="w"> </span>file,<span class="w"> </span>you<span class="w"> </span>have<span class="w"> </span>two<span class="w"> </span>options:
+<span class="gp">#</span><span class="c1">#OPTION 1: Copy the comparison file from the mop_mod directory:</span>
+<span class="go">cp ./../mop_mod/comparison.tsv .</span>
+
+<span class="gp">#</span><span class="c1">#OPTION 2:Edit comparison.tsv file:</span>
+<span class="go">nano comparison.tsv</span>
+
+<span class="gp">#</span>Comparison.tsv<span class="w"> </span>content<span class="w"> </span>-<span class="w"> </span>IT<span class="w"> </span>MUST<span class="w"> </span>BE<span class="w"> </span>TAB<span class="w"> </span>SEPARATED!
+<span class="go">snR36_KO        WT100_Cov100_Rep1</span>
+<span class="go">snR36_KO        WT100_Cov50_Rep1</span>
+<span class="go">snR36_KO        WT50_Cov50_Rep1</span>
+
+<span class="gp">#</span>Save<span class="w"> </span>file<span class="w"> </span>and<span class="w"> </span>exit:
+<span class="go">CTRL+o</span>
+<span class="go">CTRL+x</span>
+
+<span class="gp">#</span>Run<span class="w"> </span>the<span class="w"> </span>module<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>background,<span class="w"> </span>with<span class="w"> </span>singularity<span class="w"> </span>and<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span><span class="nb">local</span><span class="w"> </span>computer:
+<span class="go">nextflow run mop_consensus.nf -with-singularity -bg -profile local &gt; log_consensus.txt</span>
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h3>Results<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<p>Once the module has finished, these directories should be in your output folder: MISSING!!!</p>
+</section>
 </section>
 </section>
 
