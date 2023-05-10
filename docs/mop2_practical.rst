@@ -140,12 +140,20 @@ For installing the MoP2 pipeline and downloading guppy 3.4.2, please use the cod
 
   git clone --depth 1 --recurse-submodules https://github.com/biocorecrg/MOP2.git
   
-  cd MoP2; bash INSTALL.sh
+  cd MoP2; bash INSTALL.sh 3.4.2
 
 For this hands-on exercise, we will perform polyA tail length estimation and RNA modification detection on total RNA DRS samples from *Saccharomyces cerevisiae* (see list below):
 
 - Sample 1: snR36 knock-out strain
 - Samples 2, 3 and 4: wild-type strains
+
+We need to downolad the test dataset that is bundled in this repository
+
+.. code-block:: console
+
+  wget https://biocorecrg.github.io/ropes-linux-mop2-2023/data/nanopore.tar.gz
+  
+  
 
 Before setting up *mop_preproceess* module, it is important that you think about which softwares and parameters should be used - otherwise you might run analysis that are not suitable to your sample (and you will lose time and resources). Please, answers the questions below:
 
