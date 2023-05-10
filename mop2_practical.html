@@ -220,7 +220,7 @@
 <p>For installing the MoP2 pipeline and downloading guppy 3.4.2, please use the code below:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git clone --depth 1 --recurse-submodules https://github.com/biocorecrg/MOP2.git</span>
 
-<span class="go">cd MoP2; bash INSTALL.sh</span>
+<span class="go">cd MoP2; bash INSTALL.sh 3.4.2</span>
 </pre></div>
 </div>
 <p>For this hands-on exercise, we will perform polyA tail length estimation and RNA modification detection on total RNA DRS samples from <em>Saccharomyces cerevisiae</em> (see list below):</p>
@@ -228,6 +228,37 @@
 <li><p>Sample 1: snR36 knock-out strain</p></li>
 <li><p>Samples 2, 3 and 4: wild-type strains</p></li>
 </ul>
+<p>We need to downolad the test dataset that is bundled in this repository</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">wget https://biocorecrg.github.io/ropes-linux-mop2-2023/data/nanopore.tar.gz</span>
+
+<span class="go">--2023-05-10 15:48:30--  https://biocorecrg.github.io/ropes-linux-mop2-2023/data/nanopore.tar.gz</span>
+<span class="go">Resolving biocorecrg.github.io (biocorecrg.github.io)... 185.199.108.153, 185.199.111.153, 185.199.110.153, ...</span>
+<span class="go">Connecting to biocorecrg.github.io (biocorecrg.github.io)|185.199.108.153|:443... connected.</span>
+<span class="go">HTTP request sent, awaiting response... 200 OK</span>
+<span class="go">Length: 31740190 (30M) [application/gzip]</span>
+<span class="go">Saving to: ‘nanopore.tar.gz’</span>
+
+<span class="go">100%[=======================================================================&gt;] 31,740,190   123MB/s   in 0.2s</span>
+
+<span class="go">2023-05-10 15:48:35 (123 MB/s) - ‘nanopore.tar.gz’ saved [31740190/31740190]</span>
+
+<span class="go">ls -alh nanopore.tar.gz</span>
+<span class="go">-rw-r--r-- 1 lcozzuto Bioinformatics_Unit 31M May 10 15:45 nanopore.tar.gz</span>
+
+<span class="go">tar -zvxf nanopore.tar.gz</span>
+<span class="go">nanopore/</span>
+<span class="go">nanopore/WT100_Cov50_Rep1/</span>
+<span class="go">nanopore/WT100_Cov100_Rep1/</span>
+<span class="go">nanopore/Saccharomyces_cerevisiae.rRNA.fa</span>
+<span class="go">nanopore/snR36_KO/</span>
+<span class="go">nanopore/WT50_Cov50_Rep1/</span>
+<span class="go">nanopore/WT50_Cov50_Rep1/batch_unmodified0.fast5</span>
+<span class="go">nanopore/WT50_Cov50_Rep1/batch_modified0.fast5</span>
+<span class="go">nanopore/snR36_KO/batch0.fast5</span>
+<span class="go">nanopore/WT100_Cov100_Rep1/batch_modified0.fast5</span>
+<span class="go">nanopore/WT100_Cov50_Rep1/batch_modified0.fast5</span>
+</pre></div>
+</div>
 <p>Before setting up <em>mop_preproceess</em> module, it is important that you think about which softwares and parameters should be used - otherwise you might run analysis that are not suitable to your sample (and you will lose time and resources). Please, answers the questions below:</p>
 <ul class="simple">
 <li><p><strong>Question 1:</strong> Which is the most abundant RNA specie in your samples? Is it highly or lowly modified?</p></li>
