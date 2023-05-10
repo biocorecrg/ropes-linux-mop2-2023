@@ -200,6 +200,7 @@ Every command has a manual, you can read it by using the program **man** with th
 
 .. note::
 
+	**RECAP**
 	* **touch** writes empty files **mkdir** empty directories
 	* **mv** move files (or directory) or change their name
 	* **ls** list files and directories
