@@ -412,9 +412,9 @@ To know how many sequences are in the files we can use the program **grep** with
 .. note::
 
 	**Recap**
-	* **wget** downloads file from a URL
-	* **more** prints a part of the content of a file in interactive way
-	* **grep** extract the rows containing a particular character / pattern.
+		* **wget** downloads file from a URL
+		* **more** prints a part of the content of a file in interactive way
+		* **grep** extract the rows containing a particular character / pattern.
 
 Manipulate files, piping, parsing, reformatting
 ====================
@@ -616,9 +616,9 @@ So now we can use the grep command to extract our sequence of interest.
 .. note::
 
 	**Recap**
-	* **cut** extract the indicated column 
-	* **awk** allows several kind of parsing operations
-	* **head** extract the indicated number of rows from the beginning of a file
+		* **cut** extract the indicated column 
+		* **awk** allows several kind of parsing operations
+		* **head** extract the indicated number of rows from the beginning of a file
 
 Sequence file formats: Fasta and fastq
 =====================================
@@ -689,8 +689,8 @@ So considering that each sequence is defined by 4 rows we should have ``32,345 *
 .. note::
 
 	**Recap**
-	* **tar** allows to compress / uncompress more files in one
-	* **zcat** equivalent of **cat** for gzipped files
+		* **tar** allows to compress / uncompress more files in one
+		* **zcat** equivalent of **cat** for gzipped files
 
 Bed format and regular expressions
 ====================================
