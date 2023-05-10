@@ -200,7 +200,7 @@ Every command has a manual, you can read it by using the program **man** with th
 
 .. note::
 
-	**RECAP**
+	**Recap**
 	* **touch** writes empty files **mkdir** empty directories
 	* **mv** move files (or directory) or change their name
 	* **ls** list files and directories
@@ -409,12 +409,12 @@ To know how many sequences are in the files we can use the program **grep** with
 	4228
 
 
-**Recap**
------------------
+.. note::
 
-* **wget** downloads file from a URL
-* **more** prints a part of the content of a file in interactive way
-* **grep** extract the rows containing a particular character / pattern.
+	**Recap**
+	* **wget** downloads file from a URL
+	* **more** prints a part of the content of a file in interactive way
+	* **grep** extract the rows containing a particular character / pattern.
 
 Manipulate files, piping, parsing, reformatting
 ====================
@@ -613,12 +613,12 @@ So now we can use the grep command to extract our sequence of interest.
 	>ACT31118 pep supercontig:ASM2366v1:CP001665:4355734:4355916:-1 gene:ECBD_4135 transcript:ACT31118 gene_biotype:protein_coding transcript_biotype:protein_coding description:hypothetical protein	MGKNDVNQIADNVRVVHAGCGVNALSGLQSRINSMYCSLLVGLISAAHQAILRLSSVSCP
 
 
-**Recap**
---------------
+.. note::
 
-* **cut** extract the indicated column 
-* **awk** allows several kind of parsing operations
-* **head** extract the indicated number of rows from the beginning of a file
+	**Recap**
+	* **cut** extract the indicated column 
+	* **awk** allows several kind of parsing operations
+	* **head** extract the indicated number of rows from the beginning of a file
 
 Sequence file formats: Fasta and fastq
 =====================================
@@ -686,11 +686,11 @@ So considering that each sequence is defined by 4 rows we should have ``32,345 *
 	zcat SRR6466185_1.fastq.gz | wc -l | awk '{print $0/4}'
 	32345
 
-**Recap**
---------------
+.. note::
 
-* **tar** allows to compress / uncompress more files in one
-* **zcat** equivalent of **cat** for gzipped files
+	**Recap**
+	* **tar** allows to compress / uncompress more files in one
+	* **zcat** equivalent of **cat** for gzipped files
 
 Bed format and regular expressions
 ====================================
@@ -958,12 +958,12 @@ More extended regular expression can be searched by using grep with the paramete
 	GVGIGIETVDGVPVKINNNSGATFVLSDGSNTLLFNTWVQAKSGRDVTLGNFT**ATATAT**F
 
 
-Recap
------------
+.. note::
 
-* **uniq** it removes the duplicated elements in a list
-* **sort** it sorts a given list
-* **shuf** it shuffles a given list
+	**Recap**	
+	* **uniq** it removes the duplicated elements in a list
+	* **sort** it sorts a given list
+	* **shuf** it shuffles a given list
 
 Exercises
 ------------
