@@ -80,7 +80,7 @@ Having a `GitHub account <https://github.com/join>`_ is recommended.
 Dates, time, location
 ============
 
-* Dates: February 15-17, 2023
+* Dates: May 15-17, 2023
 
 * Schedule: 09:00-13:00 **CET**
 
@@ -93,7 +93,7 @@ Program
 ============
 
 
-Day 1: LINUX BASICS 
+Day 1: Linux Basics
 -------------
 
 * 09.00-11:00 Linux basics I
