@@ -549,9 +549,9 @@ After preprocessing the data, we can go directly to run the *mop_tail* module wh
 	  input_path         = "$projectDir/../mop_preprocess/output/"
 	  reference          = "$projectDir/../mydata/nanopore/Saccharomyces_cerevisiae.rRNA.fa"
 
-	  pars_tools         = "$baseDir/tools_opt.tsv"
+	  pars_tools         = "$projectDir/tools_opt.tsv"
 
-	  output             = "$baseDir/outputPoly"
+	  output             = "$projectDir/outputPoly"
 
 	  tailfindr          = "YES"
 	  nanopolish         = "YES"
@@ -671,13 +671,13 @@ After preprocessing the data, we can run the *mop_mop* module which runs four al
   #Params.config content:
   params {
     input_path         = "$projectDir/../mop_preprocess/output/"
-    comparison         = "$baseDir/comparison.tsv"
+    comparison         = "$projectDir/comparison.tsv"
 
     reference          = "$projectDir/../mydata/nanopore/Saccharomyces_cerevisiae.rRNA.fa"
 
-    output             = "$baseDir/output_mod"
+    output             = "$projectDir/output_mod"
 
-    pars_tools         = "$baseDir/tools_opt.tsv"
+    pars_tools         = "$projectDir/tools_opt.tsv"
 
     // flows
     epinano       = "YES"
@@ -736,12 +736,12 @@ Once we have obtained the predictions from the four algorithms run by *mop_mod*,
   #Params.config content:
   params {
     
-    input_path         = "$baseDir/../mop_mod/output_mod"
+    input_path         = "$projectDir/../mop_mod/output_mod"
     reference          = "$projectDir/../mydata/nanopore/Saccharomyces_cerevisiae.rRNA.fa"
 
-    comparison         = "$baseDir/comparison.tsv"
+    comparison         = "$projectDir/comparison.tsv"
     padsize            = 50
-    output             = "$baseDir/output_consensus"
+    output             = "$projectDir/output_consensus"
     
     email              = "username@domain"
   }
