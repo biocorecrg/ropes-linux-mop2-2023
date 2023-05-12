@@ -291,17 +291,13 @@ First, you need to access the `tower.nf <https://tower.nf/>`__ website and login
   :width: 800
 
 
-If you selected the email for receiving the instructions and the token to be used.
+We recommend you to use github or google for autentication. If you selected the email for receiving the instructions and the token to be used.
 
 .. image:: images/tower0.png
   :width: 800
 
-check the email:
 
-.. image:: images/tower1.png
-  :width: 800
-
-
+Here you see there is not yet any information.
 
 .. image:: images/tower2.png
   :width: 800
@@ -395,10 +391,10 @@ Now we can launch the pipeline:
   arity/biocorecrg-mopbasecall-0.2.img]
 
 
-and go to the tower website again:
+and go to the tower website again using the link in the log:
 
 
-.. image:: images/towermop.png
+.. image:: images/tower_mop.png
   :width: 800
 
 
