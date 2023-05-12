@@ -55,7 +55,10 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#hands-on-1-mop-preprocess-and-mop-tail">Hands-on 1: <em>mop_preprocess</em> and <em>mop_tail</em></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#mop2-installation-and-data-preprocessing">MOP2 installation and data preprocessing:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mop2-installation-and-data-preprocessing">MOP2 installation and data preprocessing:</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tower">Tower</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#results">Results</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#polya-tail-length-estimation">PolyA tail length estimation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id1">Results</a></li>
@@ -237,7 +240,7 @@ h5ls /path/to/fast5 | head -n15
 <p>For installing the MoP2 pipeline and downloading guppy 3.4.2, please use the code below:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git clone --depth 1 --recurse-submodules https://github.com/biocorecrg/MOP2.git</span>
 
-<span class="go">cd MoP2; bash INSTALL.sh 3.4.2</span>
+<span class="go">cd MOP2; bash INSTALL.sh 3.4.5</span>
 </pre></div>
 </div>
 <p>For this hands-on exercise, we will perform polyA tail length estimation and RNA modification detection on total RNA DRS samples from <em>Saccharomyces cerevisiae</em> (see list below):</p>
@@ -246,7 +249,10 @@ h5ls /path/to/fast5 | head -n15
 <li><p>Samples 2, 3 and 4: wild-type strains</p></li>
 </ul>
 <p>We need to downolad the test dataset that is bundled in this repository</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">wget https://biocorecrg.github.io/ropes-linux-mop2-2023/data/nanopore.tar.gz</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">mkdir mydata</span>
+<span class="go">cd mydata</span>
+
+<span class="go">wget https://biocorecrg.github.io/ropes-linux-mop2-2023/data/nanopore.tar.gz</span>
 
 <span class="go">--2023-05-10 15:48:30--  https://biocorecrg.github.io/ropes-linux-mop2-2023/data/nanopore.tar.gz</span>
 <span class="go">Resolving biocorecrg.github.io (biocorecrg.github.io)... 185.199.108.153, 185.199.111.153, 185.199.110.153, ...</span>
@@ -295,13 +301,18 @@ h5ls /path/to/fast5 | head -n15
 <span class="gp">#</span><span class="c1"># *_opt.tsv files: it is used to input additional parameters to the individual softwares executed by the workflow.</span>
 <span class="gp">#</span><span class="c1"># params.config file: it is the file that the user must edit to introduce the inputs required by the workflow.</span>
 
-<span class="gp">#</span>Edit<span class="w"> </span>params.config<span class="w"> </span>file:
+<span class="gp">#</span>Create<span class="w"> </span>a<span class="w"> </span>new<span class="w"> </span>params<span class="w"> </span>file<span class="w"> </span>and<span class="w"> </span>link<span class="w"> </span>it<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>original<span class="w"> </span>one:
+<span class="go">cp params.config myparams.config</span>
+<span class="go">rm params.config</span>
+<span class="go">ln -s myparams.config params.config</span>
+
+<span class="gp"># </span>edit<span class="w"> </span>the<span class="w"> </span>new<span class="w"> </span>file
 <span class="go">nano params.config</span>
 
 <span class="gp">#</span>Params.config<span class="w"> </span>content:
 <span class="go">params {</span>
 <span class="go">  conffile            = &quot;final_summary_01.txt&quot;</span>
-<span class="go">  fast5               = &quot;/home/andelgado/Documents/cluster/users/andelgado/ROPES_training/data_mod_consensus/**/*.fast5&quot;</span>
+<span class="go">  fast5               = &quot; ${projectDir}/mydata/../**/*.fast5&quot;</span>
 <span class="go">  fastq               = &quot;&quot;</span>
 
 <span class="go">  reference           = &quot;/home/andelgado/Documents/software/NanoConsensus/ref/Saccharomyces_cerevisiae.rRNA.fa&quot;</span>
@@ -342,6 +353,109 @@ h5ls /path/to/fast5 | head -n15
 <span class="go">nextflow run mop_preprocess.nf -with-singularity -bg -profile local &gt; log_preprocess.txt</span>
 </pre></div>
 </div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>For long analysis and better checking the resources used you might want to try using the Tower website.</p>
+</div>
+<section id="tower">
+<h4>Tower<a class="headerlink" href="#tower" title="Permalink to this heading"></a></h4>
+<p><strong>Nextflow Tower</strong> is an open source monitoring and managing platform for Nextflow workflows. There are two versions:</p>
+<ul class="simple">
+<li><p>Open source for monitoring of single pipelines.</p></li>
+<li><p>Commercial one for workflow management, monitoring and resource optimisation.</p></li>
+</ul>
+<p>We will show the open source one.</p>
+<p>First, you need to access the <a class="reference external" href="https://tower.nf/">tower.nf</a> website and login.</p>
+<a class="reference internal image-reference" href="_images/tower.png"><img alt="_images/tower.png" src="_images/tower.png" style="width: 800px;" /></a>
+<p>If you selected the email for receiving the instructions and the token to be used.</p>
+<a class="reference internal image-reference" href="_images/tower0.png"><img alt="_images/tower0.png" src="_images/tower0.png" style="width: 800px;" /></a>
+<p>check the email:</p>
+<a class="reference internal image-reference" href="_images/tower1.png"><img alt="_images/tower1.png" src="_images/tower1.png" style="width: 800px;" /></a>
+<a class="reference internal image-reference" href="_images/tower2.png"><img alt="_images/tower2.png" src="_images/tower2.png" style="width: 800px;" /></a>
+<p>You can generate your token at <a class="reference external" href="https://tower.nf/tokens">https://tower.nf/tokens</a> and copy paste it in your pipeline using this snippet in the configuration file:</p>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="n">tower</span><span class="w"> </span><span class="o">{</span>
+<span class="w">  </span><span class="n">accessToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&lt;YOUR TOKEN&gt;&#39;</span>
+<span class="w">  </span><span class="n">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>or exporting those environmental variables:</p>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="n">export</span><span class="w"> </span><span class="n">TOWER_ACCESS_TOKEN</span><span class="o">=*******</span><span class="n">YOUR</span><span class="o">***</span><span class="n">TOKEN</span><span class="o">*****</span><span class="n">HERE</span><span class="o">*******</span>
+</pre></div>
+</div>
+<p>Now we can launch the pipeline:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span>Run<span class="w"> </span>the<span class="w"> </span>module<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>background,<span class="w"> </span>with<span class="w"> </span>singularity<span class="w"> </span>and<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span><span class="nb">local</span><span class="w"> </span>computer:
+<span class="go">nextflow run mop_preprocess.nf -with-singularity -bg -profile local -with-tower &gt; log_preprocess.txt</span>
+
+<span class="go">more log_preprocess.txt</span>
+<span class="go">N E X T F L O W  ~  version 23.03.0-edge</span>
+<span class="go">Launching `mop_preprocess.nf` [grave_poincare] DSL2 - revision: ec40fe0af4</span>
+
+
+<span class="go">╔╦╗╔═╗╔═╗  ╔═╗┬─┐┌─┐┌─┐┬─┐┌─┐┌─┐┌─┐┌─┐┌─┐</span>
+<span class="go">║║║║ ║╠═╝  ╠═╝├┬┘├┤ ├─┘├┬┘│ ││  ├┤ └─┐└─┐</span>
+<span class="go">╩ ╩╚═╝╩    ╩  ┴└─└─┘┴  ┴└─└─┘└─┘└─┘└─┘└─┘</span>
+
+<span class="go">====================================================</span>
+<span class="go">BIOCORE@CRG Master of Pores 2. Preprocessing - N F  ~  version 2.0</span>
+<span class="go">====================================================</span>
+
+<span class="go">conffile.                 : final_summary_01.txt</span>
+
+<span class="go">fast5                     : /nfs/users/bi/lcozzuto/ooo/MOP2/mop_preprocess/../mydata/nanopore/**/*.fast5</span>
+<span class="go">fastq                     :</span>
+
+<span class="go">reference                 : /nfs/users/bi/lcozzuto/ooo/MOP2/mop_preprocess/../mydata/nanopore/Saccharomyces_cerevisiae.rRNA.f</span>
+<span class="go">a</span>
+<span class="go">annotation                :</span>
+
+<span class="go">granularity.              : 1</span>
+
+<span class="go">ref_type                  : transcriptome</span>
+<span class="go">pars_tools                : drna_tool_splice_opt.tsv</span>
+
+<span class="go">output                    : /nfs/users/bi/lcozzuto/ooo/MOP2/mop_preprocess/output</span>
+
+<span class="go">GPU                       : OFF</span>
+
+<span class="go">basecalling               : guppy</span>
+<span class="go">demultiplexing            : NO</span>
+<span class="go">demulti_fast5             : NO</span>
+
+<span class="go">filtering                 : nanoq</span>
+<span class="go">mapping                   : graphmap</span>
+
+<span class="go">counting                  : nanocount</span>
+<span class="go">discovery                 : NO</span>
+
+<span class="go">cram_conv               : NO</span>
+<span class="go">subsampling_cram          : 50</span>
+
+
+<span class="go">saveSpace                 : NO</span>
+<span class="go">email                     : lucacozzuto@crg.es</span>
+
+<span class="go">Sending the email to lucacozzuto@crg.es</span>
+
+<span class="go">----------------------CHECK TOOLS -----------------------------</span>
+<span class="go">basecalling : guppy</span>
+<span class="go">&gt; demultiplexing will be skipped</span>
+<span class="go">mapping : graphmap</span>
+<span class="go">filtering : nanoq</span>
+<span class="go">counting : nanocount</span>
+<span class="go">&gt; discovery will be skipped</span>
+<span class="go">--------------------------------------------------------------</span>
+<span class="go">Monitor the execution with Nextflow Tower using this URL: https://tower.nf/orgs/Bioinfo_CRG/workspaces/MoP/watch/54rW5nmBxt43</span>
+<span class="go">Td</span>
+<span class="go">Pulling Singularity image docker://biocorecrg/mopbasecall:0.2 [cache /nfs/users/bi/lcozzuto/ooo/MOP2/mop_preprocess/../singul</span>
+<span class="go">arity/biocorecrg-mopbasecall-0.2.img]</span>
+</pre></div>
+</div>
+<p>and go to the tower website again:</p>
+<a class="reference internal image-reference" href="_images/tower3.png"><img alt="_images/tower3.png" src="_images/tower3.png" style="width: 800px;" /></a>
+<p>When the pipeline is finished we can also receive a mail.</p>
+<a class="reference internal image-reference" href="_images/tower4.png"><img alt="_images/tower4.png" src="_images/tower4.png" style="width: 800px;" /></a>
+</section>
 </section>
 <section id="results">
 <h3>Results<a class="headerlink" href="#results" title="Permalink to this heading"></a></h3>

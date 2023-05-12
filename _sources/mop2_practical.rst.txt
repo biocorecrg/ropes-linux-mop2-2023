@@ -149,7 +149,7 @@ For installing the MoP2 pipeline and downloading guppy 3.4.2, please use the cod
 
   git clone --depth 1 --recurse-submodules https://github.com/biocorecrg/MOP2.git
   
-  cd MoP2; bash INSTALL.sh 3.4.2
+  cd MOP2; bash INSTALL.sh 3.4.5
 
 For this hands-on exercise, we will perform polyA tail length estimation and RNA modification detection on total RNA DRS samples from *Saccharomyces cerevisiae* (see list below):
 
@@ -159,6 +159,9 @@ For this hands-on exercise, we will perform polyA tail length estimation and RNA
 We need to downolad the test dataset that is bundled in this repository
 
 .. code-block:: console
+
+  mkdir mydata
+  cd mydata
 
   wget https://biocorecrg.github.io/ropes-linux-mop2-2023/data/nanopore.tar.gz
  
@@ -215,13 +218,18 @@ Now, we can start setting up the *mop_preproceess* module. Please follow the cod
   ## *_opt.tsv files: it is used to input additional parameters to the individual softwares executed by the workflow.
   ## params.config file: it is the file that the user must edit to introduce the inputs required by the workflow.
   
-  #Edit params.config file:
+  #Create a new params file and link it to the original one:
+  cp params.config myparams.config
+  rm params.config
+  ln -s myparams.config params.config
+  
+  # edit the new file
   nano params.config
   
   #Params.config content:
   params {
     conffile            = "final_summary_01.txt"
-    fast5               = "/home/andelgado/Documents/cluster/users/andelgado/ROPES_training/data_mod_consensus/**/*.fast5"
+    fast5               = " ${projectDir}/mydata/../**/*.fast5"
     fastq               = ""
 
     reference           = "/home/andelgado/Documents/software/NanoConsensus/ref/Saccharomyces_cerevisiae.rRNA.fa"
@@ -263,6 +271,144 @@ As discussed earlier, these options are okay when analysing total RNA samples. H
   #Run the module in the background, with singularity and in the local computer:
   nextflow run mop_preprocess.nf -with-singularity -bg -profile local > log_preprocess.txt
   
+.. tip::
+  For long analysis and better checking the resources used you might want to try using the Tower website.
+  
+Tower
+=======
+
+**Nextflow Tower** is an open source monitoring and managing platform for Nextflow workflows. There are two versions:
+
+- Open source for monitoring of single pipelines.
+- Commercial one for workflow management, monitoring and resource optimisation.
+
+We will show the open source one.
+
+First, you need to access the `tower.nf <https://tower.nf/>`__ website and login.
+
+
+.. image:: images/tower.png
+  :width: 800
+
+
+If you selected the email for receiving the instructions and the token to be used.
+
+.. image:: images/tower0.png
+  :width: 800
+
+check the email:
+
+.. image:: images/tower1.png
+  :width: 800
+
+
+
+.. image:: images/tower2.png
+  :width: 800
+
+
+You can generate your token at `https://tower.nf/tokens <https://tower.nf/tokens>`__ and copy paste it in your pipeline using this snippet in the configuration file:
+
+.. code-block:: groovy
+
+	tower {
+	  accessToken = '<YOUR TOKEN>'
+	  enabled = true
+	}
+
+
+or exporting those environmental variables:
+
+.. code-block:: groovy
+
+	export TOWER_ACCESS_TOKEN=*******YOUR***TOKEN*****HERE*******
+
+
+Now we can launch the pipeline:
+
+.. code-block:: console
+
+  #Run the module in the background, with singularity and in the local computer:
+  nextflow run mop_preprocess.nf -with-singularity -bg -profile local -with-tower > log_preprocess.txt
+
+  more log_preprocess.txt 
+  N E X T F L O W  ~  version 23.03.0-edge
+  Launching `mop_preprocess.nf` [grave_poincare] DSL2 - revision: ec40fe0af4
+
+
+  ╔╦╗╔═╗╔═╗  ╔═╗┬─┐┌─┐┌─┐┬─┐┌─┐┌─┐┌─┐┌─┐┌─┐
+  ║║║║ ║╠═╝  ╠═╝├┬┘├┤ ├─┘├┬┘│ ││  ├┤ └─┐└─┐
+  ╩ ╩╚═╝╩    ╩  ┴└─└─┘┴  ┴└─└─┘└─┘└─┘└─┘└─┘
+
+  ====================================================
+  BIOCORE@CRG Master of Pores 2. Preprocessing - N F  ~  version 2.0
+  ====================================================
+
+  conffile.                 : final_summary_01.txt
+
+  fast5                     : /nfs/users/bi/lcozzuto/ooo/MOP2/mop_preprocess/../mydata/nanopore/**/*.fast5
+  fastq                     : 
+
+  reference                 : /nfs/users/bi/lcozzuto/ooo/MOP2/mop_preprocess/../mydata/nanopore/Saccharomyces_cerevisiae.rRNA.f
+  a
+  annotation                : 
+
+  granularity.              : 1
+
+  ref_type                  : transcriptome
+  pars_tools                : drna_tool_splice_opt.tsv
+
+  output                    : /nfs/users/bi/lcozzuto/ooo/MOP2/mop_preprocess/output
+
+  GPU                       : OFF
+
+  basecalling               : guppy 
+  demultiplexing            : NO 
+  demulti_fast5             : NO
+
+  filtering                 : nanoq
+  mapping                   : graphmap
+
+  counting                  : nanocount
+  discovery                 : NO
+
+  cram_conv           	  : NO
+  subsampling_cram          : 50
+
+
+  saveSpace                 : NO
+  email                     : lucacozzuto@crg.es
+
+  Sending the email to lucacozzuto@crg.es
+
+  ----------------------CHECK TOOLS -----------------------------
+  basecalling : guppy
+  > demultiplexing will be skipped
+  mapping : graphmap
+  filtering : nanoq
+  counting : nanocount
+  > discovery will be skipped
+  --------------------------------------------------------------
+  Monitor the execution with Nextflow Tower using this URL: https://tower.nf/orgs/Bioinfo_CRG/workspaces/MoP/watch/54rW5nmBxt43
+  Td
+  Pulling Singularity image docker://biocorecrg/mopbasecall:0.2 [cache /nfs/users/bi/lcozzuto/ooo/MOP2/mop_preprocess/../singul
+  arity/biocorecrg-mopbasecall-0.2.img]
+
+
+and go to the tower website again:
+
+
+.. image:: images/tower3.png
+  :width: 800
+
+
+When the pipeline is finished we can also receive a mail.
+
+
+.. image:: images/tower4.png
+  :width: 800
+
+
 Results
 ......................
 
