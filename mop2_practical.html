@@ -166,7 +166,7 @@ h5ls /path/to/fast5 | head -n15
 </div>
 <ul>
 <li><p><strong>Step 1b: Demultiplexing</strong></p>
-<p>Demultiplexing is required when analysing a barcoded sample; otherwise, this step is not necessary. Here, <strong>Deeplexicon</strong> is used. This algorithm converts the barcode’s signal into an image, which is then classified based on a machine-learning approach.</p>
+<p>Demultiplexing is required when analysing a barcoded sample; otherwise, this step is not necessary. <strong>Deeplexicon</strong> is used when analysing dRNA. This algorithm converts the barcode’s signal into an image, which is then classified based on a machine-learning approach. For cDNA, DNA and metDNA you can specify within the parameters to use <strong>Guppy</strong>.</p>
 <ul class="simple">
 <li><p><strong>Input:</strong> Raw fast5 files</p></li>
 <li><p><strong>Output:</strong> Demuxed raw fast5 files</p></li>
