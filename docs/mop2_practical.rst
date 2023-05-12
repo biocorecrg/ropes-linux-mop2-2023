@@ -21,7 +21,9 @@ The complexity of analysing current intensity data together with the lack of sys
 For more information you can read our pubblications:
 
 * `"MasterOfPores: A Workflow for the Analysis of Oxford Nanopore Direct RNA Sequencing Datasets" Cozzuto L, Liu H, Pryszcz LP, Hermoso Pulido T,  Delgado-Tejedor A, Ponomarenko J and Novoa EM. Front. Genet., 17 March 2020. <https://www.frontiersin.org/articles/10.3389/fgene.2020.00211/full>`__
-* `"Nanopore Direct RNA Sequencing Data Processing and Analysis Using MasterOfPores" Cozzuto L, Delgado-Tejedor A, Hermoso Pulido T, Novoa EM, Ponomarenko J. N. Methods Mol Biol. 2023;2624:185-205. <https://link.springer.com/protocol/10.1007/978-1-0716-2962-8_13>`__
+* `"Nanopore Direct RNA Sequexport SINGULARITY_CACHEDIR=$HOME/tmp
+export NXF_SINGULARITY_CACHEDIR="$HOME/singularity_containers/"
+export SINGULARITY_TMPDIR=$HOME/tmp_singuencing Data Processing and Analysis Using MasterOfPores" Cozzuto L, Delgado-Tejedor A, Hermoso Pulido T, Novoa EM, Ponomarenko J. N. Methods Mol Biol. 2023;2624:185-205. <https://link.springer.com/protocol/10.1007/978-1-0716-2962-8_13>`__
 
 MOP2 can perform all steps required to analyse DRS data - from converting raw current intensities into multiple types of processed data to RNA modified sites detection and polyA tail length predictions. This pipeline consists of four modules: *mop_preprocess*, *mop_tail*, *mop_mod* and *mop_consensus*.
 
@@ -52,9 +54,17 @@ The pre-processing module is able to perform base-calling, mapping (either to a 
   
   .. code-block:: console
 
-    #Install h5ls:
-    apt-get install hdf5-tools
-    
+    #Install h5ls as sudo user:
+    sudo apt-get install hdf5-tools
+
+    [sudo] password for training: 
+    Reading package lists... Done
+    Building dependency tree... Done
+    Reading state information... Done
+    The following additional packages will be installed:
+    libaec0 libhdf5-103-1 libhdf5-hl-100 libsz2
+    [....]
+
     #Investigate fast5 files' structure:
     h5ls /path/to/fast5 | head -n15
   
@@ -208,7 +218,7 @@ Now, we can start setting up the *mop_preproceess* module. Please follow the cod
 .. code-block:: console
 
   #Enter the mop_preprocess directory:
-  cd mop_preprocess
+  cd ../mop_preprocess
   
   #List all files and directories:
   ls -l 
@@ -229,10 +239,10 @@ Now, we can start setting up the *mop_preproceess* module. Please follow the cod
   #Params.config content:
   params {
     conffile            = "final_summary_01.txt"
-    fast5               = " ${projectDir}/mydata/../**/*.fast5"
+    fast5               = "${projectDir}/../mydata/nanopore/**/*.fast5"
     fastq               = ""
 
-    reference           = "/home/andelgado/Documents/software/NanoConsensus/ref/Saccharomyces_cerevisiae.rRNA.fa"
+    reference           = "${projectDir}/../mydata/nanopore/Saccharomyces_cerevisiae.rRNA.fa"
     annotation          = ""
     ref_type            = "transcriptome"
 
@@ -266,8 +276,53 @@ Now, we can start setting up the *mop_preproceess* module. Please follow the cod
 
 As discussed earlier, these options are okay when analysing total RNA samples. However, depending on the type of sample, changes in the params.config file should be made. Click `here <https://biocorecrg.github.io/MOP2/docs/mop_preprocess.html>`_ to check all parameters accepted by *mop_preprocess*.
 
+**MoP2** has different profiles with resources specified for several infrastructures. If you have a look at the folder **conf** you can have an idea of the possibility to fine tune the resources such as maximum execution time, the queue name, the maximum memory etc. Fo example let's have a look at the **local.config file**, we can change it to use more processors and memory, since our workstations have 8 CPUs and 16 Gb of RAM Memory.
+
+.. code-block:: console
+	cd ../conf
+
+	vim local.config
+	
+	process {
+		executor = 'local'
+		cpus = 3
+		memory = '6GB'    
+	    cache='lenient'
+	    container = 'biocorecrg/mopprepr:0.7'
+	    containerOptions = { workflow.containerEngine == "docker" ? '-u $(id -u):$(i
+	d -g)': null}
+	    withLabel: big_cpus_ignore {
+		errorStrategy = 'ignore'
+
+	    }
+	    withLabel: basecall_gpus {
+		    maxForks = 1
+		    containerOptions = { workflow.containerEngine == "singularity" ? '--
+	nv':
+			   ( workflow.containerEngine == "docker" ? '-u $(id -u):$(id -g
+	) --gpus all': null ) } 
+	    }
+	}
+
+Another important thing to say is that MoP2 will generates several singularity images and this could fill the temporary space that singularity uses for converting them from docker. For this is a good idea to specify some environmental variable to mitigate this problem.
+
 .. code-block:: console
 
+	mkdir $HOME/tmp
+	mkdir $HOME/tmp_singu
+	mkdir $HOME/singularity_containers/
+	export SINGULARITY_CACHEDIR=$HOME/tmp
+	export NXF_SINGULARITY_CACHEDIR="$HOME/singularity_containers/"
+	export SINGULARITY_TMPDIR=$HOME/tmp_singu
+
+
+Now we can execute:
+
+
+.. code-block:: console
+
+  cd ../mop_preprocess
+  
   #Run the module in the background, with singularity and in the local computer:
   nextflow run mop_preprocess.nf -with-singularity -bg -profile local > log_preprocess.txt
   
