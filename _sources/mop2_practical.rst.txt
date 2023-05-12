@@ -401,9 +401,6 @@ and go to the tower website again using the link in the log:
 When the pipeline is finished we can also receive a mail.
 
 
-.. image:: images/tower4.png
-  :width: 800
-
 
 Results
 ......................
