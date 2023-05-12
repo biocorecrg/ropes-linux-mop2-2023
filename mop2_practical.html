@@ -551,9 +551,9 @@ h5ls /path/to/fast5 | head -n15
 <span class="go">  input_path         = &quot;$projectDir/../mop_preprocess/output/&quot;</span>
 <span class="go">  reference          = &quot;$projectDir/../mydata/nanopore/Saccharomyces_cerevisiae.rRNA.fa&quot;</span>
 
-<span class="go">  pars_tools         = &quot;$baseDir/tools_opt.tsv&quot;</span>
+<span class="go">  pars_tools         = &quot;$projectDir/tools_opt.tsv&quot;</span>
 
-<span class="go">  output             = &quot;$baseDir/outputPoly&quot;</span>
+<span class="go">  output             = &quot;$projectDir/outputPoly&quot;</span>
 
 <span class="go">  tailfindr          = &quot;YES&quot;</span>
 <span class="go">  nanopolish         = &quot;YES&quot;</span>
@@ -665,13 +665,13 @@ h5ls /path/to/fast5 | head -n15
 <span class="gp">#</span>Params.config<span class="w"> </span>content:
 <span class="go">params {</span>
 <span class="go">  input_path         = &quot;$projectDir/../mop_preprocess/output/&quot;</span>
-<span class="go">  comparison         = &quot;$baseDir/comparison.tsv&quot;</span>
+<span class="go">  comparison         = &quot;$projectDir/comparison.tsv&quot;</span>
 
 <span class="go">  reference          = &quot;$projectDir/../mydata/nanopore/Saccharomyces_cerevisiae.rRNA.fa&quot;</span>
 
-<span class="go">  output             = &quot;$baseDir/output_mod&quot;</span>
+<span class="go">  output             = &quot;$projectDir/output_mod&quot;</span>
 
-<span class="go">  pars_tools         = &quot;$baseDir/tools_opt.tsv&quot;</span>
+<span class="go">  pars_tools         = &quot;$projectDir/tools_opt.tsv&quot;</span>
 
 <span class="go">  // flows</span>
 <span class="go">  epinano       = &quot;YES&quot;</span>
@@ -727,12 +727,12 @@ h5ls /path/to/fast5 | head -n15
 <span class="gp">#</span>Params.config<span class="w"> </span>content:
 <span class="go">params {</span>
 
-<span class="go">  input_path         = &quot;$baseDir/../mop_mod/output_mod&quot;</span>
+<span class="go">  input_path         = &quot;$projectDir/../mop_mod/output_mod&quot;</span>
 <span class="go">  reference          = &quot;$projectDir/../mydata/nanopore/Saccharomyces_cerevisiae.rRNA.fa&quot;</span>
 
-<span class="go">  comparison         = &quot;$baseDir/comparison.tsv&quot;</span>
+<span class="go">  comparison         = &quot;$projectDir/comparison.tsv&quot;</span>
 <span class="go">  padsize            = 50</span>
-<span class="go">  output             = &quot;$baseDir/output_consensus&quot;</span>
+<span class="go">  output             = &quot;$projectDir/output_consensus&quot;</span>
 
 <span class="go">  email              = &quot;username@domain&quot;</span>
 <span class="go">}</span>
