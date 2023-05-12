@@ -61,7 +61,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#results">Results</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#polya-tail-length-estimation">PolyA tail length estimation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id1">Results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Results</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#master-of-pores-2-mop2-rna-modification-detection-2">Master Of Pores 2 (MOP2) - RNA modification detection (2)</a><ul>
@@ -71,9 +71,9 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#hands-on-2-mop-mod-and-mop-consensus">Hands-on 2: <em>mop_mod</em> and <em>mop_consensus</em></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#detection-of-differentially-modified-sites">Detection of differentially modified sites</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">Results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Results</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#detection-of-differentially-modified-sites-with-high-confidence">Detection of differentially modified sites with high confidence</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">Results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Results</a></li>
 </ul>
 </li>
 </ul>
@@ -118,8 +118,10 @@
 <p>For more information you can read our pubblications:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.frontiersin.org/articles/10.3389/fgene.2020.00211/full">“MasterOfPores: A Workflow for the Analysis of Oxford Nanopore Direct RNA Sequencing Datasets” Cozzuto L, Liu H, Pryszcz LP, Hermoso Pulido T,  Delgado-Tejedor A, Ponomarenko J and Novoa EM. Front. Genet., 17 March 2020.</a></p></li>
-<li><p><a class="reference external" href="https://link.springer.com/protocol/10.1007/978-1-0716-2962-8_13">“Nanopore Direct RNA Sequencing Data Processing and Analysis Using MasterOfPores” Cozzuto L, Delgado-Tejedor A, Hermoso Pulido T, Novoa EM, Ponomarenko J. N. Methods Mol Biol. 2023;2624:185-205.</a></p></li>
+<li><p><a href="#id1"><span class="problematic" id="id2">`</span></a>”Nanopore Direct RNA Sequexport SINGULARITY_CACHEDIR=$HOME/tmp</p></li>
 </ul>
+<p>export NXF_SINGULARITY_CACHEDIR=”$HOME/singularity_containers/”
+export SINGULARITY_TMPDIR=$HOME/tmp_singuencing Data Processing and Analysis Using MasterOfPores” Cozzuto L, Delgado-Tejedor A, Hermoso Pulido T, Novoa EM, Ponomarenko J. N. Methods Mol Biol. 2023;2624:185-205. &lt;<a class="reference external" href="https://link.springer.com/protocol/10.1007/978-1-0716-2962-8_13">https://link.springer.com/protocol/10.1007/978-1-0716-2962-8_13</a>&gt;`__</p>
 <p>MOP2 can perform all steps required to analyse DRS data - from converting raw current intensities into multiple types of processed data to RNA modified sites detection and polyA tail length predictions. This pipeline consists of four modules: <em>mop_preprocess</em>, <em>mop_tail</em>, <em>mop_mod</em> and <em>mop_consensus</em>.</p>
 <a class="reference internal image-reference" href="_images/MOP_scheme.png"><img alt="_images/MOP_scheme.png" src="_images/MOP_scheme.png" style="width: 700px;" /></a>
 <section id="basic-preprocessing-module-mop-preprocessing">
@@ -143,8 +145,16 @@
 <p class="admonition-title">Tip</p>
 <p><strong>How do we know if fast5 files are bassecalled or not?</strong></p>
 <p>Raw and basecall fast5 files have the same extension (.fast5) and in consequence, the only way of knowing if a fast5 file is basecalled or not is to check its contents. Please use the code below:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span>#Install h5ls:
-apt-get install hdf5-tools
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span>#Install h5ls as sudo user:
+sudo apt-get install hdf5-tools
+
+[sudo] password for training:
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following additional packages will be installed:
+libaec0 libhdf5-103-1 libhdf5-hl-100 libsz2
+[....]
 
 #Investigate fast5 files&#39; structure:
 h5ls /path/to/fast5 | head -n15
@@ -291,7 +301,7 @@ h5ls /path/to/fast5 | head -n15
 </ul>
 <p>Now, we can start setting up the <em>mop_preproceess</em> module. Please follow the code below:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span>Enter<span class="w"> </span>the<span class="w"> </span>mop_preprocess<span class="w"> </span>directory:
-<span class="go">cd mop_preprocess</span>
+<span class="go">cd ../mop_preprocess</span>
 
 <span class="gp">#</span>List<span class="w"> </span>all<span class="w"> </span>files<span class="w"> </span>and<span class="w"> </span>directories:
 <span class="go">ls -l</span>
@@ -312,10 +322,10 @@ h5ls /path/to/fast5 | head -n15
 <span class="gp">#</span>Params.config<span class="w"> </span>content:
 <span class="go">params {</span>
 <span class="go">  conffile            = &quot;final_summary_01.txt&quot;</span>
-<span class="go">  fast5               = &quot; ${projectDir}/mydata/../**/*.fast5&quot;</span>
+<span class="go">  fast5               = &quot;${projectDir}/../mydata/nanopore/**/*.fast5&quot;</span>
 <span class="go">  fastq               = &quot;&quot;</span>
 
-<span class="go">  reference           = &quot;/home/andelgado/Documents/software/NanoConsensus/ref/Saccharomyces_cerevisiae.rRNA.fa&quot;</span>
+<span class="go">  reference           = &quot;${projectDir}/../mydata/nanopore/Saccharomyces_cerevisiae.rRNA.fa&quot;</span>
 <span class="go">  annotation          = &quot;&quot;</span>
 <span class="go">  ref_type            = &quot;transcriptome&quot;</span>
 
@@ -349,7 +359,20 @@ h5ls /path/to/fast5 | head -n15
 </pre></div>
 </div>
 <p>As discussed earlier, these options are okay when analysing total RNA samples. However, depending on the type of sample, changes in the params.config file should be made. Click <a class="reference external" href="https://biocorecrg.github.io/MOP2/docs/mop_preprocess.html">here</a> to check all parameters accepted by <em>mop_preprocess</em>.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span>Run<span class="w"> </span>the<span class="w"> </span>module<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>background,<span class="w"> </span>with<span class="w"> </span>singularity<span class="w"> </span>and<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span><span class="nb">local</span><span class="w"> </span>computer:
+<p><strong>MoP2</strong> has different profiles with resources specified for several infrastructures. If you have a look at the folder <strong>conf</strong> you can have an idea of the possibility to fine tune the resources such as maximum execution time, the queue name, the maximum memory etc. Fo example let’s have a look at the <strong>local.config file</strong>, we can change it to use more processors and memory, since our workstations have 8 CPUs and 16 Gb of RAM Memory.</p>
+<p>Another important thing to say is that MoP2 will generates several singularity images and this could fill the temporary space that singularity uses for converting them from docker. For this is a good idea to specify some environmental variable to mitigate this problem.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">mkdir $HOME/tmp</span>
+<span class="go">mkdir $HOME/tmp_singu</span>
+<span class="go">mkdir $HOME/singularity_containers/</span>
+<span class="go">export SINGULARITY_CACHEDIR=$HOME/tmp</span>
+<span class="go">export NXF_SINGULARITY_CACHEDIR=&quot;$HOME/singularity_containers/&quot;</span>
+<span class="go">export SINGULARITY_TMPDIR=$HOME/tmp_singu</span>
+</pre></div>
+</div>
+<p>Now we can execute:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ../mop_preprocess</span>
+
+<span class="gp">#</span>Run<span class="w"> </span>the<span class="w"> </span>module<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>background,<span class="w"> </span>with<span class="w"> </span>singularity<span class="w"> </span>and<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span><span class="nb">local</span><span class="w"> </span>computer:
 <span class="go">nextflow run mop_preprocess.nf -with-singularity -bg -profile local &gt; log_preprocess.txt</span>
 </pre></div>
 </div>
@@ -508,8 +531,8 @@ h5ls /path/to/fast5 | head -n15
 </pre></div>
 </div>
 </section>
-<section id="id1">
-<h3>Results<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<section id="id3">
+<h3>Results<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
 <p>Once the module has finished, these directories should be in your output folder:</p>
 <ul class="simple">
 <li><p><strong>nanopolish_flow</strong>: Contains nanopolish’s results.</p></li>
@@ -644,8 +667,8 @@ h5ls /path/to/fast5 | head -n15
 </pre></div>
 </div>
 </section>
-<section id="id3">
-<h3>Results<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<section id="id5">
+<h3>Results<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
 <p>Once the module has finished, these directories should be in your output folder: MISSING!!!</p>
 </section>
 <section id="detection-of-differentially-modified-sites-with-high-confidence">
@@ -699,8 +722,8 @@ h5ls /path/to/fast5 | head -n15
 </pre></div>
 </div>
 </section>
-<section id="id4">
-<h3>Results<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<section id="id6">
+<h3>Results<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
 <p>Once the module has finished, these directories should be in your output folder: MISSING!!!</p>
 </section>
 </section>
