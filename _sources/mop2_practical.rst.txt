@@ -494,7 +494,10 @@ and go to the tower website again using the link in the log:
 
 When the pipeline is finished we can also receive a mail.
 
+Here you can see an example of the resource report that is generated at the end:
 
+.. image:: images/tower_mop2.png
+  :width: 800
 
 Results
 ......................
