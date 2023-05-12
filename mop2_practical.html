@@ -61,7 +61,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#results">Results</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#polya-tail-length-estimation">PolyA tail length estimation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">Results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Results</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#master-of-pores-2-mop2-rna-modification-detection-2">Master Of Pores 2 (MOP2) - RNA modification detection (2)</a><ul>
@@ -71,9 +71,9 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#hands-on-2-mop-mod-and-mop-consensus">Hands-on 2: <em>mop_mod</em> and <em>mop_consensus</em></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#detection-of-differentially-modified-sites">Detection of differentially modified sites</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id5">Results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Results</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#detection-of-differentially-modified-sites-with-high-confidence">Detection of differentially modified sites with high confidence</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id6">Results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Results</a></li>
 </ul>
 </li>
 </ul>
@@ -118,10 +118,8 @@
 <p>For more information you can read our pubblications:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.frontiersin.org/articles/10.3389/fgene.2020.00211/full">“MasterOfPores: A Workflow for the Analysis of Oxford Nanopore Direct RNA Sequencing Datasets” Cozzuto L, Liu H, Pryszcz LP, Hermoso Pulido T,  Delgado-Tejedor A, Ponomarenko J and Novoa EM. Front. Genet., 17 March 2020.</a></p></li>
-<li><p><a href="#id1"><span class="problematic" id="id2">`</span></a>”Nanopore Direct RNA Sequexport SINGULARITY_CACHEDIR=$HOME/tmp</p></li>
+<li><p><a class="reference external" href="https://link.springer.com/protocol/10.1007/978-1-0716-2962-8_13">“Nanopore Direct RNA Sequencing Data Processing and Analysis Using MasterOfPores” Cozzuto L, Delgado-Tejedor A, Hermoso Pulido T, Novoa EM, Ponomarenko J. N. Methods Mol Biol. 2023;2624:185-205.</a></p></li>
 </ul>
-<p>export NXF_SINGULARITY_CACHEDIR=”$HOME/singularity_containers/”
-export SINGULARITY_TMPDIR=$HOME/tmp_singuencing Data Processing and Analysis Using MasterOfPores” Cozzuto L, Delgado-Tejedor A, Hermoso Pulido T, Novoa EM, Ponomarenko J. N. Methods Mol Biol. 2023;2624:185-205. &lt;<a class="reference external" href="https://link.springer.com/protocol/10.1007/978-1-0716-2962-8_13">https://link.springer.com/protocol/10.1007/978-1-0716-2962-8_13</a>&gt;`__</p>
 <p>MOP2 can perform all steps required to analyse DRS data - from converting raw current intensities into multiple types of processed data to RNA modified sites detection and polyA tail length predictions. This pipeline consists of four modules: <em>mop_preprocess</em>, <em>mop_tail</em>, <em>mop_mod</em> and <em>mop_consensus</em>.</p>
 <a class="reference internal image-reference" href="_images/MOP_scheme.png"><img alt="_images/MOP_scheme.png" src="_images/MOP_scheme.png" style="width: 700px;" /></a>
 <section id="basic-preprocessing-module-mop-preprocessing">
@@ -363,10 +361,9 @@ h5ls /path/to/fast5 | head -n15
 <p>Another important thing to say is that MoP2 will generates several singularity images and this could fill the temporary space that singularity uses for converting them from docker. For this is a good idea to specify some environmental variable to mitigate this problem.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">mkdir $HOME/tmp</span>
 <span class="go">mkdir $HOME/tmp_singu</span>
-<span class="go">mkdir $HOME/singularity_containers/</span>
-<span class="go">export SINGULARITY_CACHEDIR=$HOME/tmp</span>
-<span class="go">export NXF_SINGULARITY_CACHEDIR=&quot;$HOME/singularity_containers/&quot;</span>
-<span class="go">export SINGULARITY_TMPDIR=$HOME/tmp_singu</span>
+
+<span class="go">export APPTAINER_CACHEDIR=$HOME/tmp</span>
+<span class="go">export APPTAINER_TMPDIR=$HOME/tmp_singu</span>
 </pre></div>
 </div>
 <p>Now we can execute:</p>
@@ -378,8 +375,46 @@ h5ls /path/to/fast5 | head -n15
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>For long analysis and better checking the resources used you might want to try using the Tower website.</p>
+<p>In case you have a failure because of a singularity image failes to download, you can resume the execution and it should go through.</p>
 </div>
+<p>Sometimes singularity cannot download an image from <a class="reference external" href="https://quay.io/">https://quay.io/</a>. In such case, nextflow will raise an error and will stop the execution like this:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">        [d7/c0631a] Cached process &gt; preprocess_flow:joinCountStats (joining count stats)</span>
+<span class="go">Pulling Singularity image docker://quay.io/biocontainers/multiqc:1.10.1--pyhdfd78af_1 [cache /home/training/MOP2/mop_preprocess/../singularity/quay.io-biocontainers-multiqc-1.10.1--pyhdfd78af_1.img]</span>
+<span class="go">ERROR ~ Error executing process &gt; &#39;preprocess_flow:NANOCOUNT:nanoCount (1)&#39;</span>
+
+<span class="go">Caused by:</span>
+<span class="go">  Failed to pull singularity image</span>
+<span class="go">  command: singularity pull  --name biocorecrg-nanocount-0.1.img.pulling.1683892346589 docker://biocorecrg/nanocount:0.1 &gt; /dev/null</span>
+<span class="go">  status : 255</span>
+<span class="go">  message:</span>
+<span class="go">    INFO:    Converting OCI blobs to SIF format</span>
+<span class="go">    INFO:    Starting build...</span>
+<span class="go">    Getting image source signatures</span>
+<span class="go">    Copying blob sha256:e49aa15069ae36da748d2b6424b8755a9480bcd63cd95685eb7e84bfa06ea363</span>
+<span class="go">    Copying blob sha256:4a7eeb7d83814280485caa80f2226f7ac0f10078945609c4a72829c28d7bd6de</span>
+<span class="go">    Copying blob sha256:7b1a6ab2e44dbac178598dabe7cff59bd67233dba0b27e4fbd1f9d4b3c877a54</span>
+<span class="go">    Copying blob sha256:f38c5ae254ef5e6b439faba540247f48b6d0e5c11f036146eee72816347bf0ed</span>
+<span class="go">    Copying blob sha256:285a65392f84a87f7490f5dc6e0aefc928b0a124ba16a5a23e63124e28db6165</span>
+<span class="go">    Copying blob sha256:bed2873b448c022ce14c0f75aa01acccf197408467f99bc4b10d48e5c43991b4</span>
+<span class="go">    Copying config sha256:3e9ec130771d91ca6288a47d5a9afc7d15c4059bcefae2f406e5c9ce5a1161bf</span>
+<span class="go">    Writing manifest to image destination</span>
+<span class="go">    Storing signatures</span>
+<span class="go">    FATAL:   While making image from oci registry: error fetching image to cache: while building SIF from layers: conveyor failed to get: no descriptor found for reference &quot;eb670049577d6aadb1aa87e65bc601c6f2fe1f8777b08bd8b6f0199bcc061e7e&quot;</span>
+
+
+
+<span class="go"> -- Check &#39;.nextflow.log&#39; file for details</span>
+<span class="go">Pipeline BIOCORE@CRG Master of Pore - preprocess completed!</span>
+<span class="go">Started at  2023-05-12T13:52:17.074026+02:00</span>
+<span class="go">Finished at 2023-05-12T13:52:40.251357+02:00</span>
+<span class="go">Time elapsed: 23.2s</span>
+<span class="go">Execution status: failed</span>
+<span class="go">ERROR ~ Failed to invoke `workflow.onComplete` event handler</span>
+
+<span class="go"> -- Check script &#39;mop_preprocess.nf&#39; at line: 632 or see &#39;.nextflow.log&#39; file for more details</span>
+</pre></div>
+</div>
+<p>This can be linked to the server capabilities. Our suggestion is to download manually the singularity images that is indicated in the error. All the images are stored in a folder named <strong>singularity</strong> in the root of the repo. It can be changed modifying the configuration file <strong>nextflow.config</strong>.</p>
 <section id="tower">
 <h4>Tower<a class="headerlink" href="#tower" title="Permalink to this heading"></a></h4>
 <p><strong>Nextflow Tower</strong> is an open source monitoring and managing platform for Nextflow workflows. There are two versions:</p>
@@ -531,8 +566,8 @@ h5ls /path/to/fast5 | head -n15
 </pre></div>
 </div>
 </section>
-<section id="id3">
-<h3>Results<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<section id="id1">
+<h3>Results<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
 <p>Once the module has finished, these directories should be in your output folder:</p>
 <ul class="simple">
 <li><p><strong>nanopolish_flow</strong>: Contains nanopolish’s results.</p></li>
@@ -667,8 +702,8 @@ h5ls /path/to/fast5 | head -n15
 </pre></div>
 </div>
 </section>
-<section id="id5">
-<h3>Results<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<section id="id3">
+<h3>Results<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
 <p>Once the module has finished, these directories should be in your output folder: MISSING!!!</p>
 </section>
 <section id="detection-of-differentially-modified-sites-with-high-confidence">
@@ -722,8 +757,8 @@ h5ls /path/to/fast5 | head -n15
 </pre></div>
 </div>
 </section>
-<section id="id6">
-<h3>Results<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
+<section id="id4">
+<h3>Results<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
 <p>Once the module has finished, these directories should be in your output folder: MISSING!!!</p>
 </section>
 </section>

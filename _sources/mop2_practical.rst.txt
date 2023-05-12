@@ -21,9 +21,7 @@ The complexity of analysing current intensity data together with the lack of sys
 For more information you can read our pubblications:
 
 * `"MasterOfPores: A Workflow for the Analysis of Oxford Nanopore Direct RNA Sequencing Datasets" Cozzuto L, Liu H, Pryszcz LP, Hermoso Pulido T,  Delgado-Tejedor A, Ponomarenko J and Novoa EM. Front. Genet., 17 March 2020. <https://www.frontiersin.org/articles/10.3389/fgene.2020.00211/full>`__
-* `"Nanopore Direct RNA Sequexport SINGULARITY_CACHEDIR=$HOME/tmp
-export NXF_SINGULARITY_CACHEDIR="$HOME/singularity_containers/"
-export SINGULARITY_TMPDIR=$HOME/tmp_singuencing Data Processing and Analysis Using MasterOfPores" Cozzuto L, Delgado-Tejedor A, Hermoso Pulido T, Novoa EM, Ponomarenko J. N. Methods Mol Biol. 2023;2624:185-205. <https://link.springer.com/protocol/10.1007/978-1-0716-2962-8_13>`__
+* `"Nanopore Direct RNA Sequencing Data Processing and Analysis Using MasterOfPores" Cozzuto L, Delgado-Tejedor A, Hermoso Pulido T, Novoa EM, Ponomarenko J. N. Methods Mol Biol. 2023;2624:185-205. <https://link.springer.com/protocol/10.1007/978-1-0716-2962-8_13>`__
 
 MOP2 can perform all steps required to analyse DRS data - from converting raw current intensities into multiple types of processed data to RNA modified sites detection and polyA tail length predictions. This pipeline consists of four modules: *mop_preprocess*, *mop_tail*, *mop_mod* and *mop_consensus*.
 
@@ -304,16 +302,15 @@ As discussed earlier, these options are okay when analysing total RNA samples. H
 	    }
 	}
 
-Another important thing to say is that MoP2 will generates several singularity images and this could fill the temporary space that singularity uses for converting them from docker. For this is a good idea to specify some environmental variable to mitigate this problem.
+Another important thing to say is that MoP2 will generates several singularity images and this could fill the temporary space that singularity uses for converting them from docker. For this is a good idea to specify some environmental variable to mitigate this problem. 
 
 .. code-block:: console
 
 	mkdir $HOME/tmp
 	mkdir $HOME/tmp_singu
-	mkdir $HOME/singularity_containers/
-	export SINGULARITY_CACHEDIR=$HOME/tmp
-	export NXF_SINGULARITY_CACHEDIR="$HOME/singularity_containers/"
-	export SINGULARITY_TMPDIR=$HOME/tmp_singu
+
+	export APPTAINER_CACHEDIR=$HOME/tmp
+	export APPTAINER_TMPDIR=$HOME/tmp_singu
 
 
 Now we can execute:
@@ -325,10 +322,52 @@ Now we can execute:
   
   #Run the module in the background, with singularity and in the local computer:
   nextflow run mop_preprocess.nf -with-singularity -bg -profile local > log_preprocess.txt
-  
+ 
 .. tip::
-  For long analysis and better checking the resources used you might want to try using the Tower website.
+	In case you have a failure because of a singularity image failes to download, you can resume the execution and it should go through. 
   
+Sometimes singularity cannot download an image from https://quay.io/. In such case, nextflow will raise an error and will stop the execution like this:
+
+.. code-block:: console
+
+		[d7/c0631a] Cached process > preprocess_flow:joinCountStats (joining count stats)
+	Pulling Singularity image docker://quay.io/biocontainers/multiqc:1.10.1--pyhdfd78af_1 [cache /home/training/MOP2/mop_preprocess/../singularity/quay.io-biocontainers-multiqc-1.10.1--pyhdfd78af_1.img]
+	ERROR ~ Error executing process > 'preprocess_flow:NANOCOUNT:nanoCount (1)'
+
+	Caused by:
+	  Failed to pull singularity image
+	  command: singularity pull  --name biocorecrg-nanocount-0.1.img.pulling.1683892346589 docker://biocorecrg/nanocount:0.1 > /dev/null
+	  status : 255
+	  message:
+	    INFO:    Converting OCI blobs to SIF format
+	    INFO:    Starting build...
+	    Getting image source signatures
+	    Copying blob sha256:e49aa15069ae36da748d2b6424b8755a9480bcd63cd95685eb7e84bfa06ea363
+	    Copying blob sha256:4a7eeb7d83814280485caa80f2226f7ac0f10078945609c4a72829c28d7bd6de
+	    Copying blob sha256:7b1a6ab2e44dbac178598dabe7cff59bd67233dba0b27e4fbd1f9d4b3c877a54
+	    Copying blob sha256:f38c5ae254ef5e6b439faba540247f48b6d0e5c11f036146eee72816347bf0ed
+	    Copying blob sha256:285a65392f84a87f7490f5dc6e0aefc928b0a124ba16a5a23e63124e28db6165
+	    Copying blob sha256:bed2873b448c022ce14c0f75aa01acccf197408467f99bc4b10d48e5c43991b4
+	    Copying config sha256:3e9ec130771d91ca6288a47d5a9afc7d15c4059bcefae2f406e5c9ce5a1161bf
+	    Writing manifest to image destination
+	    Storing signatures
+	    FATAL:   While making image from oci registry: error fetching image to cache: while building SIF from layers: conveyor failed to get: no descriptor found for reference "eb670049577d6aadb1aa87e65bc601c6f2fe1f8777b08bd8b6f0199bcc061e7e"
+
+
+
+	 -- Check '.nextflow.log' file for details
+	Pipeline BIOCORE@CRG Master of Pore - preprocess completed!
+	Started at  2023-05-12T13:52:17.074026+02:00
+	Finished at 2023-05-12T13:52:40.251357+02:00
+	Time elapsed: 23.2s
+	Execution status: failed
+	ERROR ~ Failed to invoke `workflow.onComplete` event handler
+
+	 -- Check script 'mop_preprocess.nf' at line: 632 or see '.nextflow.log' file for more details
+
+This can be linked to the server capabilities. Our suggestion is to download manually the singularity images that is indicated in the error. All the images are stored in a folder named **singularity** in the root of the repo. It can be changed modifying the configuration file **nextflow.config**.
+
+
 Tower
 =======
 
