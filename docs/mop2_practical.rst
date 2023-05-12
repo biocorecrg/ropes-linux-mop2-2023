@@ -398,7 +398,7 @@ Now we can launch the pipeline:
 and go to the tower website again:
 
 
-.. image:: images/tower3.png
+.. image:: images/towermop.png
   :width: 800
 
 
