@@ -16,7 +16,12 @@ This method is based on the use of protein nanopores that are embedded into a me
 Master Of Pores 2 (MOP2) - preprocessing and polyA tail estimation (1)
 ---------------------
 
-The complexity of analysing current intensity data together with the lack of systematic and reproducible pipelines have hindered the access of this technology to the general users. To overcome this limitation, we developed Master Of Pores 2 (MOP2) - a nextflow based workflow that simplifies the analysis of DRS datasets and aims to make it accessible to non-bioinformatic experts. 
+The complexity of analysing current intensity data together with the lack of systematic and reproducible pipelines have hindered the access of this technology to the general users. To overcome this limitation, we developed Master Of Pores (**MoP**) - a nextflow based workflow that simplifies the analysis of DRS datasets and aims to make it accessible to non-bioinformatic experts. We further improved this suit making a new version (**MoP2**). 
+
+For more information you can read our pubblications:
+
+* `"MasterOfPores: A Workflow for the Analysis of Oxford Nanopore Direct RNA Sequencing Datasets" Cozzuto L, Liu H, Pryszcz LP, Hermoso Pulido T,  Delgado-Tejedor A, Ponomarenko J and Novoa EM. Front. Genet., 17 March 2020. <https://www.frontiersin.org/articles/10.3389/fgene.2020.00211/full>`__
+* `"Nanopore Direct RNA Sequencing Data Processing and Analysis Using MasterOfPores" Cozzuto L, Delgado-Tejedor A, Hermoso Pulido T, Novoa EM, Ponomarenko J. N. Methods Mol Biol. 2023;2624:185-205. <https://link.springer.com/protocol/10.1007/978-1-0716-2962-8_13>`__
 
 MOP2 can perform all steps required to analyse DRS data - from converting raw current intensities into multiple types of processed data to RNA modified sites detection and polyA tail length predictions. This pipeline consists of four modules: *mop_preprocess*, *mop_tail*, *mop_mod* and *mop_consensus*.
 
@@ -72,7 +77,7 @@ The pre-processing module is able to perform base-calling, mapping (either to a 
 
 - **Step 1b: Demultiplexing**
   
-  Demultiplexing is required when analysing a barcoded sample; otherwise, this step should be skipped. Here, **Deeplexicon** is used. This algorithm converts the barcode's signal into an image, which is then classified based on a machine-learning approach.
+  Demultiplexing is required when analysing a barcoded sample; otherwise, this step is not necessary. Here, **Deeplexicon** is used. This algorithm converts the barcode's signal into an image, which is then classified based on a machine-learning approach.
   
   - **Input:** Raw fast5 files
   - **Output:** Demuxed raw fast5 files

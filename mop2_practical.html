@@ -111,7 +111,12 @@
 </section>
 <section id="master-of-pores-2-mop2-preprocessing-and-polya-tail-estimation-1">
 <h2>Master Of Pores 2 (MOP2) - preprocessing and polyA tail estimation (1)<a class="headerlink" href="#master-of-pores-2-mop2-preprocessing-and-polya-tail-estimation-1" title="Permalink to this heading"></a></h2>
-<p>The complexity of analysing current intensity data together with the lack of systematic and reproducible pipelines have hindered the access of this technology to the general users. To overcome this limitation, we developed Master Of Pores 2 (MOP2) - a nextflow based workflow that simplifies the analysis of DRS datasets and aims to make it accessible to non-bioinformatic experts.</p>
+<p>The complexity of analysing current intensity data together with the lack of systematic and reproducible pipelines have hindered the access of this technology to the general users. To overcome this limitation, we developed Master Of Pores (<strong>MoP</strong>) - a nextflow based workflow that simplifies the analysis of DRS datasets and aims to make it accessible to non-bioinformatic experts. We further improved this suit making a new version (<strong>MoP2</strong>).</p>
+<p>For more information you can read our pubblications:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.frontiersin.org/articles/10.3389/fgene.2020.00211/full">“MasterOfPores: A Workflow for the Analysis of Oxford Nanopore Direct RNA Sequencing Datasets” Cozzuto L, Liu H, Pryszcz LP, Hermoso Pulido T,  Delgado-Tejedor A, Ponomarenko J and Novoa EM. Front. Genet., 17 March 2020.</a></p></li>
+<li><p><a class="reference external" href="https://link.springer.com/protocol/10.1007/978-1-0716-2962-8_13">“Nanopore Direct RNA Sequencing Data Processing and Analysis Using MasterOfPores” Cozzuto L, Delgado-Tejedor A, Hermoso Pulido T, Novoa EM, Ponomarenko J. N. Methods Mol Biol. 2023;2624:185-205.</a></p></li>
+</ul>
 <p>MOP2 can perform all steps required to analyse DRS data - from converting raw current intensities into multiple types of processed data to RNA modified sites detection and polyA tail length predictions. This pipeline consists of four modules: <em>mop_preprocess</em>, <em>mop_tail</em>, <em>mop_mod</em> and <em>mop_consensus</em>.</p>
 <a class="reference internal image-reference" href="_images/MOP_scheme.png"><img alt="_images/MOP_scheme.png" src="_images/MOP_scheme.png" style="width: 700px;" /></a>
 <section id="basic-preprocessing-module-mop-preprocessing">
@@ -161,7 +166,7 @@ h5ls /path/to/fast5 | head -n15
 </div>
 <ul>
 <li><p><strong>Step 1b: Demultiplexing</strong></p>
-<p>Demultiplexing is required when analysing a barcoded sample; otherwise, this step should be skipped. Here, <strong>Deeplexicon</strong> is used. This algorithm converts the barcode’s signal into an image, which is then classified based on a machine-learning approach.</p>
+<p>Demultiplexing is required when analysing a barcoded sample; otherwise, this step is not necessary. Here, <strong>Deeplexicon</strong> is used. This algorithm converts the barcode’s signal into an image, which is then classified based on a machine-learning approach.</p>
 <ul class="simple">
 <li><p><strong>Input:</strong> Raw fast5 files</p></li>
 <li><p><strong>Output:</strong> Demuxed raw fast5 files</p></li>
