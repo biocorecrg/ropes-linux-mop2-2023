@@ -302,15 +302,6 @@ As discussed earlier, these options are okay when analysing total RNA samples. H
 	    }
 	}
 
-Another important thing to say is that MoP2 will generates several singularity images and this could fill the temporary space that singularity uses for converting them from docker. For this is a good idea to specify some environmental variable to mitigate this problem. 
-
-.. code-block:: console
-
-	mkdir $HOME/tmp
-	mkdir $HOME/tmp_singu
-
-	export APPTAINER_CACHEDIR=$HOME/tmp
-	export APPTAINER_TMPDIR=$HOME/tmp_singu
 
 
 Now we can execute:
@@ -320,54 +311,9 @@ Now we can execute:
 
   cd ../mop_preprocess
   
-  #Run the module in the background, with singularity and in the local computer:
-  nextflow run mop_preprocess.nf -with-singularity -bg -profile local > log_preprocess.txt
+  #Run the module in the background, with docker and in the local computer:
+  nextflow run mop_preprocess.nf -with-docker -bg -profile local > log_preprocess.txt
  
-.. tip::
-	In case you have a failure because of a singularity image failes to download, you can resume the execution and it should go through. 
-  
-Sometimes singularity cannot download an image from https://quay.io/. In such case, nextflow will raise an error and will stop the execution like this:
-
-.. code-block:: console
-
-		[d7/c0631a] Cached process > preprocess_flow:joinCountStats (joining count stats)
-	Pulling Singularity image docker://quay.io/biocontainers/multiqc:1.10.1--pyhdfd78af_1 [cache /home/training/MOP2/mop_preprocess/../singularity/quay.io-biocontainers-multiqc-1.10.1--pyhdfd78af_1.img]
-	ERROR ~ Error executing process > 'preprocess_flow:NANOCOUNT:nanoCount (1)'
-
-	Caused by:
-	  Failed to pull singularity image
-	  command: singularity pull  --name biocorecrg-nanocount-0.1.img.pulling.1683892346589 docker://biocorecrg/nanocount:0.1 > /dev/null
-	  status : 255
-	  message:
-	    INFO:    Converting OCI blobs to SIF format
-	    INFO:    Starting build...
-	    Getting image source signatures
-	    Copying blob sha256:e49aa15069ae36da748d2b6424b8755a9480bcd63cd95685eb7e84bfa06ea363
-	    Copying blob sha256:4a7eeb7d83814280485caa80f2226f7ac0f10078945609c4a72829c28d7bd6de
-	    Copying blob sha256:7b1a6ab2e44dbac178598dabe7cff59bd67233dba0b27e4fbd1f9d4b3c877a54
-	    Copying blob sha256:f38c5ae254ef5e6b439faba540247f48b6d0e5c11f036146eee72816347bf0ed
-	    Copying blob sha256:285a65392f84a87f7490f5dc6e0aefc928b0a124ba16a5a23e63124e28db6165
-	    Copying blob sha256:bed2873b448c022ce14c0f75aa01acccf197408467f99bc4b10d48e5c43991b4
-	    Copying config sha256:3e9ec130771d91ca6288a47d5a9afc7d15c4059bcefae2f406e5c9ce5a1161bf
-	    Writing manifest to image destination
-	    Storing signatures
-	    FATAL:   While making image from oci registry: error fetching image to cache: while building SIF from layers: conveyor failed to get: no descriptor found for reference "eb670049577d6aadb1aa87e65bc601c6f2fe1f8777b08bd8b6f0199bcc061e7e"
-
-
-
-	 -- Check '.nextflow.log' file for details
-	Pipeline BIOCORE@CRG Master of Pore - preprocess completed!
-	Started at  2023-05-12T13:52:17.074026+02:00
-	Finished at 2023-05-12T13:52:40.251357+02:00
-	Time elapsed: 23.2s
-	Execution status: failed
-	ERROR ~ Failed to invoke `workflow.onComplete` event handler
-
-	 -- Check script 'mop_preprocess.nf' at line: 632 or see '.nextflow.log' file for more details
-
-This can be linked to the server capabilities or to the disk space. Our suggestion is to download manually the singularity images that is indicated in the error. All the images are stored in a folder named **singularity** in the root of the repo. It can be changed modifying the configuration file **nextflow.config**.
-
-Another option is to empty this folder **$HOME/.apptainer/** or **$HOME/.singularity/**
 
 Tower
 =======
@@ -419,8 +365,8 @@ Now we can launch the pipeline:
 
 .. code-block:: console
 
-  #Run the module in the background, with singularity and in the local computer:
-  nextflow run mop_preprocess.nf -with-singularity -bg -profile local -with-tower > log_preprocess.txt
+  #Run the module in the background, with docker and in the local computer:
+  nextflow run mop_preprocess.nf -with-docker -bg -profile local -with-tower > log_preprocess.txt
 
   more log_preprocess.txt 
   N E X T F L O W  ~  version 23.03.0-edge
@@ -482,9 +428,7 @@ Now we can launch the pipeline:
   --------------------------------------------------------------
   Monitor the execution with Nextflow Tower using this URL: https://tower.nf/orgs/Bioinfo_CRG/workspaces/MoP/watch/54rW5nmBxt43
   Td
-  Pulling Singularity image docker://biocorecrg/mopbasecall:0.2 [cache /nfs/users/bi/lcozzuto/ooo/MOP2/mop_preprocess/../singul
-  arity/biocorecrg-mopbasecall-0.2.img]
-
+  
 
 and go to the tower website again using the link in the log:
 
@@ -563,8 +507,8 @@ After preprocessing the data, we can go directly to run the *mop_tail* module wh
   	CTRL+o
   	CTRL+x
 
-  	#Run the module in the background, with singularity and in the local computer:
-  	nextflow run mop_tail.nf -with-singularity -bg -profile local -with-tower > log_tail.txt
+  	#Run the module in the background, with docker and in the local computer:
+  	nextflow run mop_tail.nf -with-docker -bg -profile local -with-tower > log_tail.txt
   
 Results
 ......................
@@ -708,8 +652,8 @@ After preprocessing the data, we can run the *mop_mop* module which runs four al
   CTRL+o
   CTRL+x
   
-  #Run the module in the background, with singularity and in the local computer:
-  nextflow run mop_mod.nf -with-singularity -bg -profile local > log_mod.txt
+  #Run the module in the background, with docker and in the local computer:
+  nextflow run mop_mod.nf -with-docker -bg -profile local > log_mod.txt
   
 Results
 ......................
@@ -766,8 +710,8 @@ Once we have obtained the predictions from the four algorithms run by *mop_mod*,
   CTRL+o
   CTRL+x
   
-  #Run the module in the background, with singularity and in the local computer:
-  nextflow run mop_consensus.nf -with-singularity -bg -profile local > log_consensus.txt
+  #Run the module in the background, with docker and in the local computer:
+  nextflow run mop_consensus.nf -with-docker -bg -profile local > log_consensus.txt
 
 Results
 ......................
