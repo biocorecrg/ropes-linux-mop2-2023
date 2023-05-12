@@ -414,7 +414,8 @@ h5ls /path/to/fast5 | head -n15
 <span class="go"> -- Check script &#39;mop_preprocess.nf&#39; at line: 632 or see &#39;.nextflow.log&#39; file for more details</span>
 </pre></div>
 </div>
-<p>This can be linked to the server capabilities. Our suggestion is to download manually the singularity images that is indicated in the error. All the images are stored in a folder named <strong>singularity</strong> in the root of the repo. It can be changed modifying the configuration file <strong>nextflow.config</strong>.</p>
+<p>This can be linked to the server capabilities or to the disk space. Our suggestion is to download manually the singularity images that is indicated in the error. All the images are stored in a folder named <strong>singularity</strong> in the root of the repo. It can be changed modifying the configuration file <strong>nextflow.config</strong>.</p>
+<p>Another option is to empty this folder <strong>$HOME/.apptainer/</strong> or <strong>$HOME/.singularity/</strong></p>
 <section id="tower">
 <h4>Tower<a class="headerlink" href="#tower" title="Permalink to this heading"></a></h4>
 <p><strong>Nextflow Tower</strong> is an open source monitoring and managing platform for Nextflow workflows. There are two versions:</p>
@@ -538,16 +539,17 @@ h5ls /path/to/fast5 | head -n15
 <h3>PolyA tail length estimation<a class="headerlink" href="#polya-tail-length-estimation" title="Permalink to this heading"></a></h3>
 <p>After preprocessing the data, we can go directly to run the <em>mop_tail</em> module which will output polyA tail length estimation at per read level. Please run the code below:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span>Go<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>directory:
-<span class="go">cd ./../mop_tail/</span>
+<span class="go">cd ../mop_tail/</span>
 
 <span class="gp">#</span>Edit<span class="w"> </span>params.config<span class="w"> </span>file:
 <span class="go">nano params.config</span>
 
 <span class="gp">#</span>Params.config<span class="w"> </span>content:
+
 <span class="go">params {</span>
 
-<span class="go">  input_path         = &quot;$baseDir/../mop_preprocess/output/&quot;</span>
-<span class="go">  reference           = &quot;/home/andelgado/Documents/software/NanoConsensus/ref/Saccharomyces_cerevisiae.rRNA.fa&quot;</span>
+<span class="go">  input_path         = &quot;$projectDir/../mop_preprocess/output/&quot;</span>
+<span class="go">  reference          = &quot;$projectDir/../mydata/nanopore/Saccharomyces_cerevisiae.rRNA.fa&quot;</span>
 
 <span class="go">  pars_tools         = &quot;$baseDir/tools_opt.tsv&quot;</span>
 
@@ -564,7 +566,7 @@ h5ls /path/to/fast5 | head -n15
 <span class="go">CTRL+x</span>
 
 <span class="gp">#</span>Run<span class="w"> </span>the<span class="w"> </span>module<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>background,<span class="w"> </span>with<span class="w"> </span>singularity<span class="w"> </span>and<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span><span class="nb">local</span><span class="w"> </span>computer:
-<span class="go">nextflow run mop_tail.nf -with-singularity -bg -profile local &gt; log_tail.txt</span>
+<span class="go">nextflow run mop_tail.nf -with-singularity -bg -profile local -with-tower &gt; log_tail.txt</span>
 </pre></div>
 </div>
 </section>
@@ -662,10 +664,10 @@ h5ls /path/to/fast5 | head -n15
 
 <span class="gp">#</span>Params.config<span class="w"> </span>content:
 <span class="go">params {</span>
-<span class="go">  input_path         = &quot;$baseDir/../mop_preprocess/output/&quot;</span>
+<span class="go">  input_path         = &quot;$projectDir/../mop_preprocess/output/&quot;</span>
 <span class="go">  comparison         = &quot;$baseDir/comparison.tsv&quot;</span>
 
-<span class="go">  reference           = &quot;/home/andelgado/Documents/software/NanoConsensus/ref/Saccharomyces_cerevisiae.rRNA.fa&quot;</span>
+<span class="go">  reference          = &quot;$projectDir/../mydata/nanopore/Saccharomyces_cerevisiae.rRNA.fa&quot;</span>
 
 <span class="go">  output             = &quot;$baseDir/output_mod&quot;</span>
 
@@ -682,6 +684,7 @@ h5ls /path/to/fast5 | head -n15
 
 <span class="go">  email              = &quot;username@domain&quot;</span>
 <span class="go">}</span>
+
 
 <span class="gp">#</span>Save<span class="w"> </span>file<span class="w"> </span>and<span class="w"> </span>exit:
 <span class="go">CTRL+o</span>
@@ -725,7 +728,7 @@ h5ls /path/to/fast5 | head -n15
 <span class="go">params {</span>
 
 <span class="go">  input_path         = &quot;$baseDir/../mop_mod/output_mod&quot;</span>
-<span class="go">  reference          = &quot;/home/andelgado/Documents/software/NanoConsensus/ref/Saccharomyces_cerevisiae.rRNA.fa&quot;</span>
+<span class="go">  reference          = &quot;$projectDir/../mydata/nanopore/Saccharomyces_cerevisiae.rRNA.fa&quot;</span>
 
 <span class="go">  comparison         = &quot;$baseDir/comparison.tsv&quot;</span>
 <span class="go">  padsize            = 50</span>

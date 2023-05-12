@@ -365,8 +365,9 @@ Sometimes singularity cannot download an image from https://quay.io/. In such ca
 
 	 -- Check script 'mop_preprocess.nf' at line: 632 or see '.nextflow.log' file for more details
 
-This can be linked to the server capabilities. Our suggestion is to download manually the singularity images that is indicated in the error. All the images are stored in a folder named **singularity** in the root of the repo. It can be changed modifying the configuration file **nextflow.config**.
+This can be linked to the server capabilities or to the disk space. Our suggestion is to download manually the singularity images that is indicated in the error. All the images are stored in a folder named **singularity** in the root of the repo. It can be changed modifying the configuration file **nextflow.config**.
 
+Another option is to empty this folder **$HOME/.apptainer/** or **$HOME/.singularity/**
 
 Tower
 =======
@@ -535,34 +536,35 @@ After preprocessing the data, we can go directly to run the *mop_tail* module wh
 
 .. code-block:: console
 
-  #Go to the directory:
-  cd ./../mop_tail/
+  	#Go to the directory:
+ 	cd ../mop_tail/
   
-  #Edit params.config file:
-  nano params.config
+  	#Edit params.config file:
+  	nano params.config
   
-  #Params.config content:
-  params {
-    
-    input_path         = "$baseDir/../mop_preprocess/output/"
-    reference           = "/home/andelgado/Documents/software/NanoConsensus/ref/Saccharomyces_cerevisiae.rRNA.fa"
-
-    pars_tools         = "$baseDir/tools_opt.tsv"
-
-    output             = "$baseDir/outputPoly"
-
-    tailfindr          = "YES"
-    nanopolish         = "YES"
- 
-    email              = "username@domain"
-  }
+  	#Params.config content:
   
-  #Save file and exit:
-  CTRL+o
-  CTRL+x
+	params {
 
-  #Run the module in the background, with singularity and in the local computer:
-  nextflow run mop_tail.nf -with-singularity -bg -profile local > log_tail.txt
+	  input_path         = "$projectDir/../mop_preprocess/output/"
+	  reference          = "$projectDir/../mydata/nanopore/Saccharomyces_cerevisiae.rRNA.fa"
+
+	  pars_tools         = "$baseDir/tools_opt.tsv"
+
+	  output             = "$baseDir/outputPoly"
+
+	  tailfindr          = "YES"
+	  nanopolish         = "YES"
+
+	  email              = "username@domain"
+	}
+  
+ 	#Save file and exit:
+  	CTRL+o
+  	CTRL+x
+
+  	#Run the module in the background, with singularity and in the local computer:
+  	nextflow run mop_tail.nf -with-singularity -bg -profile local -with-tower > log_tail.txt
   
 Results
 ......................
@@ -668,16 +670,16 @@ After preprocessing the data, we can run the *mop_mop* module which runs four al
   
   #Params.config content:
   params {
-    input_path         = "$baseDir/../mop_preprocess/output/"
+    input_path         = "$projectDir/../mop_preprocess/output/"
     comparison         = "$baseDir/comparison.tsv"
 
-    reference           = "/home/andelgado/Documents/software/NanoConsensus/ref/Saccharomyces_cerevisiae.rRNA.fa"
-    
+    reference          = "$projectDir/../mydata/nanopore/Saccharomyces_cerevisiae.rRNA.fa"
+
     output             = "$baseDir/output_mod"
 
     pars_tools         = "$baseDir/tools_opt.tsv"
-    
-    // flows 
+
+    // flows
     epinano       = "YES"
     nanocompore   = "YES"
     tombo_lsc     = "YES"
@@ -688,6 +690,7 @@ After preprocessing the data, we can run the *mop_mop* module which runs four al
 
     email              = "username@domain"
   }
+
   
   #Save file and exit:
   CTRL+o
@@ -734,7 +737,7 @@ Once we have obtained the predictions from the four algorithms run by *mop_mod*,
   params {
     
     input_path         = "$baseDir/../mop_mod/output_mod"
-    reference          = "/home/andelgado/Documents/software/NanoConsensus/ref/Saccharomyces_cerevisiae.rRNA.fa"
+    reference          = "$projectDir/../mydata/nanopore/Saccharomyces_cerevisiae.rRNA.fa"
 
     comparison         = "$baseDir/comparison.tsv"
     padsize            = 50
