@@ -77,7 +77,7 @@ The pre-processing module is able to perform base-calling, mapping (either to a 
 
 - **Step 1b: Demultiplexing**
   
-  Demultiplexing is required when analysing a barcoded sample; otherwise, this step is not necessary. Here, **Deeplexicon** is used. This algorithm converts the barcode's signal into an image, which is then classified based on a machine-learning approach.
+  Demultiplexing is required when analysing a barcoded sample; otherwise, this step is not necessary. **Deeplexicon** is used when analysing dRNA. This algorithm converts the barcode's signal into an image, which is then classified based on a machine-learning approach. For cDNA, DNA and metDNA you can specify within the parameters to use **Guppy**.
   
   - **Input:** Raw fast5 files
   - **Output:** Demuxed raw fast5 files
