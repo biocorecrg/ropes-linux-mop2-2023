@@ -553,28 +553,35 @@ h5ls /path/to/fast5 | head -n15
 </ul>
 <a class="reference internal image-reference" href="_images/Limitations_CurrentMethods.png"><img alt="_images/Limitations_CurrentMethods.png" src="_images/Limitations_CurrentMethods.png" style="width: 700px;" /></a>
 <p><strong>Analysis overview:</strong></p>
-<ul>
-<li><p><strong>Software 1: EpiNano</strong></p>
 <ul class="simple">
+<li><p><strong>Software 1: EpiNano</strong></p>
+<ul>
 <li><p><strong>Input:</strong> Alignment (.bam) and reference (.fa) files</p></li>
 <li><p><strong>Output:</strong> Basecalling errors (mismatch, insertion, deletion frequencies), coverage and base quality per-position.</p></li>
 </ul>
 </li>
 <li><p><strong>Software 2: Nanopolish</strong></p>
-<ul class="simple">
+<ul>
 <li><p><strong>Input:</strong> Fastq (.fq.gz), alignment (.bam), reference (.fa) and summary (_final_summary.stats) files</p></li>
 <li><p><strong>Output:</strong> Median current intensity values per position as well as how many <em>resquiggled</em> reads do cover that position.</p></li>
 </ul>
-<p>MISSING TIP ABOUT RESQUIGGLING</p>
 </li>
-<li><p><strong>Software 3: Tombo</strong></p>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>What is resquiggling?</strong></p>
+<p><em>Resquiggling</em> is the process by which basecalled reads are mapped to a genome/transcriptome reference and then, the raw signal is assigned to a sequence context in the reference. <strong>Nanopolish</strong>, <strong>Tombo</strong> and <strong>Nanocompore</strong> require all input reads to be resquiggled. Currently, the two most commonly used resquiggling algorithms are the ones from <strong>Nanopolish</strong> and <strong>Tombo</strong>.</p>
+<p><strong>IMPORTANT:</strong> Some reads might fail to be resquiggled and thus, won’t be included in any downstream processes!</p>
+</div>
 <ul class="simple">
+<li><p><strong>Software 3: Tombo</strong></p>
+<ul>
 <li><p><strong>Input:</strong> Fastq (.fq.gz), alignment (.bam), reference (.fa) and summary (_final_summary.stats) files</p></li>
 <li><p><strong>Output:</strong> -Log10(p-value) obtained from the KS-test when comparing current intensity values’ distribution as well as how many <em>resquiggled</em> reads do cover that position (per position).</p></li>
 </ul>
 </li>
 <li><p><strong>Software 4: Nanocompore</strong></p>
-<ul class="simple">
+<ul>
 <li><p><strong>Input:</strong> Fastq (.fq.gz), alignment (.bam), reference (.fa) and summary (_final_summary.stats) files</p></li>
 <li><p><strong>Output:</strong> P-values obtained when comparing clusters of reads from the two samples (per-position).</p></li>
 </ul>

@@ -563,8 +563,13 @@ When using these algorithms, it is important to be aware of their limitations (a
   - **Input:** Fastq (.fq.gz), alignment (.bam), reference (.fa) and summary (_final_summary.stats) files
   - **Output:** Median current intensity values per position as well as how many *resquiggled* reads do cover that position.
   
-  MISSING TIP ABOUT RESQUIGGLING
- 
+.. tip::
+  **What is resquiggling?**
+  
+  *Resquiggling* is the process by which basecalled reads are mapped to a genome/transcriptome reference and then, the raw signal is assigned to a sequence context in the reference. **Nanopolish**, **Tombo** and **Nanocompore** require all input reads to be resquiggled. Currently, the two most commonly used resquiggling algorithms are the ones from **Nanopolish** and **Tombo**. 
+  
+  **IMPORTANT:** Some reads might fail to be resquiggled and thus, won't be included in any downstream processes!
+    
 - **Software 3: Tombo**
 
   - **Input:** Fastq (.fq.gz), alignment (.bam), reference (.fa) and summary (_final_summary.stats) files
