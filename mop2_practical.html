@@ -55,7 +55,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#hands-on-1-mop-preprocess-and-mop-tail">Hands-on 1: <em>mop_preprocess</em> and <em>mop_tail</em></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#mop2-installation-and-data-preprocessing">MOP2 installation and data preprocessing:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#tower">Tower</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#computational-resources">Computational resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#monitoring">Monitoring</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#results">Results</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#polya-tail-length-estimation">PolyA tail length estimation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id1">Results</a></li>
@@ -105,7 +106,7 @@
 <span id="mop2-practical-page"></span><h1>Master of Pores 2<a class="headerlink" href="#master-of-pores-2" title="Permalink to this heading"></a></h1>
 <section id="basics-of-direct-rna-sequencing-drs">
 <h2>Basics of Direct RNA Sequencing (DRS)<a class="headerlink" href="#basics-of-direct-rna-sequencing-drs" title="Permalink to this heading"></a></h2>
-<p>Direct RNA sequencing is a technology developed by Oxford Nanopore Technologies (ONT) that allows the sequencing of native RNA molecules without the need of previous amplification nor fragmentation. Therefore, it provides information about the presence of RNA modifications, polyA tail length and composition at per-read level.</p>
+<p>Direct RNA sequencing is a technology developed by Oxford Nanopore Technologies (ONT) that allows the sequencing of native RNA molecules without the need of previous amplification nor fragmentation. Therefore, it can provide information about the presence of RNA modifications, polyA tail length and composition at per-read level.</p>
 <p>This method is based on the use of protein nanopores that are embedded into a membrane. As the molecule goes through the pore, it alters the ionic current that is applied to it. These changes are then stored in <strong>fast5 files</strong>.</p>
 <a class="reference internal image-reference" href="_images/Pore.png"><img alt="_images/Pore.png" src="_images/Pore.png" style="width: 700px;" /></a>
 </section>
@@ -121,80 +122,42 @@
 <a class="reference internal image-reference" href="_images/MOP_scheme.png"><img alt="_images/MOP_scheme.png" src="_images/MOP_scheme.png" style="width: 700px;" /></a>
 <section id="basic-preprocessing-module-mop-preprocessing">
 <h3>Basic preprocessing (module: <em>mop_preprocessing</em>)<a class="headerlink" href="#basic-preprocessing-module-mop-preprocessing" title="Permalink to this heading"></a></h3>
-<p>The pre-processing module is able to perform base-calling, mapping (either to a genome or a transcriptome), feature counting (per-gene level) and quality control. Furthermore, if required by the user, it can run demultiplexing, filtering and discovery of novel transcripts. As the final step, the workflow generates a final report of the performance and results of each of the steps performed.</p>
+<p>The pre-processing module is able to perform basecalling, mapping (either to a genome or a transcriptome), feature counting (per-gene level) and quality control. Furthermore, if required by the user, it can run demultiplexing, filtering and discovery of novel transcripts. As the final step, the workflow generates a final report of the performance and results of each of the steps performed.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Before proceeding to any other downstream analysis such as RNA modification detection and polyA tail analysis, this module <strong>must</strong> be executed.</p>
 </div>
 <p><strong>Analysis overview:</strong></p>
 <ul>
-<li><p><strong>Step 1a: Basecalling</strong></p>
-<p>It is the process by which the current intensity data is translated into a nucleotide sequence by a machine learning algorithm called basecaller. Currently, the most widely used is <strong>Guppy</strong>, which was developed by ONT and it is only available if you are part of the ONT community. The model that Guppy uses to analyse RNA data is not modification aware and therefore, it can only identify the four canonical bases (A, U, C and G).</p>
-<ul class="simple">
-<li><p><strong>Input:</strong> Raw fast5 files</p></li>
-<li><p><strong>Output:</strong> Basecalled fast5 and fastq files</p></li>
-</ul>
-</li>
-</ul>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p><strong>How do we know if fast5 files are bassecalled or not?</strong></p>
-<p>Raw and basecall fast5 files have the same extension (.fast5) and in consequence, the only way of knowing if a fast5 file is basecalled or not is to check its contents. Please use the code below:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span>#Install h5ls as sudo user:
-sudo apt-get install hdf5-tools
-
-[sudo] password for training:
-Reading package lists... Done
-Building dependency tree... Done
-Reading state information... Done
-The following additional packages will be installed:
-libaec0 libhdf5-103-1 libhdf5-hl-100 libsz2
-[....]
-
-#Investigate fast5 files&#39; structure:
-h5ls /path/to/fast5 | head -n15
-</pre></div>
-</div>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Raw</p></th>
-<th class="head"><p>Basecalled</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><img alt="Missing raw fast5" src="_images/raw.png" /></p></td>
-<td><p><img alt="Missing basecalled fast5" src="_images/basecalled.png" /></p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<ul>
-<li><p><strong>Step 1b: Demultiplexing</strong></p>
+<li><p><strong>Step 1: Demultiplexing</strong></p>
 <p>Demultiplexing is required when analysing a barcoded sample; otherwise, this step is not necessary. <strong>Deeplexicon</strong> is used when analysing dRNA. This algorithm converts the barcode’s signal into an image, which is then classified based on a machine-learning approach. For cDNA, DNA and metDNA you can specify within the parameters to use <strong>Guppy</strong>.</p>
 <ul class="simple">
 <li><p><strong>Input:</strong> Raw fast5 files</p></li>
 <li><p><strong>Output:</strong> Demuxed raw fast5 files</p></li>
 </ul>
 </li>
-<li><p><strong>Step 2: Filtering</strong></p>
+<li><p><strong>Step 2: Basecalling</strong></p>
+<p>It is the process by which the current intensity data is translated into a nucleotide sequence by a machine learning algorithm called basecaller. Currently, the most widely used is <strong>Guppy</strong>, which was developed by ONT and it is only available if you are part of the ONT community. The model that Guppy uses to analyse RNA data is not modification aware and therefore, it can only identify the four canonical bases (A, U, C and G).</p>
+<ul class="simple">
+<li><p><strong>Input:</strong> Raw fast5 files</p></li>
+<li><p><strong>Output:</strong> Basecalled fast5 and fastq files</p></li>
+</ul>
+</li>
+<li><p><strong>Step 3: Filtering</strong></p>
 <p>Filter out reads based on either quality and/or length performed by <strong>Nanofilt</strong>. For RNA modification detection using DRS data, this step should be turned off as modified reads tend to have lower quality than unmodified ones and thus, filtering based on quality would bias the results.</p>
 <ul class="simple">
 <li><p><strong>Input:</strong> Fastq files</p></li>
 <li><p><strong>Output:</strong> Filtered fastq files</p></li>
 </ul>
 </li>
-<li><p><strong>Step 3: Alignment</strong></p>
+<li><p><strong>Step 4: Alignment</strong></p>
 <p>Mapping step performed by either <strong>minimap2</strong> or <strong>grapmap</strong>. Both can perform spliced or unspliced alignments. Briefly, we would use spliced alignments when using a genome as a reference and; unspliced for transcriptome. Furthermore, it has been reported that minimap2 fails to align highly modified reads and thus, it should not be used to analyse data from highly modified RNA species such as rRNAs.</p>
 <ul class="simple">
 <li><p><strong>Input:</strong> Fastq files and reference file (genome or transcriptome)</p></li>
 <li><p><strong>Output:</strong> Bam (and bai) files</p></li>
 </ul>
 </li>
-<li><p><strong>Step 4: Feature counts</strong></p>
+<li><p><strong>Step 5: Gene/transcript counts</strong></p>
 <p>The software run by MOP2 to perform this step depends on the type of reference used in the mapping step. For transcriptome alignments, <strong>NanoCount</strong> is used and it reports per transcript abundances whereas for genome alignments, <strong>htseq-count</strong> is executed and it generates per-gene counts.</p>
 <ul class="simple">
 <li><p><strong>Input:</strong> Reference and alignment file (bam) for NanoCount // Reference, annotation (<em>.gtf) and alignment files (</em>.bam) for htseq-count</p></li>
@@ -251,7 +214,7 @@ h5ls /path/to/fast5 | head -n15
 <p>For this hands-on exercise, we will perform polyA tail length estimation and RNA modification detection on total RNA DRS samples from <em>Saccharomyces cerevisiae</em> (see list below):</p>
 <ul class="simple">
 <li><p>Sample 1: snR36 knock-out strain</p></li>
-<li><p>Samples 2, 3 and 4: wild-type strains</p></li>
+<li><p>Samples 2, 3 and 4: WT strains</p></li>
 </ul>
 <p>We need to downolad the test dataset that is bundled in this repository</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">mkdir mydata</span>
@@ -289,10 +252,10 @@ h5ls /path/to/fast5 | head -n15
 </div>
 <p>Before setting up <em>mop_preproceess</em> module, it is important that you think about which softwares and parameters should be used - otherwise you might run analysis that are not suitable to your sample (and you will lose time and resources). Please, answers the questions below:</p>
 <ul class="simple">
-<li><p><strong>Question 1:</strong> Which is the most abundant RNA specie in your samples? Is it highly or lowly modified?</p></li>
+<li><p><strong>Question 1:</strong> Which is the most abundant RNA specie in your samples? Is it highly or lowly modified? Which mapper would you use?</p></li>
 <li><p><strong>Question 2:</strong> Which reference would you use (genome or transcriptome)?</p></li>
-<li><p><strong>Question 3:</strong> Would you use spliced or unspliced alignment? Why?</p></li>
-<li><p><strong>Question 4:</strong> Which counter would you use? Why?</p></li>
+<li><p><strong>Question 3:</strong> Would you use spliced or unspliced alignment?</p></li>
+<li><p><strong>Question 4:</strong> Which counter would you use?</p></li>
 </ul>
 <p>Now, we can start setting up the <em>mop_preproceess</em> module. Please follow the code below:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span>Enter<span class="w"> </span>the<span class="w"> </span>mop_preprocess<span class="w"> </span>directory:
@@ -354,6 +317,10 @@ h5ls /path/to/fast5 | head -n15
 </pre></div>
 </div>
 <p>As discussed earlier, these options are okay when analysing total RNA samples. However, depending on the type of sample, changes in the params.config file should be made. Click <a class="reference external" href="https://biocorecrg.github.io/MOP2/docs/mop_preprocess.html">here</a> to check all parameters accepted by <em>mop_preprocess</em>.</p>
+<p>Now that the set up of the module is done, it is important to discuss two additional topics before running it:</p>
+</section>
+<section id="computational-resources">
+<h3>Computational resources<a class="headerlink" href="#computational-resources" title="Permalink to this heading"></a></h3>
 <p><strong>MoP2</strong> has different profiles with resources specified for several infrastructures. If you have a look at the folder <strong>conf</strong> you can have an idea of the possibility to fine tune the resources such as maximum execution time, the queue name, the maximum memory etc. Fo example let’s have a look at the <strong>local.config file</strong>, we can change it to use more processors and memory, since our workstations have 8 CPUs and 16 Gb of RAM Memory.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ../conf</span>
 
@@ -381,10 +348,9 @@ h5ls /path/to/fast5 | head -n15
 <span class="go">}</span>
 </pre></div>
 </div>
-<p>Before executing this module, it is important to discuss how we can monitor all the jobs and the overall progress of the workflow. In our case, we recommend to use <strong>Tower</strong>.</p>
 </section>
-<section id="tower">
-<h3>Tower<a class="headerlink" href="#tower" title="Permalink to this heading"></a></h3>
+<section id="monitoring">
+<h3>Monitoring<a class="headerlink" href="#monitoring" title="Permalink to this heading"></a></h3>
 <p><strong>Nextflow Tower</strong> is an open source monitoring and managing platform for Nextflow workflows. There are two versions:</p>
 <ul class="simple">
 <li><p>Open source for monitoring of single pipelines.</p></li>
@@ -483,6 +449,30 @@ h5ls /path/to/fast5 | head -n15
 <p>Once the module has finished, these directories should be in your output folder:</p>
 <ul class="simple">
 <li><p><strong>fast5_files</strong>: Contains the basecalled fast5 files.</p></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>How do we know if fast5 files are bassecalled or not?</strong></p>
+<p>Raw and basecall fast5 files have the same extension (.fast5) and in consequence, the only way of knowing if a fast5 file is basecalled or not is to check its contents. Please use the code below:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span>#Install h5ls as sudo user:
+sudo apt-get install hdf5-tools
+
+[sudo] password for training:
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following additional packages will be installed:
+libaec0 libhdf5-103-1 libhdf5-hl-100 libsz2
+[....]
+
+#Investigate fast5 files&#39; structure:
+h5ls /path/to/fast5 | head -n15
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/raw.png"><img alt="_images/raw.png" src="_images/raw.png" style="width: 700px;" /></a>
+<a class="reference internal image-reference" href="_images/basecalled.png"><img alt="_images/basecalled.png" src="_images/basecalled.png" style="width: 700px;" /></a>
+</div>
+<ul class="simple">
 <li><p><strong>fastq_files</strong>: Contains one or, in case of demultiplexing, more fastq files.</p></li>
 <li><p><strong>QC_files</strong>: Contains each single QC produced by the pipeline.</p></li>
 <li><p><strong>alignment</strong>: Contains the bam and bai file(s).</p></li>
@@ -492,7 +482,7 @@ h5ls /path/to/fast5 | head -n15
 </ul>
 <p>Now, we would look at the alignments in IGV (genome browser) together with the stats reported in the multiQC html to decide if we have enough quality data to proceed with the polyA tail length estimation and RNA modification detection analysis. Due to time limitations, here you should decide if we can proceed or not only based on the multiQC report.</p>
 <ul class="simple">
-<li><p><strong>Question 5:</strong> Do we have enough data in all samples to proceed to the downstream analysis? Why?</p></li>
+<li><p><strong>Question 5:</strong> Do we have enough data in all samples to proceed to the downstream analysis?</p></li>
 </ul>
 <a class="reference internal image-reference" href="_images/report1.png"><img alt="_images/report1.png" src="_images/report1.png" style="width: 700px;" /></a>
 <a class="reference internal image-reference" href="_images/report2.png"><img alt="_images/report2.png" src="_images/report2.png" style="width: 700px;" /></a>
@@ -620,7 +610,7 @@ h5ls /path/to/fast5 | head -n15
 <h2>Hands-on 2: <em>mop_mod</em> and <em>mop_consensus</em><a class="headerlink" href="#hands-on-2-mop-mod-and-mop-consensus" title="Permalink to this heading"></a></h2>
 <section id="detection-of-differentially-modified-sites">
 <h3>Detection of differentially modified sites<a class="headerlink" href="#detection-of-differentially-modified-sites" title="Permalink to this heading"></a></h3>
-<p>After preprocessing the data, we can run the <em>mop_mop</em> module which runs four algorithms to identify differentially modified sites. Please run the code below:</p>
+<p>After preprocessing the data, we can run the <em>mop_mod</em> module which runs four algorithms to identify differentially modified sites. Please run the code below:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span>Go<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>directory:
 <span class="go">cd ./../mop_mod/</span>
 
@@ -681,7 +671,7 @@ h5ls /path/to/fast5 | head -n15
 <ul class="simple">
 <li><p><strong>epinano_flow</strong>: Contains EpiNano’s results (one .csv.gz file per sample) and the plots comparing each of the basecalilng features (mismatch, insertion and deletion frequency) between two samples per transcript.</p></li>
 <li><p><strong>nanopolish-compore_flow</strong>: Contains Nanopolish’s (one .csv.gz file per sample) and Nanocompore’s (one directory per comparison) results.</p></li>
-<li><p><strong>tombo_flow</strong>: Contains Tombo’s results (one .tsv.gz file per comparison) - both for level sample compare (lsc) and model sample compare mode (msc).</p></li>
+<li><p><strong>tombo_flow</strong>: Contains Tombo’s results (one .tsv.gz file per comparison)</p></li>
 </ul>
 <p>Check the generated files and answer these questions below:</p>
 <ul class="simple">
@@ -709,7 +699,7 @@ h5ls /path/to/fast5 | head -n15
 </pre></div>
 </div>
 <ul class="simple">
-<li><p><strong>Question 8:</strong> Check the output from tombo (msc) and nanopolish - could you explain why the coverage reported is different?</p></li>
+<li><p><strong>Question 8:</strong> Check the output from tombo and nanopolish - could you explain why the coverage reported is different?</p></li>
 </ul>
 </section>
 <section id="detection-of-differentially-modified-sites-with-high-confidence">
@@ -766,14 +756,10 @@ h5ls /path/to/fast5 | head -n15
 <section id="id4">
 <h3>Results<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
 <p>Once the module has finished, a directory per comparison and transcript should be generated. In this case, the three directories below should be generated:</p>
-<blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li><p>snR36_KO—WT100_Cov100_Rep1-18s</p></li>
 <li><p>snR36_KO—WT100_Cov50_Rep1-18s</p></li>
 <li><p>snR36_KO—WT50_Cov50_Rep1-18s</p></li>
-</ul>
-</div></blockquote>
-<ul class="simple">
 <li><p><strong>Question 9:</strong> Inspect the log file - are there any errors reported? If there are, are they expected or not? Why?</p></li>
 </ul>
 <p>Now, let’s take a look at the NanoConsensus tracks that we have obtained from the <em>mop_consensus</em> module:</p>
@@ -781,7 +767,8 @@ h5ls /path/to/fast5 | head -n15
 <a class="reference internal image-reference" href="_images/snR36_KO−−−WT100_Cov50_Rep1.png"><img alt="_images/snR36_KO%E2%88%92%E2%88%92%E2%88%92WT100_Cov50_Rep1.png" src="_images/snR36_KO%E2%88%92%E2%88%92%E2%88%92WT100_Cov50_Rep1.png" style="width: 700px;" /></a>
 <a class="reference internal image-reference" href="_images/snR36_KO−−−WT50_Cov50_Rep1.png"><img alt="_images/snR36_KO%E2%88%92%E2%88%92%E2%88%92WT50_Cov50_Rep1.png" src="_images/snR36_KO%E2%88%92%E2%88%92%E2%88%92WT50_Cov50_Rep1.png" style="width: 700px;" /></a>
 <ul class="simple">
-<li><p><strong>Question 10:</strong></p></li>
+<li><p><strong>Question 10:</strong> Do you believe there might be false negatives/positive in the results? How would you deal with them?</p></li>
+<li><p><strong>Question 11:</strong> If any, which position is differentially modified?</p></li>
 </ul>
 </section>
 </section>
