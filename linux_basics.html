@@ -601,6 +601,18 @@ This format allows to store also the information about the quality of that parti
 </ul>
 <p>They are interconnected and mirror the data among them and are connected to other databases that contain also the results of a given analysis such as <a class="reference external" href="https://www.ncbi.nlm.nih.gov/geo/">GEO</a> and <a class="reference external" href="https://www.ebi.ac.uk/arrayexpress/">Array-express</a> that contain expression data.</p>
 <p>Let’s download a test fastq files we stored in our repository with the access <strong>SRR6466185</strong> using again <strong>wget</strong>. Then we untar the file.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>https://biocorecrg.github.io/ropes-linux-mop2-2023/data/SRR6466185.tar.gz
+
+tar<span class="w"> </span>-zvxf<span class="w"> </span>SRR6466185.tar.gz
+SRR6466185_1.fastq.gz
+SRR6466185_2.fastq.gz
+
+
+ls<span class="w"> </span>-lh<span class="w"> </span>SRR*
+-rw-r--r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>lcozzuto<span class="w"> </span>Bioinformatics_Unit<span class="w"> </span><span class="m">6</span>.4M<span class="w"> </span>Mar<span class="w">  </span><span class="m">8</span><span class="w"> </span><span class="m">12</span>:01<span class="w"> </span>SRR6466185_1.fastq.gz
+-rw-r--r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>lcozzuto<span class="w"> </span>Bioinformatics_Unit<span class="w"> </span><span class="m">7</span>.5M<span class="w"> </span>Mar<span class="w">  </span><span class="m">8</span><span class="w"> </span><span class="m">12</span>:01<span class="w"> </span>SRR6466185_2.fastq.gz
+</pre></div>
+</div>
 <p>We should have 32,345 reads. Let’s try to count them using a combination of <strong>zcat</strong> that uncompress the file and writes the content to the terminal and <strong>wc</strong>.</p>
 <p>So considering that each sequence is defined by 4 rows we should have <code class="docutils literal notranslate"><span class="pre">32,345</span> <span class="pre">*</span> <span class="pre">4</span> <span class="pre">=</span> <span class="pre">129,380</span></code>. We can also use <strong>awk</strong> for embedding also the division:</p>
 <div class="admonition note">
