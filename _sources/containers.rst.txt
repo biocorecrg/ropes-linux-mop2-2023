@@ -62,19 +62,6 @@ CONS. * Need more space and resources.                       * Some cases might 
 ===== ===================================================== =====================================================
 
 
-History of containers
-----------------------
-
-**chroot**
-
-* chroot jail (BSD jail): first concept in 1979
-* Notable use in SSH and FTP servers
-* Honeypot, recovery of systems, etc.
-
-.. image:: https://sysopsio.files.wordpress.com/2016/09/linux-chroot-jail.png
-  :width: 550
-
-
 Docker
 ======
 
