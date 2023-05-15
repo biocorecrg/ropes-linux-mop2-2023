@@ -660,6 +660,7 @@ Let's download a test fastq files we stored in our repository with the access **
 
 
 .. code-block:: bash
+
 	wget https://biocorecrg.github.io/ropes-linux-mop2-2023/data/SRR6466185.tar.gz
 
 	tar -zvxf SRR6466185.tar.gz 
