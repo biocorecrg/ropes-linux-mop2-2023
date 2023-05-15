@@ -277,6 +277,7 @@ As discussed earlier, these options are okay when analysing total RNA samples. H
 **MoP2** has different profiles with resources specified for several infrastructures. If you have a look at the folder **conf** you can have an idea of the possibility to fine tune the resources such as maximum execution time, the queue name, the maximum memory etc. Fo example let's have a look at the **local.config file**, we can change it to use more processors and memory, since our workstations have 8 CPUs and 16 Gb of RAM Memory.
 
 .. code-block:: console
+
 	cd ../conf
 
 	vim local.config
@@ -303,20 +304,10 @@ As discussed earlier, these options are okay when analysing total RNA samples. H
 	}
 
 
-
-Now we can execute:
-
-
-.. code-block:: console
-
-  cd ../mop_preprocess
-  
-  #Run the module in the background, with docker and in the local computer:
-  nextflow run mop_preprocess.nf -with-docker -bg -profile local > log_preprocess.txt
- 
+Before executing this module, it is important to discuss how we can monitor all the jobs and the overall progress of the workflow. In our case, we recommend to use **Tower**. 
 
 Tower
-=======
+......................
 
 **Nextflow Tower** is an open source monitoring and managing platform for Nextflow workflows. There are two versions:
 
@@ -327,16 +318,13 @@ We will show the open source one.
 
 First, you need to access the `tower.nf <https://tower.nf/>`__ website and login.
 
-
 .. image:: images/tower.png
   :width: 800
-
 
 We recommend you to use github or google for autentication. If you selected the email for receiving the instructions and the token to be used.
 
 .. image:: images/tower0.png
   :width: 800
-
 
 Here you see there is not yet any information.
 
@@ -366,36 +354,35 @@ Now we can launch the pipeline:
 .. code-block:: console
 
   #Run the module in the background, with docker and in the local computer:
+  
   nextflow run mop_preprocess.nf -with-docker -bg -profile local -with-tower > log_preprocess.txt
 
   more log_preprocess.txt 
-  N E X T F L O W  ~  version 23.03.0-edge
-  Launching `mop_preprocess.nf` [grave_poincare] DSL2 - revision: ec40fe0af4
-
+  N E X T F L O W  ~  version 20.10.0
+  Launching `mop_preprocess.nf` [goofy_spence] - revision: ec40fe0af4
 
   ╔╦╗╔═╗╔═╗  ╔═╗┬─┐┌─┐┌─┐┬─┐┌─┐┌─┐┌─┐┌─┐┌─┐
   ║║║║ ║╠═╝  ╠═╝├┬┘├┤ ├─┘├┬┘│ ││  ├┤ └─┐└─┐
   ╩ ╩╚═╝╩    ╩  ┴└─└─┘┴  ┴└─└─┘└─┘└─┘└─┘└─┘
-
+                                                                                       
   ====================================================
   BIOCORE@CRG Master of Pores 2. Preprocessing - N F  ~  version 2.0
   ====================================================
 
   conffile.                 : final_summary_01.txt
 
-  fast5                     : /nfs/users/bi/lcozzuto/ooo/MOP2/mop_preprocess/../mydata/nanopore/**/*.fast5
+  fast5                     : /nfs/no_backup/enovoa/users/andelgado/MOP2/mop_preprocess/../mydata/nanopore/**/*.fast5
   fastq                     : 
 
-  reference                 : /nfs/users/bi/lcozzuto/ooo/MOP2/mop_preprocess/../mydata/nanopore/Saccharomyces_cerevisiae.rRNA.f
-  a
+  reference                 : /nfs/no_backup/enovoa/users/andelgado/MOP2/mop_preprocess/../mydata/nanopore/Saccharomyces_cerevisiae.rRNA.fa
   annotation                : 
 
   granularity.              : 1
 
   ref_type                  : transcriptome
-  pars_tools                : drna_tool_splice_opt.tsv
+  pars_tools                : drna_tool_unsplice_opt.tsv
 
-  output                    : /nfs/users/bi/lcozzuto/ooo/MOP2/mop_preprocess/output
+  output                    : /nfs/no_backup/enovoa/users/andelgado/MOP2/mop_preprocess/output
 
   GPU                       : OFF
 
@@ -403,39 +390,35 @@ Now we can launch the pipeline:
   demultiplexing            : NO 
   demulti_fast5             : NO
 
-  filtering                 : nanoq
+  filtering                 : NO
   mapping                   : graphmap
 
   counting                  : nanocount
   discovery                 : NO
 
-  cram_conv           	  : NO
+  cram_conv                 : NO
   subsampling_cram          : 50
 
 
   saveSpace                 : NO
-  email                     : lucacozzuto@crg.es
+  email                     : username@domain
 
-  Sending the email to lucacozzuto@crg.es
+  Sending the email to username@domain
 
   ----------------------CHECK TOOLS -----------------------------
   basecalling : guppy
   > demultiplexing will be skipped
   mapping : graphmap
-  filtering : nanoq
+  > filtering will be skipped
   counting : nanocount
   > discovery will be skipped
   --------------------------------------------------------------
-  Monitor the execution with Nextflow Tower using this URL: https://tower.nf/orgs/Bioinfo_CRG/workspaces/MoP/watch/54rW5nmBxt43
-  Td
+  Monitor the execution with Nextflow Tower using this url https://tower.nf/user/anna-delgado-tejedor/watch/5MePdfTHV9xGyK
   
-
-and go to the tower website again using the link in the log:
-
+Now, you can go to the tower website again using the link in the log:
 
 .. image:: images/tower_mop.png
   :width: 800
-
 
 When the pipeline is finished we can also receive a mail.
 
@@ -608,7 +591,7 @@ After preprocessing the data, we can run the *mop_mop* module which runs four al
 .. code-block:: console
 
   #Go to the directory:
-  cd ./../mop_mop/
+  cd ./../mop_mod/
   
   #Summary of files:
   ## comparison.tsv file: it is used to input the pairwise comparisons that the workflow should analyse. 
@@ -632,7 +615,7 @@ After preprocessing the data, we can run the *mop_mop* module which runs four al
     epinano       = "YES"
     nanocompore   = "YES"
     tombo_lsc     = "YES"
-    tombo_msc     = "NO"
+    tombo_msc     = "YES"
 
     // epinano plots
     epinano_plots = "YES"
@@ -640,7 +623,6 @@ After preprocessing the data, we can run the *mop_mop* module which runs four al
     email              = "username@domain"
   }
 
-  
   #Save file and exit:
   CTRL+o
   CTRL+x
@@ -658,12 +640,48 @@ After preprocessing the data, we can run the *mop_mop* module which runs four al
   CTRL+x
   
   #Run the module in the background, with docker and in the local computer:
-  nextflow run mop_mod.nf -with-docker -bg -profile local > log_mod.txt
+  nextflow run mop_mod.nf -with-docker -bg -profile local -with-tower > log_mod.txt
   
 Results
 ......................
 
-Once the module has finished, these directories should be in your output folder: MISSING!!!
+Once the module has finished, these directories should be in your output folder:
+
+- **epinano_flow**: Contains EpiNano's results (one .csv.gz file per sample) and the plots comparing each of the basecalilng features (mismatch, insertion and deletion frequency) between two samples per transcript.
+
+- **nanopolish-compore_flow**: Contains Nanopolish's (one .csv.gz file per sample) and Nanocompore's (one directory per comparison) results.
+
+- **tombo_flow**: Contains Tombo's results (one .tsv.gz file per comparison) - both for level sample compare (lsc) and model sample compare mode (msc). 
+
+Check the generated files and answer these questions below:
+
+- **Question 7:** Were all expected files generated? If not, which one(s) are missing? Could you hypothesize why?
+
+To fix this issue, please run the code below:
+
+.. code-block:: console
+  
+  #Edit the tools_opt.tsv file:
+  nano tools_opt.tsv 
+  
+  #Contents of the tools_opt.tsv file:
+  #flows  tool    extrapars
+  epinano epinano ""
+  nanocompore     nanopolish      ""
+  nanocompore     nanocompore     "--sequence_context 2 --downsample_high_coverage 10000"
+  tombo_resquiggling      tombo   ""
+  tombo_msc       tombo   ""
+  tombo_lsc       tombo   "--minimum-test-reads 30"
+  
+  #Save file and exit:
+  CTRL+o
+  CTRL+x
+  
+  #Re-run the module in the background, with docker and in the local computer:
+  nextflow run mop_mod.nf -with-docker -bg -profile local -with-tower -resume > log_mod_resumed.txt
+
+- **Question 8:** Check the output from tombo (msc) and nanopolish - could you explain why the coverage reported is different?
+
 
 Detection of differentially modified sites with high confidence
 ......................
@@ -716,9 +734,19 @@ Once we have obtained the predictions from the four algorithms run by *mop_mod*,
   CTRL+x
   
   #Run the module in the background, with docker and in the local computer:
-  nextflow run mop_consensus.nf -with-docker -bg -profile local > log_consensus.txt
+  nextflow run mop_consensus.nf -with-docker -bg -profile local -with-tower > log_consensus.txt
 
 Results
 ......................
 
-Once the module has finished, these directories should be in your output folder: MISSING!!!
+Once the module has finished, a directory per comparison and transcript should be generated. In this case, the three directories below should be generated:
+ - snR36_KO---WT100_Cov100_Rep1-18s
+ - snR36_KO---WT100_Cov50_Rep1-18s
+ - snR36_KO---WT50_Cov50_Rep1-18s
+
+- **Question 9:** Inspect the log file - are there any errors reported? If there are, are they expected or not? Why? 
+
+Now, let's take a look to the NanoConsensus tracks that we have obtained from the *mop_consensus* module:
+
+
+
