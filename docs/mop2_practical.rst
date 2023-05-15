@@ -740,13 +740,23 @@ Results
 ......................
 
 Once the module has finished, a directory per comparison and transcript should be generated. In this case, the three directories below should be generated:
+
  - snR36_KO---WT100_Cov100_Rep1-18s
  - snR36_KO---WT100_Cov50_Rep1-18s
  - snR36_KO---WT50_Cov50_Rep1-18s
 
 - **Question 9:** Inspect the log file - are there any errors reported? If there are, are they expected or not? Why? 
 
-Now, let's take a look to the NanoConsensus tracks that we have obtained from the *mop_consensus* module:
+Now, let's take a look at the NanoConsensus tracks that we have obtained from the *mop_consensus* module:
 
+.. image:: images/snR36_KO−−−WT100_Cov100_Rep1.png
+  :width: 700
 
+.. image:: images/snR36_KO−−−WT100_Cov50_Rep1.png
+  :width: 700
+  
+.. image:: images/snR36_KO−−−WT50_Cov50_Rep1.png
+  :width: 700
+
+- **Question 10:** 
 
