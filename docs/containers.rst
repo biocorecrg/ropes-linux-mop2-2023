@@ -538,7 +538,7 @@ That is the most common way to execute Singularity (equivalent to ``docker exec`
 
     singularity exec fastqc-0.11.9.sif fastqc
 
- a processing of a FASTQ file from *data* directory:
+a processing of a FASTQ file from *data* directory:
 
 .. code-block:: console
 
