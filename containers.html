@@ -561,11 +561,10 @@
 <section id="singularity-exec">
 <h4>Singularity exec<a class="headerlink" href="#singularity-exec" title="Permalink to this heading"></a></h4>
 <p>That is the most common way to execute Singularity (equivalent to <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">exec</span></code>). That would be the normal approach in a HPC environment.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">   singularity exec fastqc-0.11.9.sif fastqc</span>
-
-<span class="go">a processing of a FASTQ file from *data* directory:</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">singularity exec fastqc-0.11.9.sif fastqc</span>
 </pre></div>
 </div>
+<p>a processing of a FASTQ file from <em>data</em> directory:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">singularity exec fastqc-0.11.9_cv7.sif fastqc SRR6466185_1.fastq.gz</span>
 </pre></div>
 </div>
