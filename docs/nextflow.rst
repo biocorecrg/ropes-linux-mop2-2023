@@ -152,6 +152,7 @@ Once the file is saved, execute it with:
 
 
 	git clone https://github.com/biocorecrg/ropes-linux-mop2-2023.git
+	cd ropes-linux-mop2-2023/nextflow/examples
 
 	nextflow run ex1.nf
 
