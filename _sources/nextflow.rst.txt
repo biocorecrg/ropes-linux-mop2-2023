@@ -150,6 +150,9 @@ Once the file is saved, execute it with:
 
 .. code-block:: console
 
+
+	git clone https://github.com/biocorecrg/ropes-linux-mop2-2023.git
+
 	nextflow run ex1.nf
 
 	N E X T F L O W  ~  version 20.07.1
