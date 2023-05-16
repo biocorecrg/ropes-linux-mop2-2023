@@ -295,7 +295,7 @@ Here you see there is not yet any information.
   :width: 800
 
 
-You can generate your token at `https://tower.nf/tokens <https://tower.nf/tokens>`__ and copy paste it in your pipeline using this snippet in the configuration file:
+You can generate your token at `https://tower.nf/tokens <https://tower.nf/tokens>`__ and copy paste it in your pipeline using this snippet in the configuration file **nextflow.global.config**:
 
 .. code-block:: groovy
 
