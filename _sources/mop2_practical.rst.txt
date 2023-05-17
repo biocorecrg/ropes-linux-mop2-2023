@@ -54,7 +54,7 @@ The pre-processing module is able to perform basecalling, mapping (either to a g
    
 - **Step 3: Filtering**
   
-  Filter out reads based on either quality and/or length performed by **Nanofilt**. For RNA modification detection using DRS data, this step should be turned off as modified reads tend to have lower quality than unmodified ones and thus, filtering based on quality would bias the results.
+  Filter out reads based on quality is performed by **Nanofilt**. For RNA modification detection using DRS data, this step should be turned off as modified reads tend to have lower quality than unmodified ones and thus, filtering based on quality would bias the results.
   
   - **Input:** Fastq files
   - **Output:** Filtered fastq files
